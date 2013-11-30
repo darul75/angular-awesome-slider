@@ -1,4 +1,4 @@
-ng-twitter
+ng-satelize
 =====================
 
 Angular directive slider control.
@@ -8,7 +8,11 @@ Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmele
 Why
 -------------
 
-Original implementation was split in many files, with too much features for me, and not angular integrated.
+Original implementation provides very nice features but too much for my needs, this one is simplifyed.
+
+Source files were divided in several files, and not angular integrated.
+
+It takes me time to make it works and all jquery code is included in directive, I do not know if it is the best thing to do today ;)
 
 Demo
 -------------
@@ -36,17 +40,17 @@ You should already have script required for Angular, note sanitize module use.
 to the list above, you should add:
 
 ```html
-<link rel="stylesheet" type="text/css" href="ng-twitter.min.css">
+<link rel="stylesheet" type="text/css" href="ng-slider.min.css">
 ```
 
 ```html
-<script type="text/javascript" src="ng-twitter.min.js"></script>
+<script type="text/javascript" src="ng-slider.min.js"></script>
 ```
 
-Then, inject `ngTwitter` in your application module:
+Then, inject `ngSlider` in your application module:
 
 ```javascript
-angular.module('myApp', ['ngTwitter']);
+angular.module('myApp', ['ngSlider']);
 ```
 
 and then just add an `div` with `tweets` directive name attribute, `hashtag` scope variable attribute.
