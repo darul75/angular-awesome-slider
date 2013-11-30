@@ -1,0 +1,13 @@
+{
+  "name": "ng-slider",
+  "version": "0.0.1",
+  "main": "./src/ng-slider.js",
+  "dependencies": {
+    "angular": "1.2.x",    
+    "angular-sanitize": "1.2.x",
+    "jquery": "latest"    
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.x"
+  }
+}
