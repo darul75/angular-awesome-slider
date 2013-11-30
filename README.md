@@ -1,4 +1,4 @@
-ng-satelize
+ng-slider
 =====================
 
 Angular directive slider control.
