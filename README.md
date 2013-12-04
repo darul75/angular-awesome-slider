@@ -1,4 +1,4 @@
-ng-slider
+ng-slider [![NPM version](https://badge.fury.io/js/ng-slider.png)](http://badge.fury.io/js/ng-slider)
 =====================
 
 Angular directive slider control.
