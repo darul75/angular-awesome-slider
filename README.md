@@ -14,8 +14,14 @@ Source files were divided in several files, and not angular integrated.
 
 It takes me time to make it works and all jquery code is included in directive, I do not know if it is the best thing to do today ;)
 
+Sceenshot
+-------------
+
+![angular slider demo](http://darul75.github.io/ng-slider/images/screenshot.png "angular slider demo screenshot")
+
 Demo
 -------------
+http://darul75.github.io/ng-slider/
 
 
 Installation
