@@ -54,6 +54,37 @@ Just play a little bit
   <div>
     Current value is: {{value}}
   </div>
+  <h3>Code</h3>  
+  <div class="language-markup">
+    <pre><code>&lt;!DOCTYPE html>
+  &lt;html>
+  &lt;head>
+    ...</code>
+    <code class="highlight">&lt;link href="css/ng-slider.min.css" rel="stylesheet" /></code>
+    <code class="highlight">&lt;script type="javascripts/javascript" src="angular.min.js" /></code>
+    <code class="highlight">&lt;script type="javascripts/javascript" src="ng-slider.min.js" /></code>
+  <code>&lt;/head>
+  &lt;body>
+    ...</code>
+    <code>&lt;div>
+      &lt;input ng-model="value"  type="text" id="mySlider1" slider options="options" />
+    &lt;/div>
+    </code>
+    <code class="highlight">&lt;script>
+      function ctrl($scope) {
+        $scope.value = "50";
+        $scope.options = {       
+          from: 1,
+          to: 100,
+          step: 1,
+          dimension: " km"        
+        };
+      }   
+    &lt;/script>
+    </code>    
+  <code>&lt;/body>
+  &lt;/html></code></pre>
+  </div>
   </br>
   </br>
   <h2>Single value with scale</h2>
@@ -62,6 +93,19 @@ Just play a little bit
   </div>
   <div>
     Current value is: {{value2}}
+  </div>
+  <h3>Code</h3>  
+  <div>
+    <pre><code class="language-javascript">function ctrl($scope) {
+  $scope.value = "50";
+  $scope.options = {       
+    from: 1,
+    to: 100,
+    step: 1,
+    dimension: " km",
+    scale: [0, '|', 50, '|' , 100]        
+  };
+}</code></pre>
   </div>
   </br>
   </br>
@@ -72,6 +116,17 @@ Just play a little bit
   <div>
     Current value is: {{value3}}
   </div>
+  <h3>Code</h3>  
+  <div>
+    <pre><code class="language-javascript">function ctrl($scope) {
+  $scope.value = "10;15";
+  $scope.options = {       
+    from: 0,
+    to: 40,
+    step: 1,
+    dimension: " $"       
+  };
+}</code></pre>
   </br>
   </br>  
   <h2>Double value with scale</h2>
@@ -81,6 +136,18 @@ Just play a little bit
   <div>
     Current value is: {{value4}}
   </div>
+  <h3>Code</h3>  
+  <div>
+    <pre><code class="language-javascript">function ctrl($scope) {
+  $scope.value = "10;15";
+  $scope.options = {       
+    from: 0,
+    to: 40,
+    step: 1,
+    dimension: " $",
+    scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40]       
+  };
+}</code></pre>
   </br>
   </br>
 </div>
