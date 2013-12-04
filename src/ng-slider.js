@@ -24,7 +24,7 @@
 							'<div class="jslider-value"><span></span>{{options.dimension}}</div>' +
 							'<div class="jslider-value jslider-value-to"><span></span>{{options.dimension}}</div>' +
 
-							'<div class="jslider-scale"></div>' +
+							'<div class="jslider-scale" id="{{sliderScaleDivTmplId}}"></div>' +
 
 						'</td></tr></table>' +
 					'</span>',
@@ -32,7 +32,9 @@
 							
 					scope.from = ''+scope.options.from;
 					scope.to = ''+scope.options.to;
-					scope.sliderTmplId = attrs.id + '-slider-span'; 
+					scope.sliderTmplId = attrs.id + '-slider-span';
+					scope.sliderScaleDivTmplId = attrs.id + '-slider-scale'; 
+
 					scope.mainSliderClass = 'jslider';
 
 					// TODO : skin
@@ -51,7 +53,7 @@
 						value: scope.ngModel,
 						dimension: "",
 						scale: scope.scale,
-						sliderSpanId: scope.sliderTmplId,
+						sliderSpanId: scope.sliderTmplId,						
 						callback: function(value) {
 							scope.$apply(function() {
 								scope.ngModel = value;
@@ -61,7 +63,9 @@
 
 					timeout(function(){
 						$("#"+attrs.id).slider(OPTIONS);
-					});
+						$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());						
+						scope.drawScale();
+					});					
 
 					scope.generateScale = function(){
 						if( scope.options.scale && scope.options.scale.length > 0 ){
@@ -77,7 +81,13 @@
 						return "";
 					};
 
-					$('.jslider-scale').html(scope.generateScale());
+					scope.drawScale = function(){
+						$("#"+attrs.id+'-slider-span').find(".jslider-scale span ins").each(function(){
+							$(this).css({ marginLeft: -$(this).outerWidth()/2 });
+						});
+					};
+
+					
 				}
 			};
 		}]);
@@ -246,8 +256,7 @@
 
 		this.domNode = $("#"+this.settings.sliderSpanId);
 
-		this.inputNode.after( this.domNode );
-		this.drawScale();
+		this.inputNode.after( this.domNode );		
 
 		// set skin class
 		//   if( this.settings.skin && this.settings.skin.length > 0 )
@@ -317,12 +326,6 @@
 		})(this);
 	};			
 
-	Slider.prototype.drawScale = function(){
-		this.domNode.find(OPTIONS.selector + "scale span ins").each(function(){
-			$(this).css({ marginLeft: -$(this).outerWidth()/2 });
-		});
-	};
-
 	Slider.prototype.nice = function( value ){
 		return value;
 	};
@@ -374,6 +377,12 @@
 	Slider.prototype.update = function(){
 		this.onresize();
 		this.drawScale();
+	};
+
+	Slider.prototype.drawScale = function(){
+		this.domNode.find(OPTIONS.selector + "scale span ins").each(function(){
+			$(this).css({ marginLeft: -$(this).outerWidth()/2 });
+		});
 	};
 
 	Slider.prototype.redraw = function( pointer ){

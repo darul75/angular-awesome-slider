@@ -12,10 +12,26 @@
 
 	<div ng-app="myApp" ng-controller="ctrl">
 		<div>
-			<input ng-model="value"  type="text" id="mySlider" slider options="options" />
+			<input ng-model="value3"  type="text" id="mySlider1" slider options="options2" />
 		</div>
+		<div>
+			Current value is: {{value3}}
+		</div>
+		</br>
+		</br>
+		<div>
+			<input ng-model="value"  type="text" id="mySlider2" slider options="options" />
+		</div>
+		<div>
+			Current value is: {{value}}
+		</div>
+		</br>
+		</br>
 		<div>	
-			<input ng-model="value2"  type="text" id="mySlider2" slider options="options" />		
+			<input ng-model="value2"  type="text" id="mySlider3" slider options="options" />		
+		</div>
+		<div>
+			Current value is: {{value2}}
 		</div>	
 	</div>
 
@@ -26,13 +42,20 @@
 		function ctrl($scope, $filter) {			
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
+			$scope.value3 = "50";
 			$scope.options = {				
-				from: 1,
-				to: 35,
+				from: 0,
+				to: 40,
 				step: 1,
-				dimension: " km",
-				scale: [5, '|', 10, '|' , 15, '|', 20, '|', 30, '|', 40],
-				heterogeneity: ['5/20', '40/100']
+				dimension: " $",
+				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
+				heterogeneity: ['50/100', '75/250']				
+			};
+			$scope.options2 = {				
+				from: 1,
+				to: 100,
+				step: 10,
+				dimension: " km"				
 			};	
 
 			$scope.$watch('value', function(value) {
