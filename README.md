@@ -8,7 +8,7 @@ Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmele
 Why
 -------------
 
-Original implementation provides very nice features but too much for my needs, this one is simplifyed.
+Original implementation provides very nice features but too much for my needs, this one just simplified.
 
 Source files were divided in several files, and not angular integrated.
 
