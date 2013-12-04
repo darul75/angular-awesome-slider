@@ -39,6 +39,9 @@ ol, ul {
   list-style: none;
 }
 
+blockquote, q {
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -55,7 +58,7 @@ body {
   font-size: 16px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  /*-webkit-font-smoothing: antialiased;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -148,16 +151,7 @@ img {
   -ms-box-shadow: 0 0 5px #ebebeb;
 }
 
-p img {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  text-align: center;
-  border: none;
-}
-
-pre, code {
+pre {
   width: 100%;
   color: #222;
   background-color: #fff;
@@ -170,7 +164,7 @@ pre, code {
   -webkit-border-radius: 2px;
 }
 
-pre {
+/*pre {
   width: 100%;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -187,7 +181,7 @@ pre code {
   display: block;
   box-shadow: none;
 }
-
+*/
 blockquote {
   color: #666;
   margin-bottom: 20px;
@@ -195,17 +189,16 @@ blockquote {
   border-left: 3px solid #bbb;
 }
 
-
 ul, ol, dl {
   margin-bottom: 15px
 }
 
-ul {
+/*ul li {
   list-style: inside;
   padding-left: 20px;
-}
+}*/
 
-ol {
+ol li {
   list-style: decimal inside;
   padding-left: 20px;
 }
@@ -264,7 +257,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 800px;
   padding: 20px 10px;
   margin: 0 auto;
 }
