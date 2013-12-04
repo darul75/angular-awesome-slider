@@ -53,32 +53,31 @@ Then, inject `ngSlider` in your application module:
 angular.module('myApp', ['ngSlider']);
 ```
 
-and then just add an `div` with `tweets` directive name attribute, `hashtag` scope variable attribute.
+and then just add an `div` with `slider` directive name attribute, `value` and `options` scope variable attribute.
 
 ```html
-<div tweets hashtag="hashtag" button="true" count="15" refresh="60"/>
+<input ng-model="value" type="text" id="mySlider1" slider options="options" />
 ```
 
-'hashtag' is your default hashtag search value.
+'value' your slider scope end value, as string.
+'options' slider scope options value as json.
+'id' attribute, put different if several slides on same page.
 
 ```javascript
-$scope.hashtag = 'football';
+$scope.value = "10";
+// $scope.value = "10;15"; FOR DOUBLE VIEW
 ```
 
-### Attribute
+### Options
 
-* `hashtag`: scope hashtag string variable object, default 'football'
-* `button`: show refresh button, default true
-* `hash`: show refresh button, default true
-* `refresh`: scope variable, refresh time
+Options for your slider in json format {from:.....}
 
-Example with all above features:
+* `from`: start value
+* `to`: end value
+* `step`: step value
+* `dimension`: string, example " $"
+* `scale`: array for scale
 
-```html
-<div ng-app="myApp" ng-controller="ctrl">
-	<div tweets hashtag="hashtag" hash="true" button="true" count="5" refresh="10"/>		
-</div>
-```
 
 ### Build
 
