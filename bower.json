@@ -1,6 +1,21 @@
 {
   "name": "ng-slider",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "author": {
+    "name": "Julien Valéry",
+    "email": "darul75@gmail.com"
+  },  
+  "homepage": "https://github.com/darul75/ng-slider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darul75/ng-slider.git"
+  },
+  "keywords": [
+    "angular",
+    "slider",
+    "control",
+    "ui"    
+  ],
   "main": "./src/ng-slider.js",
   "dependencies": {
     "angular": "1.2.x",    
