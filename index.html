@@ -159,6 +159,21 @@ Just play a little bit
     src="//gttp.co/v1.js"></script>
 </div>
 
+<!-- Place this html code where you want the widget -->
+<div class="bitcoin-button" data-address="http://blockchain.info/address/1P5RFdAgWpPgCUHYEBw9GZADbrqQ2DpXEQ" data-info="received" data-message="Leave a tip to support my work!"></div>
+
+</br>
+
+  <!-- Place this snippet somewhere after the last button -->
+  <script type="text/javascript">
+  var bitcoinwidget_init = { autoload: true, host: "//bitcoinwidget.appspot.com" };
+  (function() {
+  var x = document.createElement("script"); x.type="text/javascript"; x.async=true;
+  x.src = "//bitcoinwidget.appspot.com/js/bitcoinwidget.js";
+  var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(x,s);
+  })();
+  </script>
+
   <script type="text/javascript"> 
 
     var app = angular.module('myApp', ['ngSlider']);        
