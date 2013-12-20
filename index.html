@@ -23,18 +23,25 @@
 
   <body>
 
+   <div class="wrapper"> 
+
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/darul75/ng-slider">View on GitHub</a>
+        <header>
 
           <h1 id="project_title">Ng-slider</h1>
-          <h2 id="project_tagline">AngularJS slider control directive</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/darul75/ng-slider/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/darul75/ng-slider/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+          <p>AngularJS slider control directive</p>
+          <ul>
+           <li>
+              <a href="https://github.com/darul75/ng-slider/zipball/master">Download <strong>Zip File</strong></a>
+           </li>
+           <li>   
+              <a href="https://github.com/darul75/ng-slider/tarball/master">Download <strong>Tar ball</strong></a>
+           </li>
+           <li>   
+              <a id="forkme_banner" href="https://github.com/darul75/ng-slider">View on <strong>GitHub</strong></a>
+           </li>
+          </ul> 
         </header>
     </div>
 
@@ -52,7 +59,7 @@ Just play a little bit
     <input ng-model="value"  type="text" id="mySlider1" slider options="options" />
   </div>
   <div>
-    Current value is: {{value}}
+    <p>Current value is: {{value}}</p>
   </div>
   <h3>Code</h3>  
   <div class="language-markup">
@@ -92,7 +99,8 @@ Just play a little bit
     <input ng-model="value2"  type="text" id="mySlider2" slider options="options2" />
   </div>
   <div>
-    Current value is: {{value2}}
+  </br>
+    <p>Current value is: {{value2}}</p>
   </div>
   <h3>Code</h3>  
   <div>
@@ -134,7 +142,8 @@ Just play a little bit
     <input ng-model="value4"  type="text" id="mySlider4" slider options="options4" />
   </div>
   <div>
-    Current value is: {{value4}}
+  </br>
+    <p>Current value is: {{value4}}</p>
   </div>
   <h3>Code</h3>  
   <div>
@@ -206,25 +215,27 @@ Just play a little bit
 
   </script>
 
-    <!-- FOOTER  -->
+      <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("ng-slider");
+    pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+
+   </div>
+  </div> 
+
+</div>
+   <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
+      <footer>
         <p class="copyright">Ng-slider maintained by <a href="https://github.com/darul75">darul75</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
-    </div>
-
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("ng-slider");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-
+    </div>       
   </body>
 </html>
