@@ -295,7 +295,9 @@
 
 		if( !$this.settings.value.split(";")[1] ){
 			this.settings.single = true;
-		}
+		}		
+
+		var clickPtr;
 
 		this.domNode.find(OPTIONS.selector + "pointer").each(function( i ){
 			var value = $this.settings.value.split(";")[i];
@@ -307,10 +309,25 @@
 
 			value = value < $this.settings.from ? $this.settings.from : value;
 			value = value > $this.settings.to ? $this.settings.to : value;
-
+				
 			$this.o.pointers[i].set( value, true );
+
+			if (i === 0) {
+				$this.domNode.mousedown(function( event ){					
+
+					$this.o.pointers[i]._parent = {
+						offset: $this.domNode.offset(),
+						width: $this.domNode.width()
+					};					
+
+					$this.o.pointers[i]._mousemove(event);
+					$this.o.pointers[i].onmouseup();
+					
+					return false;
+				});
 			}
-		});
+			}
+		});		
 
 		this.o.value = this.domNode.find(".v");
 		this.is.init = true;
@@ -531,25 +548,25 @@
 	};
 
 	Slider.prototype.getValue = function(){
-	if(!this.is.init) return false;
-	var $this = this;
+		if(!this.is.init) return false;
+		var $this = this;
 
-	var value = "";
-	$.each( this.o.pointers, function(i){
-	if( this.value.prc !== undefined && !isNaN(this.value.prc) ) value += (i > 0 ? ";" : "") + $this.prcToValue( this.value.prc );
-	});
-	return value;
+		var value = "";
+		$.each( this.o.pointers, function(i){
+		if( this.value.prc !== undefined && !isNaN(this.value.prc) ) value += (i > 0 ? ";" : "") + $this.prcToValue( this.value.prc );
+		});
+		return value;
 	};
 
 	Slider.prototype.getPrcValue = function(){
-	if(!this.is.init) return false;
-	var $this = this;
+		if(!this.is.init) return false;
+		var $this = this;
 
-	var value = "";
-	$.each( this.o.pointers, function(i){
-	if( this.value.prc !== undefined && !isNaN(this.value.prc) ) value += (i > 0 ? ";" : "") + this.value.prc;
-	});
-	return value;
+		var value = "";
+		$.each( this.o.pointers, function(i){
+		if( this.value.prc !== undefined && !isNaN(this.value.prc) ) value += (i > 0 ? ";" : "") + this.value.prc;
+		});
+		return value;
 	};
 
 	Slider.prototype.prcToValue = function( prc ){

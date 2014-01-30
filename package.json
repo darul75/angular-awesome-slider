@@ -1,7 +1,7 @@
 {
   "name": "ng-slider",
   "description": "AngularJS directive slider control.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
