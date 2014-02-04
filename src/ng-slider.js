@@ -29,9 +29,7 @@
 						'</td></tr></table>' +
 					'</span>',
 				link : function(scope, element, attrs) {					
-							
-					scope.from = ''+scope.options.from;
-					scope.to = ''+scope.options.to;
+												
 					scope.sliderTmplId = attrs.id + '-slider-span';
 					scope.sliderScaleDivTmplId = attrs.id + '-slider-scale'; 
 
@@ -42,30 +40,37 @@
 
 					if( !scope.ngModel.split(";")[1])
 						scope.mainSliderClass += ' jslider-single';
-					
-					var OPTIONS = {						
-						from: scope.options.from,
-						to: scope.options.to,
-						step: scope.options.step,
-						smooth: true,
-						limits: true,
-						round: 0,			
-						value: scope.ngModel,
-						dimension: "",
-						scale: scope.scale,
-						sliderSpanId: scope.sliderTmplId,						
-						callback: function(value) {
-							scope.$apply(function() {
-								scope.ngModel = value;
-							});
-						}										
-					};
 
-					timeout(function(){
-						$("#"+attrs.id).slider(OPTIONS);
-						$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());						
-						scope.drawScale();
-					});					
+					scope.init = function() {
+
+						scope.from = ''+scope.options.from;
+						scope.to = ''+scope.options.to;
+						var OPTIONS = {						
+							from: scope.options.from,
+							to: scope.options.to,
+							step: scope.options.step,
+							smooth: true,
+							limits: true,
+							round: 0,			
+							value: scope.ngModel,
+							dimension: "",
+							scale: scope.options.scale,
+							sliderSpanId: scope.sliderTmplId,						
+							callback: function(value) {
+								scope.$apply(function() {
+									scope.ngModel = value;
+								});
+							}										
+						};
+
+						timeout(function(){
+							$("#"+attrs.id).slider(OPTIONS);
+							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());						
+							scope.drawScale();
+						});	
+
+					};
+									
 
 					scope.generateScale = function(){
 						if( scope.options.scale && scope.options.scale.length > 0 ){
@@ -87,6 +92,13 @@
 						});
 					};
 
+					// WATCH OPTIONS CHANGES
+
+					scope.$watch('options', function(value) {
+			    		scope.init();
+					});
+
+					scope.init();
 					
 				}
 			};
@@ -143,6 +155,9 @@
 		}
 
 		this.each(function(){
+
+			$(this).data( "jslider", null )
+
 			var self = $.slider( this, action );
 
 			// do actions

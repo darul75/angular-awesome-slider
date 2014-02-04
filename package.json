@@ -1,7 +1,7 @@
 {
   "name": "ng-slider",
   "description": "AngularJS directive slider control.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
@@ -17,23 +17,16 @@
     "slider",
     "control",
     "ui"    
-  ],
-  "scripts": {
-    "test": "./node_modules/.bin/karma start test/my.conf.js"
-  },
+  ],  
   "bugs": {
     "url": "https://github.com/darul75/ng-slider/issues"
   },
   "dependencies": {
   },
-  "devDependencies": {
-    "grunt": "latest",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-karma": "0.7.1",
+  "devDependencies": {    
+    "grunt-contrib-copy": "~0.4.1",    
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-uglify": "latest",
-    "grunt-contrib-cssmin": "~0.6.0",
-    "karma": "~0.10",
-    "grunt-bower-task": "~0.3.4"
+    "grunt-contrib-cssmin": "~0.6.0"    
   }
 }
