@@ -83,6 +83,7 @@ Options for your slider in json format {from:.....}
 * `step`: step value
 * `dimension`: string, example " $"
 * `scale`: array for scale
+* `round`: how many numbers allowed after comma
 
 
 ### Build
