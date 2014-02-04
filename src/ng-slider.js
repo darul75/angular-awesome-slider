@@ -51,7 +51,7 @@
 							step: scope.options.step,
 							smooth: true,
 							limits: true,
-							round: 0,			
+							round: scope.options.round || 0,			
 							value: scope.ngModel,
 							dimension: "",
 							scale: scope.options.scale,
@@ -62,6 +62,9 @@
 								});
 							}										
 						};
+
+						if (scope.options.calculate)
+							OPTIONS.calculate = scope.options.calculate;
 
 						timeout(function(){
 							$("#"+attrs.id).slider(OPTIONS);

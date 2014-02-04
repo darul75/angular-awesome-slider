@@ -46,14 +46,24 @@
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
 			$scope.value3 = "50";
+
+			var calculate = function( value ) {
+	          var hours = Math.floor( value / 60 );
+	          var mins = ( value - hours*60 );
+	          return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
+	        };
+
 			$scope.options = {				
 				from: 0,
 				to: 40,
-				step: 1,
+				step: 0.5,
 				dimension: " $",
+				round: 1,
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
-				heterogeneity: ['50/100', '75/250']				
+				heterogeneity: ['50/100', '75/250']
+				// calculate: calculate
 			};
+
 			$scope.options2 = {				
 				from: 1,
 				to: 100,
