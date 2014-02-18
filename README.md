@@ -59,7 +59,7 @@ Then, inject `ngSlider` in your application module:
 angular.module('myApp', ['ngSlider']);
 ```
 
-and then just add an `div` with `slider` directive name attribute, `value` and `options` scope variable attribute.
+and then just add an `input` with `slider` directive name attribute, `value` and `options` scope variable attribute.
 
 ```html
 <input ng-model="value" type="text" id="mySlider1" slider options="options" />
