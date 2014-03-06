@@ -154,7 +154,7 @@
 		}
 
 		function isDefAndNotNull( val ){
-			return val !== null;
+			return isDef( val ) && val !== null;
 		}
 
 		this.each(function(){
