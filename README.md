@@ -84,6 +84,7 @@ Options for your slider in json format {from:.....}
 * `dimension`: string, example " $"
 * `scale`: array for scale
 * `round`: how many numbers allowed after comma
+* `smooth`: true/false; false snaps the button to value
 
 
 ### Build
