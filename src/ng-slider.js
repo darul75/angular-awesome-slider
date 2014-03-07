@@ -101,6 +101,10 @@
 			    		scope.init();
 					});
 
+					scope.$watch('ngModel', function(value) {
+			    		scope.init();
+					});
+
 					scope.init();
 					
 				}
