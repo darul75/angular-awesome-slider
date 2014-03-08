@@ -1,7 +1,7 @@
 (function (angular) {
 'use strict';
 
-	angular.module('ngSlider', ['ngSanitize'])
+	angular.module('ngSlider', [])
 		// DIRECTIVE
 		.directive('slider', ['$timeout', function(timeout) {
 			return {
