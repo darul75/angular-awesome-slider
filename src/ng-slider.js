@@ -1,12 +1,14 @@
 (function (angular) {
-'use strict';
+'use strict';	
 
-	angular.module('ngSlider', [])
+	angular.module('ngSlider', ['ngSanitize'])					
 		// DIRECTIVE
 		.directive('slider', ['$timeout', function(timeout) {
 			return {
 				restrict : 'AE',
-				scope: { ngModel:'=', options:'=' },
+				require: '?ngModel',
+				scope: { options:'=' },
+				priority: 1,
 				template:
 					'<span ng-class="mainSliderClass" id="{{sliderTmplId}}">' +
 						'<table><tr><td>' +
@@ -14,21 +16,17 @@
 								'<i class="l"></i><i class="f"></i><i class="r"></i>' +
 								// '<i class="v"></i>' +
 							'</div>' +
-
 							'<div class="jslider-pointer"></div>' +
 							'<div class="jslider-pointer jslider-pointer-to"></div>' +
-
 							'<div class="jslider-label"><span ng-bind-html="from"></span></div>' +
 							'<div class="jslider-label jslider-label-to"><span ng-bind-html="to"></span>{{options.dimension}}</div>' +
-
 							'<div class="jslider-value"><span></span>{{options.dimension}}</div>' +
 							'<div class="jslider-value jslider-value-to"><span></span>{{options.dimension}}</div>' +
-
 							'<div class="jslider-scale" id="{{sliderScaleDivTmplId}}"></div>' +
-
 						'</td></tr></table>' +
 					'</span>',
-				link : function(scope, element, attrs) {
+				link : function(scope, element, attrs, ngModel) {					
+					if(!ngModel) return; // do nothing if no ng-model							
 
 					scope.sliderTmplId = attrs.id + '-slider-span';
 					scope.sliderScaleDivTmplId = attrs.id + '-slider-scale';
@@ -38,29 +36,36 @@
 					// TODO : skin
 					scope.mainSliderClass += ' jslider_round';
 
-					if( !scope.ngModel.split(";")[1])
-						scope.mainSliderClass += ' jslider-single';
+					// model -> view
+		            ngModel.$render = function () {
+						//elm.html(ctrl.$viewValue);
+
+		                if( !ngModel.$viewValue.split(";")[1])
+							scope.mainSliderClass += ' jslider-single';
+
+						scope.init();	
+		            };
 
 					scope.init = function() {
 
 						scope.from = ''+scope.options.from;
 						scope.to = ''+scope.options.to;
-						var OPTIONS = {
+						var OPTIONS = {						
 							from: scope.options.from,
 							to: scope.options.to,
 							step: scope.options.step,
 							smooth: scope.options.smooth,
 							limits: true,
 							round: scope.options.round || 0,
-							value: scope.ngModel,
+							value: ngModel.$viewValue,
 							dimension: "",
 							scale: scope.options.scale,
-							sliderSpanId: scope.sliderTmplId,
+							sliderSpanId: scope.sliderTmplId,						
 							callback: function(value) {
 								scope.$apply(function() {
-									scope.ngModel = value;
+									ngModel.$setViewValue(value); // view -> model
 								});
-							}
+							}										
 						};
 
 						if (scope.options.calculate)
@@ -68,12 +73,12 @@
 
 						timeout(function(){
 							$("#"+attrs.id).slider(OPTIONS);
-							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());
+							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());						
 							scope.drawScale();
-						});
+						});	
 
 					};
-
+									
 
 					scope.generateScale = function(){
 						if( scope.options.scale && scope.options.scale.length > 0 ){
@@ -100,9 +105,7 @@
 					scope.$watch('options', function(value) {
 			    		scope.init();
 					});
-
-					scope.init();
-
+					
 				}
 			};
 		}]);
@@ -116,9 +119,9 @@
 				step: 1,
 				smooth: true,
 				limits: true,
-				round: 0,
+				round: 0,			
 				value: "3",
-				dimension: ""
+				dimension: ""				
 			},
 		className: "jslider",
 		selector: ".jslider-"
@@ -145,7 +148,7 @@
 			jNode.data( "jslider", new Slider( node, settings ) );
 		return jNode.data( "jslider" );
 	};
-
+	
 	$.fn.slider = function( action, opt_value ){
 		var returnValue, args = arguments;
 
@@ -167,7 +170,7 @@
 			if( typeof action == "string" ){
 				var pointers;
 				switch( action ){
-					case "value":
+					case "value":						
 						if( isDef( args[ 1 ] ) && isDef( args[ 2 ] ) ){
 							pointers = self.getPointers();
 							if( isDefAndNotNull( pointers[0] ) && isDefAndNotNull( args[1] ) ){
@@ -194,7 +197,7 @@
 
 						break;
 
-					case "prc":
+					case "prc":						
 						if( isDef( args[ 1 ] ) && isDef( args[ 2 ] ) ){
 							pointers = self.getPointers();
 							if( isDefAndNotNull( pointers[0] ) && isDefAndNotNull( args[1] ) ){
@@ -253,8 +256,8 @@
 	Slider.prototype.init = function( node, settings ){
 		this.settings = $.extend(true, {}, OPTIONS.settings, settings ? settings : {});
 		this.inputNode = $( node ).hide();
-		this.settings.interval = this.settings.to-this.settings.from;
-
+		this.settings.interval = this.settings.to-this.settings.from;		
+			
 		if( this.settings.calculate && $.isFunction( this.settings.calculate ) )
 			this.nice = this.settings.calculate;
 
@@ -274,7 +277,7 @@
 
 		this.domNode = $("#"+this.settings.sliderSpanId);
 
-		this.inputNode.after( this.domNode );
+		this.inputNode.after( this.domNode );		
 
 		// set skin class
 		//   if( this.settings.skin && this.settings.skin.length > 0 )
@@ -313,7 +316,7 @@
 
 		if( !$this.settings.value.split(";")[1] ){
 			this.settings.single = true;
-		}
+		}		
 
 		var clickPtr;
 
@@ -327,25 +330,25 @@
 
 			value = value < $this.settings.from ? $this.settings.from : value;
 			value = value > $this.settings.to ? $this.settings.to : value;
-
+				
 			$this.o.pointers[i].set( value, true );
 
 			if (i === 0) {
-				$this.domNode.mousedown(function( event ){
+				$this.domNode.mousedown(function( event ){					
 
 					$this.o.pointers[i]._parent = {
 						offset: $this.domNode.offset(),
 						width: $this.domNode.width()
-					};
+					};					
 
 					$this.o.pointers[i]._mousemove(event);
 					$this.o.pointers[i].onmouseup();
-
+					
 					return false;
 				});
 			}
 			}
-		});
+		});		
 
 		this.o.value = this.domNode.find(".v");
 		this.is.init = true;
@@ -359,7 +362,7 @@
 				self.onresize();
 			});
 		})(this);
-	};
+	};			
 
 	Slider.prototype.nice = function( value ){
 		return value;
@@ -597,10 +600,10 @@
 
 			for( var i=0; i <= h.length; i++ ){
 				var v;
-				if( h[i] )
+				if( h[i] ) 
 					v = h[i].split("/");
 				else
-					v = [100, this.settings.to];
+					v = [100, this.settings.to];				
 
 				if( prc >= _start && prc <= v[0] ) {
 					value = _from + ( (prc-_start) * (v[1]-_from) ) / (v[0]-_start);
@@ -609,7 +612,7 @@
 				_start = v[0];
 				_from = v[1];
 			}
-		}
+		} 
 		else {
 			value = this.settings.from + ( prc * this.settings.interval ) / 100;
 		}
@@ -630,7 +633,7 @@
 				if(h[i])
 					v = h[i].split("/");
 				else
-					v = [100, this.settings.to];
+					v = [100, this.settings.to];				
 
 				if(value >= _from && value <= v[1]){
 					prc = pointer.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
@@ -648,9 +651,9 @@
 
 	Slider.prototype.round = function( value ){
 		value = Math.round( value / this.settings.step ) * this.settings.step;
-		if( this.settings.round )
+		if( this.settings.round ) 
 			value = Math.round( value * Math.pow(10, this.settings.round) ) / Math.pow(10, this.settings.round);
-		else
+		else 
 			value = Math.round( value );
 		return value;
 	};
@@ -826,7 +829,7 @@
 		this.outer.css({ height: "100%" });
 		} else {
 		this.outer.css({ height: "auto" });
-		}
+		}  
 		}
 
 		this.onmouseup( evt );
