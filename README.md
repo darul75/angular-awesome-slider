@@ -132,3 +132,7 @@ THE SOFTWARE.
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/darul75/ng-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
