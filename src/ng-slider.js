@@ -34,11 +34,14 @@
 					scope.mainSliderClass = 'jslider';
 
 					// TODO : skin
-					scope.mainSliderClass += ' jslider_round';
+					scope.mainSliderClass += ' jslider_round';					
 
 					// model -> view
 		            ngModel.$render = function () {
 						//elm.html(ctrl.$viewValue);
+
+						if (typeof(ngModel.$viewValue) === 'number') 
+						ngModel.$viewValue = ''+ngModel.$viewValue;
 
 		                if( !ngModel.$viewValue.split(";")[1])
 							scope.mainSliderClass += ' jslider-single';
