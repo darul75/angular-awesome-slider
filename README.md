@@ -23,16 +23,6 @@ Demo
 -------------
 http://darul75.github.io/ng-slider/
 
-
-Installation
-------------
-
-Using npm:
-
-```
-npm install ng-slider
-```
-
 How to use it
 -------------
 
@@ -86,6 +76,20 @@ Options for your slider in json format {from:.....}
 * `round`: how many numbers allowed after comma
 * `smooth`: true/false; false snaps the button to value
 
+Installation
+------------
+
+Using npm:
+
+```
+npm install ng-slider
+```
+
+Using bower:
+
+```
+bower install ng-slider
+```
 
 ### Build
 
