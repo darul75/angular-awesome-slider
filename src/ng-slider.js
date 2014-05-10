@@ -39,9 +39,13 @@
 					// model -> view
 		            ngModel.$render = function () {
 						//elm.html(ctrl.$viewValue);
+						if (!ngModel.$viewValue) {
+							return;
+						}
 
-						if (typeof(ngModel.$viewValue) === 'number') 
-						ngModel.$viewValue = ''+ngModel.$viewValue;
+						if (typeof(ngModel.$viewValue) === 'number') { 
+							ngModel.$viewValue = ''+ngModel.$viewValue;
+						}
 
 		                if( !ngModel.$viewValue.split(";")[1])
 							scope.mainSliderClass += ' jslider-single';
@@ -59,7 +63,7 @@
 							step: scope.options.step,
 							smooth: scope.options.smooth,
 							limits: true,
-							round: scope.options.round || 0,
+							round: scope.options.round || false,
 							value: ngModel.$viewValue,
 							dimension: "",
 							scale: scope.options.scale,
@@ -73,12 +77,12 @@
 
 						if (scope.options.calculate)
 							OPTIONS.calculate = scope.options.calculate;
-
-						timeout(function(){
+						
+						timeout(function() {
 							$("#"+attrs.id).slider(OPTIONS);
-							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());						
+							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());
 							scope.drawScale();
-						});	
+						});						
 
 					};
 									
@@ -121,8 +125,7 @@
 				to: 40,
 				step: 1,
 				smooth: true,
-				limits: true,
-				round: 0,			
+				limits: true,					
 				value: "3",
 				dimension: ""				
 			},
@@ -324,17 +327,17 @@
 		var clickPtr;
 
 		this.domNode.find(OPTIONS.selector + "pointer").each(function( i ){
-			var value = $this.settings.value.split(";")[i];
+			var value = $this.settings.value.split(';')[i];
 			if( value ){
 				$this.o.pointers[i] = new SliderPointer( this, i, $this );
 
-			var prev = $this.settings.value.split(";")[i-1];
-			if( prev && value < prev ) value = prev;
+			var prev = $this.settings.value.split(';')[i-1];
+			if( prev && parseInt(value, 10) < parseInt(prev, 10 )) value = prev;
 
-			value = value < $this.settings.from ? $this.settings.from : value;
-			value = value > $this.settings.to ? $this.settings.to : value;
+			var value1 = value < $this.settings.from ? $this.settings.from : value;
+			value1 = value > $this.settings.to ? $this.settings.to : value;
 				
-			$this.o.pointers[i].set( value, true );
+			$this.o.pointers[i].set( value1, true );
 
 			if (i === 0) {
 				$this.domNode.mousedown(function( event ){					
@@ -618,7 +621,7 @@
 		} 
 		else {
 			value = this.settings.from + ( prc * this.settings.interval ) / 100;
-		}
+		}		
 
 		return this.round( value );
 	};
@@ -652,10 +655,11 @@
 		return prc;
 	};
 
-	Slider.prototype.round = function( value ){
+	Slider.prototype.round = function( value ){				
 		value = Math.round( value / this.settings.step ) * this.settings.step;
+		
 		if( this.settings.round ) 
-			value = Math.round( value * Math.pow(10, this.settings.round) ) / Math.pow(10, this.settings.round);
+			value = Math.round( value * Math.pow(10, this.settings.round) ) / Math.pow(10, this.settings.round);		
 		else 
 			value = Math.round( value );
 		return value;

@@ -34,6 +34,12 @@
 			Current value is: {{value2}}
 		</div>
 		<div>
+			<input ng-model="value4"  type="text" id="mySlider4" slider options="options3" />
+		</div>
+		<div>
+			Current value is: {{value4}}
+		</div>
+		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 		</div>	
 	</div>
@@ -46,6 +52,7 @@
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
 			$scope.value3 = 50;
+			$scope.value4 = "999;1700";			 
 
 			var calculate = function( value ) {
 	          var hours = Math.floor( value / 60 );
@@ -67,8 +74,18 @@
 			$scope.options2 = {				
 				from: 1,
 				to: 100,
+				floor: true,
 				step: 10,
 				dimension: " km"				
+			};
+
+			$scope.options3 = {				
+				from: 700,
+				to: 2100,
+				step: 1,
+				smooth: false,
+				dimension: " mb",
+
 			};
 
 			$scope.changeOptions = function() {
