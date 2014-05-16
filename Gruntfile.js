@@ -3,14 +3,17 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    bower: {
-      install: {
-         //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-      }
-    },
+    pkg: grunt.file.readJSON('package.json'),    
     jshint: {
       files: ['src/ng-slider.js', 'test/**/*.js']
+    },
+    // BOWER
+    bower: {
+      install: {
+        options: {
+          targetDir: './bower_components'
+        }
+      }
     },
     // KARMA TASK CONFIG
     karma: {
@@ -70,6 +73,7 @@ module.exports = function(grunt) {
 });
 
   // LOAD PLUGINS  
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -77,5 +81,5 @@ module.exports = function(grunt) {
   
   // TASK REGISTER
   //grunt.registerTask('default', ['jshint', 'cssmin', 'uglify:task1', 'karma']);
-  grunt.registerTask('default', ['copy', 'cssmin', 'uglify:task1']);
+  grunt.registerTask('default', ['bower', 'copy', 'cssmin', 'uglify:task1']);
 };
