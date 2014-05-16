@@ -1,6 +1,6 @@
 {
   "name": "ng-slider",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
@@ -16,7 +16,11 @@
     "control",
     "ui"
   ],
-  "main": "./dist/ng-slider.min.js",
+  "main": [
+    "./dist/ng-slider.min.js",
+    "./dist/css/ng-slider.min.css"
+  ],
+  "main": "",
   "dependencies": {
     "angular": "1.2.x",
     "angular-sanitize": "1.2.x",
