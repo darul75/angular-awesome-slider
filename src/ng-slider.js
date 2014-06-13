@@ -166,9 +166,7 @@
 			return isDef( val ) && val !== null;
 		}
 
-		this.each(function(){
-
-			$(this).data( "jslider", null )
+		this.each(function() {			
 
 			var self = $.slider( this, action );
 
