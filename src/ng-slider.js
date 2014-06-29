@@ -39,11 +39,11 @@
 					// model -> view
 		            ngModel.$render = function () {
 						//elm.html(ctrl.$viewValue);
-						if (!ngModel.$viewValue) {
+						if (!ngModel.$viewValue && ngModel.$viewValue !== 0) {
 							return;
 						}
 
-						if (typeof(ngModel.$viewValue) === 'number') { 
+						if (typeof(ngModel.$viewValue) == 'number') { 
 							ngModel.$viewValue = ''+ngModel.$viewValue;
 						}
 
@@ -318,9 +318,9 @@
 		});
 
 
-		if( !$this.settings.value.split(";")[1] ){
+		if( !$this.settings.value.split(";")[1] ) {
 			this.settings.single = true;
-		}		
+		}
 
 		var clickPtr;
 
