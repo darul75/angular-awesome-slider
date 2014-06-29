@@ -43,7 +43,7 @@
 							return;
 						}
 
-						if (typeof(ngModel.$viewValue) == 'number') { 
+						if (typeof(ngModel.$viewValue) === 'number') { 
 							ngModel.$viewValue = ''+ngModel.$viewValue;
 						}
 
