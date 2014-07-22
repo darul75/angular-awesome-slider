@@ -20,7 +20,6 @@
     "./dist/ng-slider.min.js",
     "./dist/css/ng-slider.min.css"
   ],
-  "main": "",
   "dependencies": {
     "angular": "1.2.x",
     "angular-sanitize": "1.2.x",
