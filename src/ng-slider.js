@@ -77,6 +77,8 @@
 
 						if (scope.options.calculate)
 							OPTIONS.calculate = scope.options.calculate;
+                        if (scope.options.onstatechange)
+                            OPTIONS.onstatechange = scope.options.onstatechange;
 						
 						timeout(function() {
 							$("#"+attrs.id).slider(OPTIONS);
