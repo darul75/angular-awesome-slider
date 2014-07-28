@@ -152,7 +152,7 @@
 
 	$.slider = function( node, settings ){
 		var jNode = $(node);
-		if( !jNode.data( "jslider" ) )
+		if( !jNode.data( "jslider" ) || jNode.data( "jslider" ).getValue() !== settings.value )
 			jNode.data( "jslider", new Slider( node, settings ) );
 		return jNode.data( "jslider" );
 	};
