@@ -49,7 +49,7 @@ to your project:
 <script type="text/ng-template" id="aw-select.tmpl.html">
     ....
 </script>
-``
+```
 
 
 Then, inject `ngSlider` in your application module:
