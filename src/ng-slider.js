@@ -57,7 +57,8 @@
 								scope.$apply(function() {
 									ngModel.$setViewValue(value); // view -> model
 								});
-							}										
+								if( scope.options.callback ) scope.options.callback(value, $('#'+attrs.id).get(0));
+							}
 						};
 
 						if (scope.options.calculate)
@@ -556,7 +557,7 @@
 	Slider.prototype.setValue = function(){
 		var value = this.getValue();
 		this.inputNode.attr( "value", value );
-		this.onstatechange.call( this, value );
+		this.onstatechange.call( this, value, this.inputNode[0] );
 	};
 
 	Slider.prototype.getValue = function(){
