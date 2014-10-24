@@ -103,7 +103,15 @@
 					
 				}
 			};
-		}]);
+		}])
+		.config(function() {
+     		console.log('toto');
+     	})
+		.run(function() {
+     		console.log('run');
+     	})['name'] = 'toto'
+     	;
+
 
 (function( $ ) {
 
