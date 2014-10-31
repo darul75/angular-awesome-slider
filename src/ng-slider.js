@@ -42,6 +42,12 @@
 
 						scope.from = ''+scope.options.from;
 						scope.to = ''+scope.options.to;
+						
+						if(scope.options.calculate && typeof scope.options.calculate === 'function') {
+							scope.from = scope.options.calculate(scope.from);
+							scope.to = scope.options.calculate(scope.to);
+						}
+						
 						var OPTIONS = {						
 							from: scope.options.from,
 							to: scope.options.to,
