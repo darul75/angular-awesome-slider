@@ -47,7 +47,7 @@
 
 	<script type="text/javascript">	
 
-		var app = angular.module('myApp', ['ngSlider']);				
+						
 
 		function ctrl($scope, $filter) {			
 			$scope.value = "10;15";
@@ -104,6 +104,8 @@
 
 
 		}
+
+		var app = angular.module('myApp', ['ngSlider']).controller('ctrl', ctrl);
 
 	</script>
 
