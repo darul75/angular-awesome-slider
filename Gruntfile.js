@@ -43,7 +43,8 @@ module.exports = function(grunt) {
              '* License: MIT \n**/\n'
          },         
          files: {
-             'dist/ng-slider.min.js': ['src/ng-slider.js']
+             'dist/ng-slider.min.js': ['src/ng-slider.js'],
+             'dist/ng-slider.tmpl.min.js': ['src/ng-slider.tmpl.js']
          }
        }
      },

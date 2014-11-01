@@ -22,7 +22,7 @@
 					scope.mainSliderClass += ' jslider_round';					
 
 					// model -> view
-		            ngModel.$render = function () {
+          ngModel.$render = function () {
 						//elm.html(ctrl.$viewValue);
 						if (!ngModel.$viewValue && ngModel.$viewValue !== 0) {
 							return;
@@ -32,11 +32,12 @@
 							ngModel.$viewValue = ''+ngModel.$viewValue;
 						}
 
-		                if( !ngModel.$viewValue.split(";")[1])
+            if( !ngModel.$viewValue.split(";")[1]) {
 							scope.mainSliderClass += ' jslider-single';
+						}	
 
 						scope.init();	
-		            };
+        	};
 
 					scope.init = function() {
 
@@ -66,11 +67,9 @@
 								if( scope.options.callback ) scope.options.callback(value, $('#'+attrs.id).get(0));
 							}
 						};
-
-						if (scope.options.calculate)
-							OPTIONS.calculate = scope.options.calculate;
-                        if (scope.options.onstatechange)
-                            OPTIONS.onstatechange = scope.options.onstatechange;
+						
+						OPTIONS.calculate = scope.options.calculate || undefined;            
+            OPTIONS.onstatechange = scope.options.onstatechange || undefined;
 						
 						timeout(function() {
 							$("#"+attrs.id).slider(OPTIONS);
@@ -80,7 +79,6 @@
 
 					};
 									
-
 					scope.generateScale = function(){
 						if( scope.options.scale && scope.options.scale.length > 0 ){
 							var str = "";
@@ -111,13 +109,11 @@
 			};
 		}])
 		.config(function() {
-     		console.log('toto');
-     	})
+     		// 
+   	})
 		.run(function() {
-     		console.log('run');
-     	})['name'] = 'toto'
-     	;
-
+     		//
+   	});
 
 (function( $ ) {
 
