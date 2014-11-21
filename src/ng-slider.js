@@ -1,132 +1,136 @@
 (function (angular) {
 'use strict';	
 
-	angular.module('ngSlider', ['ngSanitize'])					
-		// DIRECTIVE
-		.directive('slider', ['$timeout', function(timeout) {
-			return {
-				restrict : 'AE',
-				require: '?ngModel',
-				scope: { options:'=' },
-				priority: 1,
-				templateUrl: 'ng-slider/slider-bar.tmpl.html',
-				link : function(scope, element, attrs, ngModel) {					
-					if(!ngModel) return; // do nothing if no ng-model							
+angular.module('ngSlider', ['ngSanitize'])					
+	// DIRECTIVE
+	.directive('slider', ['$timeout', function(timeout) {
+		return {
+			restrict : 'AE',
+			require: '?ngModel',
+			scope: { options:'=' },
+			priority: 1,
+			templateUrl: 'ng-slider/slider-bar.tmpl.html',
+			link : function(scope, element, attrs, ngModel) {					
+				if(!ngModel) return; // do nothing if no ng-model							
 
-					scope.sliderTmplId = attrs.id + '-slider-span';
-					scope.sliderScaleDivTmplId = attrs.id + '-slider-scale';
+				scope.sliderTmplId = attrs.id + '-slider-span';
+				scope.sliderScaleDivTmplId = attrs.id + '-slider-scale';
 
-					scope.mainSliderClass = 'jslider';
+				scope.mainSliderClass = 'jslider';
 
-					// TODO : skin
-					scope.mainSliderClass += ' jslider_round';					
+				// TODO : skin
+				scope.mainSliderClass += ' jslider_round';					
 
-					// model -> view
-          ngModel.$render = function () {
-						//elm.html(ctrl.$viewValue);
-						if (!ngModel.$viewValue && ngModel.$viewValue !== 0) {
-							return;
-						}
+				// model -> view
+	      ngModel.$render = function () {
+					//elm.html(ctrl.$viewValue);
+					if (!ngModel.$viewValue && ngModel.$viewValue !== 0) {
+						return;
+					}
 
-						if (typeof(ngModel.$viewValue) === 'number') { 
-							ngModel.$viewValue = ''+ngModel.$viewValue;
-						}
+					if (typeof(ngModel.$viewValue) === 'number') { 
+						ngModel.$viewValue = ''+ngModel.$viewValue;
+					}
 
-            if( !ngModel.$viewValue.split(";")[1]) {
-							scope.mainSliderClass += ' jslider-single';
-						}	
+	        if( !ngModel.$viewValue.split(";")[1]) {
+						scope.mainSliderClass += ' jslider-single';
+					}	
 
-						scope.init();	
-        	};
+					scope.init();	
+	    	};
 
-					scope.init = function() {
+				scope.init = function() {
 
-						scope.from = ''+scope.options.from;
-						scope.to = ''+scope.options.to;
-						
-						if(scope.options.calculate && typeof scope.options.calculate === 'function') {
-							scope.from = scope.options.calculate(scope.from);
-							scope.to = scope.options.calculate(scope.to);
-						}
-						
-						var OPTIONS = {						
-							from: scope.options.from,
-							to: scope.options.to,
-							step: scope.options.step,
-							smooth: scope.options.smooth,
-							limits: true,
-							round: scope.options.round || false,
-							value: ngModel.$viewValue,
-							dimension: "",
-							scale: scope.options.scale,
-							sliderSpanId: scope.sliderTmplId,						
-							callback: function(value) {
-								scope.$apply(function() {
-									ngModel.$setViewValue(value); // view -> model
-								});
-								if( scope.options.callback ) scope.options.callback(value, $('#'+attrs.id).get(0));
-							}
-						};
-						
-						OPTIONS.calculate = scope.options.calculate || undefined;            
-            OPTIONS.onstatechange = scope.options.onstatechange || undefined;
-						
-						timeout(function() {
-							$("#"+attrs.id).slider(OPTIONS);
-							$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());
-							scope.drawScale();
-						});						
-
-					};
-									
-					scope.generateScale = function(){
-						if( scope.options.scale && scope.options.scale.length > 0 ){
-							var str = "";
-							var s = scope.options.scale;
-							var prc = Math.round((100/(s.length-1))*10)/10;
-							for( var i=0; i < s.length; i++ ){
-								str += '<span style="left: ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
-							}
-							return str;
-						} else return "";
-
-						return "";
-					};
-
-					scope.drawScale = function(){
-						$("#"+attrs.id+'-slider-span').find(".jslider-scale span ins").each(function(){
-							$(this).css({ marginLeft: -$(this).outerWidth()/2 });
-						});
-					};
-
-					// WATCH OPTIONS CHANGES
-
-					scope.$watch('options', function(value) {
-			    		scope.init();
-					});
+					scope.from = ''+scope.options.from;
+					scope.to = ''+scope.options.to;
 					
-				}
-			};
-		}])
-		.config(function() {
-     		// 
-   	})
-		.run(function() {
-     		//
-   	});
+					if(scope.options.calculate && typeof scope.options.calculate === 'function') {
+						scope.from = scope.options.calculate(scope.from);
+						scope.to = scope.options.calculate(scope.to);
+					}
+					
+					var OPTIONS = {						
+						from: scope.options.from,
+						to: scope.options.to,
+						step: scope.options.step,
+						smooth: scope.options.smooth,
+						limits: true,
+						round: scope.options.round || false,
+						value: ngModel.$viewValue,
+						dimension: "",
+						scale: scope.options.scale,
+						sliderSpanId: scope.sliderTmplId,						
+						callback: function(value) {
+							scope.$apply(function() {
+								ngModel.$setViewValue(value); // view -> model
+							});
+							if( scope.options.callback ) scope.options.callback(value, $('#'+attrs.id).get(0));
+						}
+					};
+					
+					OPTIONS.calculate = scope.options.calculate || undefined;            
+	        OPTIONS.onstatechange = scope.options.onstatechange || undefined;
+					
+					timeout(function() {
+						$("#"+attrs.id).slider(OPTIONS);
+						$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());
+						scope.drawScale();
+					});						
+
+				};
+								
+				scope.generateScale = function(){
+					if( scope.options.scale && scope.options.scale.length > 0 ){
+						var str = "";
+						var s = scope.options.scale;
+
+						// FIX Big Scale Failure #34
+						// var prc = Math.round((100/(s.length-1))*10)/10;
+						var prc = (100/(s.length-1)).toFixed(2);
+
+						for( var i=0; i < s.length; i++ ){
+							str += '<span style="left: ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
+						}
+						return str;
+					} else return "";
+
+					return "";
+				};
+
+				scope.drawScale = function(){
+					$("#"+attrs.id+'-slider-span').find(".jslider-scale span ins").each(function(){
+						$(this).css({ marginLeft: -$(this).outerWidth()/2 });
+					});
+				};
+
+				// WATCH OPTIONS CHANGES
+
+				scope.$watch('options', function(value) {
+		    		scope.init();
+				});
+				
+			}
+		};
+	}])
+	.config(function() {
+	 		// 
+	})
+	.run(function() {
+	 		//
+	});
 
 (function( $ ) {
 
 	var OPTIONS = {
 		settings: {
-				from: 1,
-				to: 40,
-				step: 1,
-				smooth: true,
-				limits: true,					
-				value: "3",
-				dimension: ""				
-			},
+			from: 1,
+			to: 40,
+			step: 1,
+			smooth: true,
+			limits: true,					
+			value: "3",
+			dimension: ""				
+		},
 		className: "jslider",
 		selector: ".jslider-"
 	};
