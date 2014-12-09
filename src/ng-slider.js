@@ -19,24 +19,33 @@ angular.module('ngSlider', ['ngSanitize'])
 				scope.mainSliderClass = 'jslider';
 
 				// TODO : skin
-				scope.mainSliderClass += ' jslider_round';					
+				scope.mainSliderClass += ' jslider_round';
 
 				// model -> view
 	      ngModel.$render = function () {
 					//elm.html(ctrl.$viewValue);
+					var singleValue = false;
+
 					if (!ngModel.$viewValue && ngModel.$viewValue !== 0) {
 						return;
 					}
 
 					if (typeof(ngModel.$viewValue) === 'number') { 
-						ngModel.$viewValue = ''+ngModel.$viewValue;
+						ngModel.$viewValue = ''+ngModel.$viewValue;						
 					}
 
-	        if( !ngModel.$viewValue.split(";")[1]) {
+	        if( !ngModel.$viewValue.split(";")[1]) {	        	
 						scope.mainSliderClass += ' jslider-single';
-					}	
+					}
 
-					scope.init();	
+
+					if (scope.slider) {
+						scope.slider.getPointers()[0].set(ngModel.$viewValue.split(";")[0], true);
+						if (ngModel.$viewValue.split(";")[1]) {
+							scope.slider.getPointers()[1].set(ngModel.$viewValue.split(";")[1], true);
+						}
+					}
+							
 	    	};
 
 				scope.init = function() {
@@ -72,7 +81,7 @@ angular.module('ngSlider', ['ngSanitize'])
 	        OPTIONS.onstatechange = scope.options.onstatechange || undefined;
 					
 					timeout(function() {
-						$("#"+attrs.id).slider(OPTIONS);
+						scope.slider = $("#"+attrs.id).slider(OPTIONS);
 						$('#'+scope.sliderScaleDivTmplId).html(scope.generateScale());
 						scope.drawScale();
 					});						
@@ -106,7 +115,7 @@ angular.module('ngSlider', ['ngSanitize'])
 				// WATCH OPTIONS CHANGES
 
 				scope.$watch('options', function(value) {
-		    		scope.init();
+		    	scope.init();
 				});
 				
 			}
@@ -152,7 +161,7 @@ angular.module('ngSlider', ['ngSanitize'])
 
 	$.slider = function( node, settings ){
 		var jNode = $(node);
-		if( !jNode.data( "jslider" ) || jNode.data( "jslider" ).getValue() !== settings.value )
+		if( !jNode.data( "jslider" ) )
 			jNode.data( "jslider", new Slider( node, settings ) );
 		return jNode.data( "jslider" );
 	};
@@ -173,6 +182,7 @@ angular.module('ngSlider', ['ngSanitize'])
 			var self = $.slider( this, action );
 
 			// do actions
+			// TODO : refactore this part, slider instance not returned and this way not used anymore
 			if( typeof action == "string" ){
 				var pointers;
 				switch( action ){
@@ -244,6 +254,9 @@ angular.module('ngSlider', ['ngSanitize'])
 				if( !isArray( returnValue ) )
 					returnValue = [];
 				returnValue.push( self );
+			}
+			else {
+				returnValue = self;
 			}
 		});
 

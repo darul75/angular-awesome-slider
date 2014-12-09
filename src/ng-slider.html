@@ -42,6 +42,7 @@
 		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
+			<button ng-click='changeValue()'>CHANGE VALUE</button>
 		</div>	
 	</div>
 
@@ -68,7 +69,10 @@
 				dimension: " $",
 				round: 1,
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
-				heterogeneity: ['50/100', '75/250']
+				heterogeneity: ['50/100', '75/250'],
+				callback: function(value, elt) {
+					console.log("cb");
+				}
 				// calculate: calculate
 			};
 
@@ -99,6 +103,15 @@
 					scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40, '|', 50, '|', 60, '|', 80, '|', 90, '|', 100],
 					heterogeneity: ['50/100', '75/250']				
 				};
+
+			};
+
+			$scope.changeValue = function() {
+
+				$scope.value = "11;15";
+				$scope.value2 = "13;15";
+				$scope.value3 = 20;
+				$scope.value4 = "700;1000";			 
 
 			};
 

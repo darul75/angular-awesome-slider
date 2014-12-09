@@ -1,5 +1,5 @@
 /** 
-* @license ng-slider - v0.1.5
+* @license ng-slider - v0.1.7
 * (c) 2013 Julien VALERY https://github.com/darul75/ng-slider
 * License: MIT 
 **/
