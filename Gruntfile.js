@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),    
     jshint: {
-      files: ['src/ng-slider.js', 'test/**/*.js']
+      files: ['src/core/**/*.js', 'test/**/*.js']
     },
     // BOWER
     bower: {
@@ -88,5 +88,5 @@ module.exports = function(grunt) {
   
   // TASK REGISTER
   //grunt.registerTask('default', ['jshint', 'cssmin', 'uglify:task1', 'karma']);
-  grunt.registerTask('default', ['bower', 'copy', 'cssmin', 'uglify:task1']);
+  grunt.registerTask('default', ['bower', 'copy', 'cssmin', 'jshint', 'uglify:task1']);
 };
