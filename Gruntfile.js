@@ -45,6 +45,7 @@ module.exports = function(grunt) {
          files: {
              'dist/ng-slider.min.js': [
               'src/core/ng-slider.js',
+              'src/core/config/constants.js',
               'src/core/model/draggable.factory.js', 
               'src/core/model/pointer.factory.js',
               'src/core/model/slider.factory.js',

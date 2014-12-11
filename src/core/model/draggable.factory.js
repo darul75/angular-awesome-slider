@@ -66,7 +66,7 @@
       var self = this;
 
       if( this.supportTouches_ )
-        ptr.get(0).addEventListener( this.events_[ eventType ], handler, false );
+        ptr[0].addEventListener( this.events_[ eventType ], handler, false );
 
       else
         ptr.bind( this.events_[ eventType ], handler );

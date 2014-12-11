@@ -92,7 +92,7 @@
 
           // UTILS
 
-          // TODO: move this function in slider...        
+          // TODO: move these 2 next function in slider...        
           scope.generateScale = function(){
             if( scope.options.scale && scope.options.scale.length > 0 ){
               var str = "";

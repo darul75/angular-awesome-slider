@@ -1,27 +1,14 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('slider', ['sliderPointer', function(SliderPointer) {
-    var DEFAULT_OPTIONS = {
-      settings: {
-        from: 1,
-        to: 40,
-        step: 1,
-        smooth: true,
-        limits: true,
-        value: "3",
-        dimension: ""
-      },
-      className: "jslider",
-      selector: ".jslider-"
-    };
+  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', function(SliderPointer, sliderConstants) {    
 
     function Slider() {   
       return this.init.apply( this, arguments );
     }
 
     Slider.prototype.init = function( inputNode, templateNode, settings ){
-      this.settings = DEFAULT_OPTIONS.settings;
+      this.settings = sliderConstants.SLIDER.settings;
       angular.extend(this.settings, angular.copy(settings));
 
       this.inputNode = inputNode;   
@@ -35,9 +22,7 @@
       if( this.settings.onstatechange && $.isFunction( this.settings.onstatechange ) )
         this.onstatechange = this.settings.onstatechange;
 
-      this.is = {
-        init: false
-      };
+      this.is = { init: false };
       this.o = {};
 
       this.create(templateNode);
@@ -67,19 +52,15 @@
       angular.extend(this.o, {
         pointers: {},
         labels: {
-          0: {
-            //o: this.domNode.find(OPTIONS.selector + "value").not(OPTIONS.selector + "value-to")
+          0: {            
             o : angular.element(this.domNode.find('div')[5])
           },
-          1: {
-            //o: this.domNode.find(OPTIONS.selector + "value").filter(OPTIONS.selector + "value-to")
+          1: {            
             o : angular.element(this.domNode.find('div')[6])
           }
         },
-        limits: {
-          //0: this.domNode.find(OPTIONS.selector + "label").not(OPTIONS.selector + "label-to"),
-          0: angular.element(this.domNode.find('div')[3]),
-          //1: this.domNode.find(OPTIONS.selector + "label").filter(OPTIONS.selector + "label-to")
+        limits: {          
+          0: angular.element(this.domNode.find('div')[3]),          
           1: angular.element(this.domNode.find('div')[5])
         }
       });
@@ -210,7 +191,7 @@
     };
 
     Slider.prototype.drawScale = function(){
-      this.domNode.find(OPTIONS.selector + "scale span ins").each(function(){
+      this.domNode.find(sliderConstants.SLIDER.selector + "scale span ins").each(function(){
         $(this).css({ marginLeft: -$(this).outerWidth()/2 });
       });
     };
