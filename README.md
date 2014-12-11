@@ -41,7 +41,6 @@ to the list above, you should add:
 
 ```html
 <script type="text/javascript" src="ng-slider.min.js"></script>
-<script type="text/javascript" src="ng-slider.tmpl.js"></script>
 ```
 in case you want to use your own template, omit the last line and instead add some template code
 to your project:
@@ -50,7 +49,6 @@ to your project:
     ....
 </script>
 ```
-
 
 Then, inject `ngSlider` in your application module:
 

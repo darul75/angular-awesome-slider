@@ -4,10 +4,21 @@
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>	
 	<script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>	
 	<script type="text/javascript" src="../bower_components/angular-mocks/angular-mocks.js"></script>	
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>	
 	
-	<script type="text/javascript" src="ng-slider.js"></script>
-	<script type="text/javascript" src="ng-slider.tmpl.js"></script>
+	
+	<!-- FOR TEST PURPOSE 
+
+	
+
+	<script type="text/javascript" src="core/ng-slider.js"></script>
+	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
+	<script type="text/javascript" src="core/model/pointer.factory.js"></script>
+	<script type="text/javascript" src="core/model/slider.factory.js"></script>
+
+	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
+	-->
+	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+	
 </head>
 <body>
 
@@ -71,7 +82,7 @@
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
 				heterogeneity: ['50/100', '75/250'],
 				callback: function(value, elt) {
-					console.log("cb");
+					console.log(value);
 				}
 				// calculate: calculate
 			};
