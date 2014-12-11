@@ -3,6 +3,8 @@ ng-slider [![NPM version](https://badge.fury.io/js/ng-slider.png)](http://badge.
 
 Angular directive slider control.
 
+**No JQuery dependency needed**
+
 Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmelev/jslider
 
 Why
