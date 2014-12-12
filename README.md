@@ -14,8 +14,6 @@ Original implementation provides very nice features but too much for my needs, t
 
 Source files were divided in several files, and not angular integrated.
 
-It takes me time to make it works and all jquery code is included in directive, I do not know if it is the best thing to do today ;)
-
 Sceenshot
 -------------
 
