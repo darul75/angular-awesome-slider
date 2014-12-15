@@ -124,7 +124,7 @@
         }
       });
 
-      //this.o.value = this.domNode.find(".v");
+      this.o.value = angular.element(this.domNode.find("i")[2]);
       this.is.init = true;
 
       angular.forEach(this.o.pointers, function(pointer, key){
@@ -202,10 +202,15 @@
 
       this.setValue();
 
-      // redraw range line
-      // TODO
-      /*if( this.o.pointers[0] && this.o.pointers[1] )
-      this.o.value.css({ left: this.o.pointers[0].value.prc + "%", width: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" });*/
+      // redraw range line      
+      if(this.o.pointers[0] && this.o.pointers[1]) {
+        var newPos = !this.settings.vertical ? 
+          { left: this.o.pointers[0].value.prc + "%", width: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" }
+          :
+          { top: this.o.pointers[0].value.prc + "%", height: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" };
+        
+        this.o.value.css(newPos);
+      }
 
       this.o.labels[pointer.uid].value.html(this.nice(pointer.value.origin));
 

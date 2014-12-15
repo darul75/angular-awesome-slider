@@ -80,7 +80,7 @@
       if (!this.vertical)
         this.ptr.css({left:prc+"%"});
       else
-        this.ptr.css({top:prc+"%"});
+        this.ptr.css({top:prc+"%", marginTop: -5});
       this.parent.redraw(this);
     };
 
