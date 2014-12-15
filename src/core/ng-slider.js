@@ -17,6 +17,7 @@
           // TODO : skin        
           scope.mainSliderClass = 'jslider';
           scope.mainSliderClass += ' jslider_round';
+          scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';          
 
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          
@@ -67,6 +68,7 @@
               value: ngModel.$viewValue,
               dimension: "",
               scale: scope.options.scale,
+              vertical: scope.options.vertical,
               callback: forceApply
             };
             
@@ -102,8 +104,10 @@
               // var prc = Math.round((100/(s.length-1))*10)/10;
               var prc = (100/(s.length-1)).toFixed(2);
 
+              var position = scope.options.vertical ? 'top' : 'left';
+
               for( var i=0; i < s.length; i++ ){
-                str += '<span style="left: ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
+                str += '<span style="'+ position + ': ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
               }
               return str;
             } else return "";

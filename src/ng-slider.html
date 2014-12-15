@@ -5,41 +5,41 @@
 	<script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>	
 	<script type="text/javascript" src="../bower_components/angular-mocks/angular-mocks.js"></script>	
 	
-	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
-	<!-- FOR TEST PURPOSE 
 	
+	<!-- FOR TEST PURPOSE 
+	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	-->
-	<!--
+	
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
 	<script type="text/javascript" src="core/model/pointer.factory.js"></script>
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
--->
+
 
 	
 </head>
 <body>
 
 	<div ng-app="myApp" ng-controller="ctrl">
-		<div>
+<!-- 		<div>
 			<input ng-model="value3"  type="text" id="mySlider1" slider options="options2" />
 		</div>
 		<div>
 			Current value is: {{value3}}
-		</div>
+		</div> -->
 		</br>
 		</br>
 		<div>
-			<input ng-model="value"  type="text" id="mySlider2" slider options="options" />
+			sdsdqsdsqd<input ng-model="value"  type="text" id="mySlider2" slider options="options" />
 		</div>
 		<div>
 			Current value is: {{value}}
 		</div>
 		</br>
 		</br>
-		<div>	
+		<!-- <div>	
 			<input ng-model="value2"  type="text" id="mySlider3" slider options="options" />		
 		</div>
 		<div>
@@ -50,7 +50,7 @@
 		</div>
 		<div>
 			Current value is: {{value4}}
-		</div>
+		</div> -->
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -81,6 +81,7 @@
 				round: 1,
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
 				heterogeneity: ['50/100', '75/250'],
+				vertical: true,
 				callback: function(value, elt) {
 					console.log(value);
 				}

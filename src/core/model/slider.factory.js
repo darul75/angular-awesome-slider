@@ -11,7 +11,7 @@
       this.settings = sliderConstants.SLIDER.settings;
       angular.extend(this.settings, angular.copy(settings));
 
-      this.inputNode = inputNode;   
+      this.inputNode = inputNode;
       this.inputNode.addClass("ng-hide");
 
       this.settings.interval = this.settings.to-this.settings.from;
@@ -86,7 +86,7 @@
         $this.settings = angular.copy($this.settings);
         var value = $this.settings.value.split(';')[key];
         if( value ) {
-          $this.o.pointers[key] = new SliderPointer( pointer, key, $this );
+          $this.o.pointers[key] = new SliderPointer( pointer, key, $this.settings.vertical, $this );
 
           var prev = $this.settings.value.split(';')[key-1];
           if( prev && parseInt(value, 10) < parseInt(prev, 10 )) value = prev;
@@ -114,7 +114,7 @@
               };
 
               var targetPtr = $this.o.pointers[targetIdx];
-              targetPtr._parent = { offset: offset, width: $this.domNode[0].clientWidth };
+              targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
               targetPtr._mousemove(event);
               targetPtr.onmouseup();
               
@@ -172,6 +172,7 @@
 
       this.sizes = {
         domWidth: this.domNode[0].clientWidth,
+        domHeight: this.domNode[0].clientHeight,
         domOffset: {
           left: this.domNode[0].offsetLeft,
           top: this.domNode[0].offsetTop,
@@ -216,6 +217,7 @@
 
       function setPosition( label, sizes, prc ){
         sizes.margin = -sizes.label/2;
+        var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
         // left limit
         var label_left = sizes.border + sizes.margin;
@@ -223,13 +225,16 @@
           sizes.margin -= label_left;
 
         // right limit
-        if( sizes.border+sizes.label / 2 > self.sizes.domWidth ){
+        if( sizes.border+sizes.label / 2 > domSize ){
           sizes.margin = 0;
           sizes.right = true;
         } else
         sizes.right = false;
 
-        label.o.css({ left: prc + "%", marginLeft: sizes.margin, right: "auto" });
+        if (!self.settings.vertical)        
+          label.o.css({ left: prc + "%", marginLeft: sizes.margin, right: "auto" });
+        else
+          label.o.css({ top: prc + "%", marginLeft: 20, bottom: "auto" });
         if( sizes.right ) label.o.css({ left: "auto", right: 0 });
         return sizes;
       }
@@ -241,7 +246,7 @@
       var sizes = {
         label: label.o[0].offsetWidth,
         right: false,
-        border: ( prc * this.sizes.domWidth ) / 100
+        border: ( prc * domSize ) / 100
       };
 
       var another_label = null;
@@ -264,7 +269,7 @@
             if( another.value.prc != pointer.value.prc ){
               label.value.html( this.nice(pointer.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(another.value.origin) );
               sizes.label = label.o[0].clientWidth;
-              sizes.border = ( prc * this.sizes.domWidth ) / 100;
+              sizes.border = ( prc * domSize ) / 100;
             }
           } else {
             another_label.o.css({ visibility: "visible" });
@@ -281,7 +286,7 @@
             if( another.value.prc != pointer.value.prc ){
               label.value.html( this.nice(another.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(pointer.value.origin) );
               sizes.label = label.o[0].clientWidth;
-              sizes.border = ( prc * this.sizes.domWidth ) / 100;
+              sizes.border = ( prc * domSize ) / 100;
             }
           } else {
             another_label.o.css({ visibility: "visible" });
@@ -291,6 +296,8 @@
       }
 
       sizes = setPosition( label, sizes, prc );
+
+      var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
       /* draw second label */
       if( another_label ){

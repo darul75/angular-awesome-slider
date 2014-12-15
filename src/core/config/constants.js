@@ -9,10 +9,14 @@
         smooth: true,
         limits: true,
         value: "3",
-        dimension: ""
+        dimension: "",
+        vertical: false
       },
       className: "jslider",
       selector: ".jslider-"
+    },
+    EVENTS: {
+      
     }
   });
 
