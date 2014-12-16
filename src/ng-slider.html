@@ -16,9 +16,9 @@
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
 	<script type="text/javascript" src="core/model/pointer.factory.js"></script>
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
+	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
--->
-
+	-->
 	
 </head>
 <body>
@@ -46,15 +46,15 @@
 		<div>
 			Current value is: {{value2}}
 		</div>
-		<div>
+		<div >
 			<input ng-model="value4"  type="text" id="mySlider4" slider options="options3" />
 		</div>
 		<div>
 			Current value is: {{value4}}
 		</div>
-		<div style="display: inline-flex">
+		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" />
-			<input ng-model="value6"  type="text" id="mySlider5" slider options="options2V" />
+			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" />
 		</div>		
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>

@@ -1,9 +1,9 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', function(SliderPointer, sliderConstants) {    
+  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'utils', function(SliderPointer, sliderConstants, utils) {
 
-    function Slider() {   
+    function Slider() {
       return this.init.apply( this, arguments );
     }
 
@@ -39,12 +39,14 @@
       //   if( this.settings.skin && this.settings.skin.length > 0 )
       //     this.setSkin( this.settings.skin );
 
+      var off = utils.offset(this.domNode);
+
       var offset = {
-        left: this.domNode[0].offsetLeft,
-        top: this.domNode[0].offsetTop,
+        left: off.left,
+        top: off.top,
         width: this.domNode[0].clientWidth,
         height: this.domNode[0].clientHeight
-      };
+      };      
 
       this.sizes = { domWidth: this.domNode[0].clientWidth, domOffset: offset };
 
@@ -106,12 +108,14 @@
                 targetIdx = 1;
               }
 
+              var _off = utils.offset($this.domNode);
+
               var offset = {
-                left: $this.domNode[0].offsetLeft,
-                top: $this.domNode[0].offsetTop,
+                left: _off.left,
+                top: _off.top,
                 width: $this.domNode[0].clientWidth,
                 height: $this.domNode[0].clientHeight
-              };
+              };              
 
               var targetPtr = $this.o.pointers[targetIdx];
               targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};

@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderPointer', ['sliderDraggable', function(Draggable) {
+  angular.module('ngSlider').factory('sliderPointer', ['sliderDraggable', 'utils', function(Draggable, utils) {
 
     function SliderPointer() {
       Draggable.apply(this, arguments);
@@ -18,9 +18,11 @@
     };
 
     SliderPointer.prototype.onmousedown = function(evt) {
+      var off = utils.offset(this.parent.domNode);
+
       var offset = {
-        left: this.parent.domNode[0].offsetLeft,
-        top: this.parent.domNode[0].offsetTop,
+        left: off.left,
+        top: off.top,
         width: this.parent.domNode[0].clientWidth,
         height: this.parent.domNode[0].clientHeight
       };
@@ -29,7 +31,7 @@
         offset: offset,
         width: offset.width,
         height: offset.height
-      };
+      };      
 
       this.ptr.addClass("jslider-pointer-hover");
       this.setIndexOver();
@@ -60,7 +62,8 @@
       return this.parent.limits(x, this);
     };
 
-    SliderPointer.prototype.calc = function(coords) {      
+    SliderPointer.prototype.calc = function(coords) {
+
       return !this.vertical ? 
         this.limits(((coords-this._parent.offset.left)*100)/this._parent.width)
         :
