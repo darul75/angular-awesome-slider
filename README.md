@@ -82,6 +82,8 @@ Options for your slider in json format {from:.....}
 * `scale`: array for scale
 * `round`: how many numbers allowed after comma
 * `smooth`: true/false; false snaps the button to value
+* `vertical`: true/false; vertical slider, default false
+* `callback` : function triggering current value, can be useful
 
 Installation
 ------------
