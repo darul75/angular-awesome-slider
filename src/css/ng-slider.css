@@ -9,7 +9,7 @@
 .jslider table { width: 100%; border-collapse: collapse; border: 0; }
 .jslider td, .jslider th { padding: 0; vertical-align: top; text-align: left; border: 0; }
 
-.jslider.vertical { display: block; width: 1em; height: 100%; position: relative; top: 0.6em; font-family: Arial, sans-serif; }
+.jslider.vertical { display: block; width: 17px; height: 100%; position: relative; top: 0.6em; font-family: Arial, sans-serif; }
 .jslider.vertical table { height: 100%; border-collapse: collapse; border: 0; }
 
 .jslider table,
@@ -33,8 +33,10 @@
 .jslider.vertical .jslider-bg .v { position: absolute; width: 60%; left: 12px; top: 0; height: 100%; background-repeat: repeat-y; background-position: -35px 16px; }
 
 .jslider .jslider-pointer { width: 13px; height: 15px; background-position: 0 -60px; position: absolute; left: 20%; top: -4px; margin-left: -6px; cursor: pointer; cursor: hand; }
-.jslider .jslider-pointer-hover { background-position: -20px -60px; }
 .jslider .jslider-pointer-to { left: 80%; }
+
+.jslider .jslider-pointer-hover { background-position: -20px -60px; }
+.jslider.vertical .jslider-pointer-hover { background-position: 0px -22px; }
 
 .jslider.vertical .jslider-pointer { left: 62%; }
 .jslider.vertical .jslider-pointer-to { left: 62%; }

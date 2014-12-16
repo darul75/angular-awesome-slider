@@ -98,15 +98,15 @@
           event.preventDefault();
         }
       });
-      this._bindEvent( documentElt, "up", function( event ){
+      this._bindEvent( documentElt, "up", function(event) {
         self._mouseup( event );
       });
 
-      this._bindEvent( this.ptr, "down", function( event ){
+      this._bindEvent( this.ptr, "down", function(event) {
         self._mousedown( event );
         return false;
       });
-      this._bindEvent( this.ptr, "up", function( event ){
+      this._bindEvent( this.ptr, "up", function(event) {
         self._mouseup( event );
       });
 

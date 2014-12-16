@@ -116,7 +116,7 @@
               var targetPtr = $this.o.pointers[targetIdx];
               targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
               targetPtr._mousemove(event);
-              targetPtr.onmouseup();
+              //targetPtr.onmouseup();
               
               return false;
             });
