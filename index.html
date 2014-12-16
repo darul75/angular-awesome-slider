@@ -14,7 +14,19 @@
     <script type="text/javascript" src="javascripts/angular.min.js"></script>
     <script type="text/javascript" src="javascripts/angular-mocks.js"></script>
     <script type="text/javascript" src="javascripts/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="javascripts/ng-slider.min.js"></script>
+
+    
+    <script type="text/javascript" src="javascripts/core/ng-slider.js"></script>
+    <script type="text/javascript" src="javascripts/core/config/constants.js"></script>
+    <script type="text/javascript" src="javascripts/core/utils/utils.factory.js"></script>
+    <script type="text/javascript" src="javascripts/core/model/draggable.factory.js"></script>
+    <script type="text/javascript" src="javascripts/core/model/pointer.factory.js"></script>
+    <script type="text/javascript" src="javascripts/core/model/slider.factory.js"></script>
+
+    <script type="text/javascript" src="javascripts/core/template/slider.tmpl.js"></script>
+    
+
+
     <script type="text/javascript" src="javascripts/prism.js"></script>
 
 
@@ -157,16 +169,34 @@ Just play a little bit
     scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40]       
   };
 }</code></pre>
+  </div>
+  </br>
+  </br>
+  <h2>Vertical double value with scale</h2>
+  <div style="position:relative;height:300px;left:50px">
+    <input ng-model="valueV1"  type="text" id="mySliderV4" slider options="optionsV4" />
+  </div>
+  <div>
+  </br>
+    <p>Current value is: {{valueV1}}</p>
+  </div>
+  <h3>Code</h3>  
+  <div>
+    <pre><code class="language-javascript">function ctrl($scope) {
+  $scope.value = "10;15";
+  $scope.options = {       
+    from: 0,
+    to: 40,
+    step: 1,
+    dimension: " $",
+    scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
+    vertical: true       
+  };
+}</code></pre>
   </br>
   </br>
 </div>
 
-<h2>Donate</h2>
-<div>
-  <script data-gittip-username="darul75"
-    data-gittip-widget="button"
-    src="//gttp.co/v1.js"></script>
-</div>
 
   <script type="text/javascript"> 
 
@@ -177,6 +207,7 @@ Just play a little bit
       $scope.value2 = "30";
       $scope.value3 = "10;15";      
       $scope.value4 = "10;15";
+      $scope.valueV1 = "10;15";
 
       $scope.options = {       
         from: 1,
@@ -206,6 +237,15 @@ Just play a little bit
         step: 1,
         dimension: " $",
         scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40]      
+      };
+
+      $scope.optionsV4 = {        
+        from: 0,
+        to: 40,
+        step: 1,
+        dimension: " $",
+        scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
+        vertical: true      
       };
 
       $scope.$watch('value', function(value) {
