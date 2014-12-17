@@ -2,6 +2,10 @@
 .jslider .jslider-bg i,
 .jslider .jslider-pointer { background: url(../img/jslider.png) no-repeat 0 0; }
 
+.jslider.disabled {
+  opacity: 0.5;
+}
+
 .jslider.vertical .jslider-bg i,
 .jslider.vertical .jslider-pointer { background: url(../img/jslider.round.png) no-repeat 0 0; }
 

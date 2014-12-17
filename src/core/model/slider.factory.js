@@ -99,31 +99,7 @@
           $this.o.pointers[key].set( value1, true );
 
           if (key === 0) {
-            $this.domNode.bind('mousedown', function( event ) {
-
-              var className = event.target.className;
-              var targetIdx = 0;
-
-              if (className.indexOf('jslider-pointer-to') > 0) {
-                targetIdx = 1;
-              }
-
-              var _off = utils.offset($this.domNode);
-
-              var offset = {
-                left: _off.left,
-                top: _off.top,
-                width: $this.domNode[0].clientWidth,
-                height: $this.domNode[0].clientHeight
-              };              
-
-              var targetPtr = $this.o.pointers[targetIdx];
-              targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
-              targetPtr._mousemove(event);
-              //targetPtr.onmouseup();
-              
-              return false;
-            });
+            $this.domNode.bind('mousedown', $this.clickHandler.apply($this));
           }
         }
       });
@@ -135,7 +111,50 @@
         $this.redraw(pointer);
       });
 
-    };      
+    };
+
+    Slider.prototype.clickHandler = function() {
+      var self = this;
+      return function(evt) {
+        var className = event.target.className;
+        var targetIdx = 0;
+
+        if (className.indexOf('jslider-pointer-to') > 0) {
+          targetIdx = 1;
+        }
+
+        var _off = utils.offset(self.domNode);
+
+        var offset = {
+          left: _off.left,
+          top: _off.top,
+          width: self.domNode[0].clientWidth,
+          height: self.domNode[0].clientHeight
+        };              
+
+        var targetPtr = self.o.pointers[targetIdx];
+        targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
+        targetPtr._mousemove(event);
+        //targetPtr.onmouseup();
+      
+        return false;
+      }
+    };
+
+    Slider.prototype.disable = function(bool) {   
+      if (bool) {
+        this.domNode.unbind('mousedown');
+      }
+      else {
+        this.domNode.bind('mousedown', this.clickHandler.apply(this));
+      }        
+      angular.forEach(this.o.pointers, function(pointer, key ) {
+        if (bool)
+          pointer._unevents();
+        else
+          pointer._reevents();
+      });
+    };    
 
     Slider.prototype.nice = function( value ){
       return value;

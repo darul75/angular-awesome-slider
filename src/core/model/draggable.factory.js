@@ -72,6 +72,16 @@
         ptr.bind( this.events_[ eventType ], handler );
     };
 
+    Draggable.prototype._unBindEvent = function( ptr, eventType, handler ){
+      var self = this;
+
+      if( this.supportTouches_ )
+        ptr[0].removeEventListener( this.events_[ eventType ], handler, false );
+
+      else
+        ptr.unbind( this.events_[ eventType ], handler );
+    };
+
     Draggable.prototype._events = function(){
       var self = this;
 
@@ -80,10 +90,11 @@
         "click": this.supportTouches_ ? "touchstart" : "click",
         "down": this.supportTouches_ ? "touchstart" : "mousedown",
         "move": this.supportTouches_ ? "touchmove" : "mousemove",
-        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
+        "up"  : this.supportTouches_ ? "touchend" : "mouseup",
+        "mousedown"  : this.supportTouches_ ? "mousedown" : "mousedown"
       };
 
-      var documentElt = angular.element(window.document);
+      var documentElt = angular.element(this.parent.domNode);
 
       this._bindEvent( documentElt, "move", function( event ){
         if( self.is.drag ){
@@ -108,10 +119,52 @@
       });
       this._bindEvent( this.ptr, "up", function(event) {
         self._mouseup( event );
-      });
+      });      
+     
 
       // TODO see if needed
       this.events();
+    };
+
+    Draggable.prototype._unevents = function() {
+      var self = this;
+
+      this.supportTouches_ = 'ontouchend' in document;
+      this.events_ = {
+        "click": this.supportTouches_ ? "touchstart" : "click",
+        "down": this.supportTouches_ ? "touchstart" : "mousedown",
+        "move": this.supportTouches_ ? "touchmove" : "mousemove",
+        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
+      };
+
+      var documentElt = angular.element(this.parent.domNode);
+            
+      this._unBindEvent( this.ptr, "down");
+      this._unBindEvent( this.ptr, "up");
+    };
+
+    Draggable.prototype._reevents = function() {
+      var self = this;
+
+      this.supportTouches_ = 'ontouchend' in document;
+      this.events_ = {
+        "click": this.supportTouches_ ? "touchstart" : "click",
+        "down": this.supportTouches_ ? "touchstart" : "mousedown",
+        "move": this.supportTouches_ ? "touchmove" : "mousemove",
+        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
+      };
+
+      var documentElt = angular.element(window.document);
+
+
+      
+      this._unBindEvent( this.ptr, "down", function(event) {
+        self._mousedown( event );
+        return false;
+      });
+      this._unBindEvent( this.ptr, "up", function(event) {
+        self._mouseup( event );
+      });    
     };
 
     Draggable.prototype._mousedown = function( evt ){
@@ -143,7 +196,7 @@
       this.is.toclick = false;
       var coords = this._getPageCoords( evt );
       this.onmousemove( evt, coords.x - this.cx, coords.y - this.cy );
-    };
+    };    
 
     Draggable.prototype._mouseup = function( evt ){
       var oThis = this;

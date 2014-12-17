@@ -1,16 +1,17 @@
 <head>	
-	<!-- <link rel="stylesheet" type="text/css" href="css/ng-slider.css">
-	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css"> -->
-	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
+	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">
+	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
+	<!-- 
+	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>	
 	<script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>	
 	<script type="text/javascript" src="../bower_components/angular-mocks/angular-mocks.js"></script>	
 	
 	
-	
-	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
-	
 	<!-- FOR TEST PURPOSE 
+	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+	-->
+	
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -18,14 +19,14 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	-->
+	
 	
 </head>
 <body>
 
 	<div ng-app="myApp" ng-controller="ctrl">
 		<div>
-			<input ng-model="value3"  type="text" id="mySlider1" slider options="options2" />
+			<input ng-model="value3"  type="text" id="{{id}}" slider options="options2" />
 		</div>
 		<div>
 			Current value is: {{value3}}
@@ -33,7 +34,7 @@
 		</br>
 		</br>
 		<div>
-			sdsdqsdsqd<input ng-model="value"  type="text" id="mySlider2" slider options="options" />
+			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
 		</div>
 		<div>
 			Current value is: {{value}}
@@ -59,19 +60,26 @@
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
+			<button ng-click='disable()'>DISABLE</button>
 		</div>	
 	</div>
 
 	<script type="text/javascript">	
 
 
-		function ctrl($scope, $filter) {			
+		function ctrl($scope, $filter) {
+			$scope.id = "bob";			
+			$scope.id2 = "bob";
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
 			$scope.value3 = 0;
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = 20;
-			$scope.value6 = "10;53";			 
+			$scope.value6 = "10;53";
+
+			$scope.disable = function() {
+				$scope.disabled = !$scope.disabled;
+			};			 
 
 			var calculate = function( value ) {
 	          var hours = Math.floor( value / 60 );

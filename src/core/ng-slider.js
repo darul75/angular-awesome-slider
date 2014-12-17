@@ -135,6 +135,20 @@
             init();
           });
 
+          // D
+          attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {
+            
+            if (scope.slider) {
+              scope.tmplElt.addClass('disabled');
+              scope.slider.disable(value);
+            }
+            // The comment inside of the ngShowDirective explains why we add and
+            // remove a temporary class for the show/hide animation
+            /*$animate[value ? 'addClass' : 'removeClass'](element,NG_HIDE_CLASS, {
+              tempClasses: NG_HIDE_IN_PROGRESS_CLASS
+            });*/
+          });
+
           angular.element.slider = function( inputElement, element, settings) {
             if(!element.data('jslider'))
               element.data('jslider', new Slider( inputElement, element, settings ));
