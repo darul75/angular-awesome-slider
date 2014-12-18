@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict'; 
 
-  angular.module('ngSlider', ['ngSanitize'])          
+  angular.module('ngSlider', [])
     // DIRECTIVE
     .directive('slider', [
       '$compile', '$templateCache','$timeout', '$window', 'slider',
@@ -17,7 +17,7 @@
           // TODO : skin        
           scope.mainSliderClass = 'jslider';
           scope.mainSliderClass += ' jslider_round';
-          scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';          
+          scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';
 
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          

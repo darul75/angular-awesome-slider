@@ -11,8 +11,8 @@
         '</div>' +
         '<div class="jslider-pointer"></div>' +
         '<div class="jslider-pointer jslider-pointer-to"></div>' +
-        '<div class="jslider-label"><span ng-bind-html="from"></span></div>' +
-        '<div class="jslider-label jslider-label-to"><span ng-bind-html="to"></span>{{options.dimension}}</div>' +
+        '<div class="jslider-label"><span>{{from}}</span>{{options.dimension}}</div>' +
+        '<div class="jslider-label jslider-label-to"><span>{{to}}</span>{{options.dimension}}</div>' +
         '<div class="jslider-value"><span></span>{{options.dimension}}</div>' +
         '<div class="jslider-value jslider-value-to"><span></span>{{options.dimension}}</div>' +
         '<div class="jslider-scale" id="{{sliderScaleDivTmplId}}"></div>' +
