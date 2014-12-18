@@ -118,7 +118,7 @@
       return function(evt) {
         if (self.disabled)
           return;
-        var className = event.target.className;
+        var className = evt.target.className;
         var targetIdx = 0;
 
         if (className.indexOf('jslider-pointer-to') > 0) {
@@ -136,7 +136,7 @@
 
         var targetPtr = self.o.pointers[targetIdx];
         targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
-        targetPtr._mousemove(event);
+        targetPtr._mousemove(evt);
         //targetPtr.onmouseup();
       
         return false;
