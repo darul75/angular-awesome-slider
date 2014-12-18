@@ -116,6 +116,8 @@
     Slider.prototype.clickHandler = function() {
       var self = this;
       return function(evt) {
+        if (self.disabled)
+          return;
         var className = event.target.className;
         var targetIdx = 0;
 
@@ -138,22 +140,11 @@
         //targetPtr.onmouseup();
       
         return false;
-      }
+      };
     };
 
     Slider.prototype.disable = function(bool) {   
-      if (bool) {
-        this.domNode.unbind('mousedown');
-      }
-      else {
-        this.domNode.bind('mousedown', this.clickHandler.apply(this));
-      }        
-      angular.forEach(this.o.pointers, function(pointer, key ) {
-        if (bool)
-          pointer._unevents();
-        else
-          pointer._reevents();
-      });
+      this.disabled = bool;
     };    
 
     Slider.prototype.nice = function( value ){

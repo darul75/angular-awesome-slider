@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderDraggable', ['$timeout', function() {
+  angular.module('ngSlider').factory('sliderDraggable', ['utils', function(utils) {
 
     function Draggable(){
       this._init.apply( this, arguments );
@@ -41,10 +41,11 @@
 
         this.is = {};
         angular.extend( this.is, this.isDefault );
+        var offset = utils.offset(this.ptr);
 
         this.d = {
-          left: this.ptr[0].offsetLeft,
-          top: this.ptr[0].offsetTop,
+          left: offset.left,
+          top: offset.top,
           width: this.ptr[0].clientWidth,
           height: this.ptr[0].clientHeight
         };
@@ -72,16 +73,6 @@
         ptr.bind( this.events_[ eventType ], handler );
     };
 
-    Draggable.prototype._unBindEvent = function( ptr, eventType, handler ){
-      var self = this;
-
-      if( this.supportTouches_ )
-        ptr[0].removeEventListener( this.events_[ eventType ], handler, false );
-
-      else
-        ptr.unbind( this.events_[ eventType ], handler );
-    };
-
     Draggable.prototype._events = function(){
       var self = this;
 
@@ -94,23 +85,25 @@
         "mousedown"  : this.supportTouches_ ? "mousedown" : "mousedown"
       };
 
-      var documentElt = angular.element(this.parent.domNode);
+      var documentElt = angular.element(window.document);
 
-      this._bindEvent( documentElt, "move", function( event ){
-        if( self.is.drag ){
+      this._bindEvent(documentElt, "move", function(event) {        
+        if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
-          self._mousemove( event );
+          if (!self.parent.disabled) {
+            self._mousemove(event);
+          }  
         }
       });
-      this._bindEvent( documentElt, "down", function( event ){
-        if( self.is.drag ){
+      this._bindEvent(documentElt, "down", function(event) {
+        if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
         }
       });
-      this._bindEvent( documentElt, "up", function(event) {
-        self._mouseup( event );
+      this._bindEvent(documentElt, "up", function(event) {        
+        self._mouseup(event);        
       });
 
       this._bindEvent( this.ptr, "down", function(event) {
@@ -121,50 +114,8 @@
         self._mouseup( event );
       });      
      
-
       // TODO see if needed
       this.events();
-    };
-
-    Draggable.prototype._unevents = function() {
-      var self = this;
-
-      this.supportTouches_ = 'ontouchend' in document;
-      this.events_ = {
-        "click": this.supportTouches_ ? "touchstart" : "click",
-        "down": this.supportTouches_ ? "touchstart" : "mousedown",
-        "move": this.supportTouches_ ? "touchmove" : "mousemove",
-        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
-      };
-
-      var documentElt = angular.element(this.parent.domNode);
-            
-      this._unBindEvent( this.ptr, "down");
-      this._unBindEvent( this.ptr, "up");
-    };
-
-    Draggable.prototype._reevents = function() {
-      var self = this;
-
-      this.supportTouches_ = 'ontouchend' in document;
-      this.events_ = {
-        "click": this.supportTouches_ ? "touchstart" : "click",
-        "down": this.supportTouches_ ? "touchstart" : "mousedown",
-        "move": this.supportTouches_ ? "touchmove" : "mousemove",
-        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
-      };
-
-      var documentElt = angular.element(window.document);
-
-
-      
-      this._unBindEvent( this.ptr, "down", function(event) {
-        self._mousedown( event );
-        return false;
-      });
-      this._unBindEvent( this.ptr, "up", function(event) {
-        self._mouseup( event );
-      });    
     };
 
     Draggable.prototype._mousedown = function( evt ){
