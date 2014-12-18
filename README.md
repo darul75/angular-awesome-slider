@@ -26,11 +26,10 @@ http://darul75.github.io/ng-slider/
 How to use it
 -------------
 
-You should already have script required for Angular, note sanitize module use.
+You should already have script required for Angular.
 
 ```html
 <script type="text/javascript" src="angular.min.js"></script>
-<script type="text/javascript" src="angular-sanitize.min.js"></script>
 ```
 
 to the list above, you should add:
@@ -64,8 +63,7 @@ and then just add an `input` with `slider` directive name attribute, `value` and
 
 'value' your slider scope end value, as string.
 'options' slider scope options value as json.
-'id' attribute, put different if several slides on same page.
-'ng-disabled' angular common attribute
+'ng-disabled' angular common attribute.
 
 ```javascript
 $scope.value = "10";
