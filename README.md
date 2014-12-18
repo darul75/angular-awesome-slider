@@ -65,6 +65,7 @@ and then just add an `input` with `slider` directive name attribute, `value` and
 'value' your slider scope end value, as string.
 'options' slider scope options value as json.
 'id' attribute, put different if several slides on same page.
+'ng-disabled' angular common attribute
 
 ```javascript
 $scope.value = "10";
