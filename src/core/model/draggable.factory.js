@@ -121,9 +121,7 @@
     Draggable.prototype._mousedown = function( evt ){
       this.is.drag = true;
       this.is.clicked = false;
-      this.is.mouseup = false;
-
-      //var _offset = this.ptr.offset();    
+      this.is.mouseup = false;   
 
       var coords = this._getPageCoords( evt );
       this.cx = coords.x - this.ptr[0].offsetLeft;
