@@ -123,6 +123,8 @@
 
           // view -> model
           var forceApply = function(value) {
+            if (scope.disabled) 
+              return;
             scope.$apply(function() {
               ngModel.$setViewValue(value);
             });
@@ -136,7 +138,8 @@
           });
 
           // DISABLE
-          attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {            
+          attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {
+            scope.disabled = value;            
             if (scope.slider) {
               scope.tmplElt.toggleClass('disabled');              
               scope.slider.disable(value);
