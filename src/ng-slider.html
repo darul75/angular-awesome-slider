@@ -3,14 +3,10 @@
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
 	<!-- 
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
-	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>		
-	<script type="text/javascript" src="../bower_components/angular-mocks/angular-mocks.js"></script>	
-
+	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	<!-- FOR TEST PURPOSE 
 	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	-->
-	
-	
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -18,14 +14,12 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	
-	
 </head>
 <body>
 
 	<div ng-app="myApp" ng-controller="ctrl">
 		<div>
-			<input ng-model="value3"  type="text" id="{{id}}" slider options="options2" />
+			<input ng-model="value3"  type="text" id="{{id}}" slider options="options2" ng-disabled="disabled" />
 		</div>
 		<div>
 			Current value is: {{value3}}
@@ -50,21 +44,21 @@
 		</br>
 		</br>
 		<div>	
-			<input ng-model="value2"  type="text" id="mySlider3" slider options="options" />		
+			<input ng-model="value2"  type="text" id="mySlider3" slider options="options" ng-disabled="disabled"/>		
 		</div>
 		<div>
 			Current value is: {{value2}}
 		</div>
 		<div >
-			<input ng-model="value4"  type="text" id="mySlider4" slider options="options3" />
+			<input ng-model="value4"  type="text" id="mySlider4" slider options="options3" ng-disabled="disabled"/>
 		</div>
 		<div>
 			Current value is: {{value4}}
 		</div>
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
-			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV"  ng-disabled="disabled" />
-			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" />
-		</div>		
+			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
+			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
+		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -74,6 +68,7 @@
 
 	<script type="text/javascript">	
 
+		"use strict";
 
 		function ctrl($scope, $filter) {
 			$scope.id = "bob";			
@@ -116,16 +111,8 @@
 			$scope.options = {				
 				from: 0,
 				to: 40,
-				step: 0.5,
-				dimension: " $",
-				round: 1,
-				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
-				heterogeneity: ['50/100', '75/250'],
-				vertical: false,
-				callback: function(value, elt) {
-					console.log(value);
-				}
-				// calculate: calculate
+				step: 1,
+    		dimension: ' min'				
 			};
 
 			$scope.optionsV = {				
@@ -148,7 +135,10 @@
 				to: 100,
 				floor: true,
 				step: 10,
-				dimension: " km"				
+				dimension: " km",
+				callback: function(value, elt) {
+					console.log(value);
+				}				
 			};
 
 			$scope.options2V = {				
@@ -165,8 +155,7 @@
 				to: 2100,
 				step: 1,
 				smooth: false,
-				dimension: " mb",
-
+				dimension: " mb"
 			};
 
 			$scope.changeOptions = function() {

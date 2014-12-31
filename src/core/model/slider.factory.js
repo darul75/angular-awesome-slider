@@ -137,7 +137,7 @@
         var targetPtr = self.o.pointers[targetIdx];
         targetPtr._parent = { offset: offset, width: offset.width, height: offset.height};
         targetPtr._mousemove(evt);
-        //targetPtr.onmouseup();
+        targetPtr.onmouseup();
       
         return false;
       };
