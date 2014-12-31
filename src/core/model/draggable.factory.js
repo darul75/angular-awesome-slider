@@ -153,19 +153,24 @@
       if( this.is.drag ){
         this.is.drag = false;
 
+        var browser = utils.browser();
+
         if( this.outer && this.outer.get(0) ) {
 
-          if( $.browser.mozilla ){
+          if( browser === 'mozilla' ){
             this.outer.css({ overflow: "hidden" });
           } else {
             this.outer.css({ overflow: "visible" });
           }
 
-          if( $.browser.msie && $.browser.version == '6.0' ){
-            this.outer.css({ height: "100%" });
-          } else {
-            this.outer.css({ height: "auto" });
-          }
+          // TODO finish browser detection and this case, remove following line
+          this.outer.css({ height: "auto" });
+          // if( browser === 'ie' && $.browser.version == '6.0' ){
+          //   this.outer.css({ height: "100%" });
+          // } else {
+          //   this.outer.css({ height: "auto" });
+          // }
+          
         }
 
         this.onmouseup( evt );

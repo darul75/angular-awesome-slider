@@ -40,6 +40,15 @@
 		</div>
 		</br>
 		</br>
+		<div>
+		<input ng-model="data.quote.coverages.coverageA"  type="text" id="{{id}}" slider options="coverageASliderOptions" ng-disabled="disabled" />
+		</br>
+		</br>
+		<div>
+			Current value is: {{data.quote.coverages.coverageA}}
+		</div>
+		</br>
+		</br>
 		<div>	
 			<input ng-model="value2"  type="text" id="mySlider3" slider options="options" />		
 		</div>
@@ -75,6 +84,24 @@
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = 20;
 			$scope.value6 = "10;53";
+		    $scope.data = {
+		        quote: {
+		            coverages: {
+		                coverageA: 20000
+		            }
+		        }
+		    };
+
+	        $scope.defaultAmount=190000;
+
+			$scope.coverageASliderOptions = {
+				from: $scope.defaultAmount,
+				to: $scope.defaultAmount+ ($scope.defaultAmount* 0.20),
+				step: 500,
+				calculate: function(value) {
+					return $filter('currency')(value, '$', 0);
+				}
+			};
 
 			$scope.disable = function() {
 				$scope.disabled = !$scope.disabled;

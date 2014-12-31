@@ -16,10 +16,10 @@
 
       this.settings.interval = this.settings.to-this.settings.from;
       
-      if( this.settings.calculate && $.isFunction( this.settings.calculate ) )
+      if( this.settings.calculate && angular.isFunction( this.settings.calculate ) )
         this.nice = this.settings.calculate;
 
-      if( this.settings.onstatechange && $.isFunction( this.settings.onstatechange ) )
+      if( this.settings.onstatechange && angular.isFunction( this.settings.onstatechange ) )
         this.onstatechange = this.settings.onstatechange;
 
       this.is = { init: false };
