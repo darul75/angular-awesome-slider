@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'utils', function(SliderPointer, sliderConstants, utils) {
+  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'sliderUtils', function(SliderPointer, sliderConstants, utils) {
 
     function Slider() {
       return this.init.apply( this, arguments );
