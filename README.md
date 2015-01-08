@@ -14,7 +14,7 @@ Original implementation provides very nice features but too much for my needs, t
 
 Source files were divided in several files, and not angular integrated.
 
-Sceenshot
+Screenshot
 -------------
 
 ![angular slider demo](http://darul75.github.io/ng-slider/images/screenshot.png "angular slider demo screenshot")
