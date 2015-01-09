@@ -111,10 +111,10 @@
 
       // CSS SKIN
       if (this.settings.css) {
-        indicator1.css({backgroundColor: this.settings.css.first});
-        indicator2.css({backgroundColor: this.settings.css.second});
-        indicator3.css({backgroundColor: this.settings.css.third});
-        pointer1.css({backgroundColor: this.settings.css.pointer});
+        indicator1.css(this.settings.css.first);
+        indicator2.css(this.settings.css.second);
+        indicator3.css(this.settings.css.third);
+        pointer1.css(this.settings.css.pointer);
       }
 
       angular.forEach(this.o.pointers, function(pointer, key){
