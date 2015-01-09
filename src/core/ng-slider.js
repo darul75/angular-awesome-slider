@@ -18,6 +18,7 @@
           scope.mainSliderClass = 'jslider';
           scope.mainSliderClass += ' jslider_round';
           scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';
+          scope.mainSliderClass += scope.options.css ? ' sliderCSS' : '';
 
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          
@@ -69,6 +70,7 @@
               dimension: "",
               scale: scope.options.scale,
               vertical: scope.options.vertical,
+              css: scope.options.css,
               callback: forceApply
             };
             

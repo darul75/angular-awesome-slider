@@ -5,9 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
-	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+	<!--<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	
-	<!-- FOR TEST PURPOSE 
+	-->
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	-->
+	
 </head>
 <body>
 
@@ -28,7 +28,7 @@
 		</div>
 		</br>
 		</br>
-		<div>
+		<!-- <div>
 			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
 		</div>
 		<div>
@@ -60,7 +60,7 @@
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
-		</div>
+		</div> -->
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -77,7 +77,7 @@
 			$scope.id2 = "bob";
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
-			$scope.value3 = 0;
+			$scope.value3 = 15;
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = 20;
 			$scope.value6 = "10;53";
@@ -114,7 +114,7 @@
 				from: 0,
 				to: 40,
 				step: 1,
-    		dimension: ' min'				
+    		dimension: ' min'    						
 			};
 
 			$scope.optionsV = {				
@@ -133,11 +133,17 @@
 			};
 
 			$scope.options2 = {				
-				from: 1,
+				from: 0,
 				to: 100,
 				floor: true,
 				step: 10,
 				dimension: " km",
+				css: {
+					first: "black",
+					second: "yellow",
+					third: "red",
+					pointer: "blue"
+				},
 				callback: function(value, elt) {
 					console.log(value);
 				}				
