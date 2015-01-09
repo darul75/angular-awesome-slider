@@ -223,9 +223,9 @@
 
     Slider.prototype.redraw = function( pointer ){      
       if( !this.is.init ) {
-        this.o.indicators[0].css({left:0, width:this.o.pointers[0].value.prc + "%"});
-        this.o.indicators[1].css({left:this.o.pointers[0].value.prc + "%"});
-        this.o.indicators[2].css({left:this.o.pointers[0].value.prc + "%"});
+        this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
+        this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+        this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
         return false;
       }
 
@@ -244,10 +244,10 @@
       if(this.o.pointers[0] && !this.o.pointers[1]) {
         var newWidth = this.o.pointers[0].value.prc - parseFloat(this.o.indicators[2].css("left").replace("%", ""));
         if (newWidth >= 0) {
-          this.o.indicators[2].css({width: newWidth + "%"});
+          this.o.indicators[2].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
         }
         else {
-          this.o.indicators[2].css({width: "0"});
+          this.o.indicators[2].css(!this.settings.vertical ? {width: "0"} : {height: 0});
         }
 
       }

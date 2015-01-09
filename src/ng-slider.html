@@ -28,7 +28,7 @@
 		</div>
 		</br>
 		</br>
-		<!-- <div>
+		<div>
 			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
 		</div>
 		<div>
@@ -60,7 +60,7 @@
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
-		</div> -->
+		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -126,6 +126,12 @@
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
 				heterogeneity: ['50/100', '75/250'],
 				vertical: true,
+				css: {
+					first: {"background-color": "black"},
+					second: {"background-color": "yellow"},
+					third: {"background-color": "red"},
+					pointer: {"background-color": "blue"}
+				},
 				callback: function(value, elt) {
 					console.log(value);
 				}
@@ -155,7 +161,7 @@
 				floor: true,
 				step: 10,
 				dimension: " km",
-				vertical: true				
+				vertical: true			
 			};
 
 			$scope.options3 = {				

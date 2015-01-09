@@ -16,5 +16,15 @@
 
 .jslider_round.vertical .jslider-bg i,
 .jslider_round.vertical .jslider-pointer { background-image: url(../img/jslider.round.vertical.png); }
+.jslider_round.vertical.sliderCSS .jslider-bg i,
+.jslider_round.vertical.sliderCSS .jslider-pointer { background-image: none; }
+.jslider_round.vertical.sliderCSS .jslider-pointer {
+  background-color: #f00;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  z-index: 3;
+}
+
 .jslider_round.vertical .jslider-pointer { width: 20px; height: 17px; top: -6px; margin-left: -8px; }
 
