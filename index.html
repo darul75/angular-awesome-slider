@@ -81,7 +81,14 @@ Just play a little bit
         from: 1,
         to: 100,
         step: 1,
-        dimension: " km"        
+        dimension: " km",
+        css: {
+          background: {"background-color": "silver"},
+          before: {"background-color": "purple"},
+          default: {"background-color": "white"},
+          after: {"background-color": "green"},
+          pointer: {"background-color": "red"}          
+        }        
       };
     }   
   &lt;/script>
@@ -188,7 +195,7 @@ Just play a little bit
     var app = angular.module('myApp', ['ngSlider']);        
 
     function ctrl($scope, $filter) {      
-      $scope.value = "50";
+      $scope.value = "25";
       $scope.value2 = "30";
       $scope.value3 = "10;15";      
       $scope.value4 = "10;15";
@@ -198,7 +205,14 @@ Just play a little bit
         from: 1,
         to: 100,
         step: 1,
-        dimension: " km"        
+        dimension: " km",
+        css: {
+          background: {"background-color": "silver"},
+          before: {"background-color": "purple"},
+          default: {"background-color": "white"},
+          after: {"background-color": "green"},
+          pointer: {"background-color": "red"}          
+        }        
       };
 
       $scope.options2 = {       
