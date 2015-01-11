@@ -82,6 +82,17 @@ Options for your slider in json format {from:.....}
 * `round`: how many numbers allowed after comma
 * `smooth`: true/false; false snaps the button to value
 * `vertical`: true/false; vertical slider, default false
+* `css`: hash object 
+```
+css: {
+	background: {"background-color": "silver"},
+	before: {"background-color": "purple"},// zone before default value
+	default: {"background-color": "blue"}, // default value: 1px
+	after: {"background-color": "green"},  // zone after default value
+	pointer: {"background-color": "red"}   // circle pointer
+	range: {"background-color": "red"} // use it if double value
+}
+````
 * `callback` : function triggering current value, can be useful
 
 Installation
