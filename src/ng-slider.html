@@ -60,6 +60,7 @@
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
+			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/>
 		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
@@ -79,7 +80,7 @@
 			$scope.value2 = "12;15";
 			$scope.value3 = 15;
 			$scope.value4 = "999;1700";			 
-			$scope.value5 = 20;
+			$scope.value5 = 30;
 			$scope.value6 = "10;53";
 		    $scope.data = {
 		        quote: {
@@ -114,7 +115,15 @@
 				from: 0,
 				to: 40,
 				step: 1,
-    		dimension: ' min'    						
+    			dimension: ' min',
+    			css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "white"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"},
+					range: {"background-color": "blue"}
+				}    			
 			};
 
 			$scope.optionsV = {				
@@ -127,10 +136,11 @@
 				heterogeneity: ['50/100', '75/250'],
 				vertical: true,
 				css: {
-					first: {"background-color": "black"},
-					second: {"background-color": "yellow"},
-					third: {"background-color": "red"},
-					pointer: {"background-color": "blue"}
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "blue"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
 				},
 				callback: function(value, elt) {
 					console.log(value);
@@ -145,10 +155,11 @@
 				step: 10,
 				dimension: " km",
 				css: {
-					first: {"background-color": "black"},
-					second: {"background-color": "yellow"},
-					third: {"background-color": "red"},
-					pointer: {"background-color": "blue"}
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "white"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
 				},
 				callback: function(value, elt) {
 					console.log(value);
@@ -162,6 +173,22 @@
 				step: 10,
 				dimension: " km",
 				vertical: true			
+			};
+
+			$scope.options2VCSS = {				
+				from: 1,
+				to: 100,
+				floor: true,
+				step: 10,
+				dimension: " km",
+				vertical: true,
+				css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "blue"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
+				}			
 			};
 
 			$scope.options3 = {				

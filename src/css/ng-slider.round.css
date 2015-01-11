@@ -4,13 +4,7 @@
 .jslider_round.sliderCSS .jslider-bg i,
 .jslider_round.sliderCSS .jslider-pointer { background-image: none; }
 
-.jslider_round.sliderCSS .jslider-pointer {
-  background-color: #f00;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  z-index: 3;
-}
+.jslider_round.sliderCSS .jslider-pointer { background-color: #f00; width: 12px; height: 12px; top: -3px; border-radius: 50%; z-index: 3;}
 
 .jslider_round .jslider-pointer { width: 20px; height: 17px; top: -6px; margin-left: -8px; }
 
@@ -18,13 +12,7 @@
 .jslider_round.vertical .jslider-pointer { background-image: url(../img/jslider.round.vertical.png); }
 .jslider_round.vertical.sliderCSS .jslider-bg i,
 .jslider_round.vertical.sliderCSS .jslider-pointer { background-image: none; }
-.jslider_round.vertical.sliderCSS .jslider-pointer {
-  background-color: #f00;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  z-index: 3;
-}
+.jslider_round.vertical.sliderCSS .jslider-pointer { background-color: rgb(102, 98, 98); width: 12px; height: 12px; left: 16px; border-radius: 50%; z-index: 3; }
 
-.jslider_round.vertical .jslider-pointer { width: 20px; height: 17px; top: -6px; margin-left: -8px; }
+.jslider_round.vertical .jslider-pointer { width: 20px; height: 17px; top: -6px; margin-left: -8px; background-position: 0px -2px;}
 

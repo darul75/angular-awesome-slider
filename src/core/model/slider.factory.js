@@ -47,6 +47,8 @@
       var pointer2 = angular.element(divs[2]);
       var pointerLabel1 = angular.element(divs[5]);
       var pointerLabel2 = angular.element(divs[6]);
+      var indicator = angular.element(is[0]);
+      var range = angular.element(is[2]);
       var indicator1 = angular.element(is[3]);
       var indicator2 = angular.element(is[4]);
       var indicator3 = angular.element(is[5]);
@@ -110,11 +112,17 @@
       this.is.init = true;
 
       // CSS SKIN
-      if (this.settings.css) {
-        indicator1.css(this.settings.css.first);
-        indicator2.css(this.settings.css.second);
-        indicator3.css(this.settings.css.third);
-        pointer1.css(this.settings.css.pointer);
+      if (this.settings.css) {        
+        indicator.css(this.settings.css.background ? this.settings.css.background : {});
+        if (!this.o.pointers[1]) {
+          indicator1.css(this.settings.css.before ? this.settings.css.before : {});
+          indicator2.css(this.settings.css.default ? this.settings.css.default : {});  
+          indicator3.css(this.settings.css.after ? this.settings.css.after : {});
+        }
+        
+        range.css(this.settings.css.range ? this.settings.css.range : {});
+        pointer1.css(this.settings.css.pointer ? this.settings.css.pointer : {});
+        pointer2.css(this.settings.css.pointer ? this.settings.css.pointer : {});
       }
 
       angular.forEach(this.o.pointers, function(pointer, key){
@@ -223,9 +231,12 @@
 
     Slider.prototype.redraw = function( pointer ){      
       if( !this.is.init ) {
-        this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
-        this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
-        this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+        if(this.o.pointers[0] && !this.o.pointers[1]) {
+          this.originValue = this.o.pointers[0].value.prc;
+          this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
+          this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+          this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+      }
         return false;
       }
 
@@ -238,17 +249,24 @@
           :
           { top: this.o.pointers[0].value.prc + "%", height: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" };
         
-        this.o.value.css(newPos);
+        this.o.value.css(newPos);        
       }
       
       if(this.o.pointers[0] && !this.o.pointers[1]) {
-        var newWidth = this.o.pointers[0].value.prc - parseFloat(this.o.indicators[2].css("left").replace("%", ""));
+        var newWidth = this.o.pointers[0].value.prc - parseFloat(this.o.indicators[2].css(!this.settings.vertical ? "left" : "top").replace("%", ""));
         if (newWidth >= 0) {
           this.o.indicators[2].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
         }
         else {
-          this.o.indicators[2].css(!this.settings.vertical ? {width: "0"} : {height: 0});
+          this.o.indicators[2].css(!this.settings.vertical ? {width: 0} : {height: 0});
         }
+
+        if (this.o.pointers[0].value.prc < this.originValue) {
+         this.o.indicators[0].css(!this.settings.vertical ? {width: this.o.pointers[0].value.prc + "%"} : {height: this.o.pointers[0].value.prc + "%"});
+        }
+        else {
+          this.o.indicators[0].css(!this.settings.vertical ? {width: this.originValue + "%"} : {height: this.originValue + "%"});
+        }        
 
       }
 
