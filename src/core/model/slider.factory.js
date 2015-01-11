@@ -253,7 +253,7 @@
       }
       
       if(this.o.pointers[0] && !this.o.pointers[1]) {
-        var newWidth = this.o.pointers[0].value.prc - parseFloat(this.o.indicators[2].css(!this.settings.vertical ? "left" : "top").replace("%", ""));
+        var newWidth = this.o.pointers[0].value.prc - this.originValue;
         if (newWidth >= 0) {
           this.o.indicators[2].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
         }
