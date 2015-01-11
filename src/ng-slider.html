@@ -5,9 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
-	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+	<!--<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	
-	<!-- FOR TEST PURPOSE 
+	-->
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	-->
+	
 </head>
 <body>
 
@@ -60,6 +60,7 @@
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
+			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/>
 		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
@@ -77,9 +78,9 @@
 			$scope.id2 = "bob";
 			$scope.value = "10;15";
 			$scope.value2 = "12;15";
-			$scope.value3 = 0;
+			$scope.value3 = 15;
 			$scope.value4 = "999;1700";			 
-			$scope.value5 = 20;
+			$scope.value5 = 30;
 			$scope.value6 = "10;53";
 		    $scope.data = {
 		        quote: {
@@ -114,7 +115,15 @@
 				from: 0,
 				to: 40,
 				step: 1,
-    		dimension: ' min'				
+    			dimension: ' min',
+    			css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "white"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"},
+					range: {"background-color": "blue"}
+				}    			
 			};
 
 			$scope.optionsV = {				
@@ -126,6 +135,13 @@
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
 				heterogeneity: ['50/100', '75/250'],
 				vertical: true,
+				css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "blue"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
+				},
 				callback: function(value, elt) {
 					console.log(value);
 				}
@@ -133,11 +149,18 @@
 			};
 
 			$scope.options2 = {				
-				from: 1,
+				from: 0,
 				to: 100,
 				floor: true,
 				step: 10,
 				dimension: " km",
+				css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "white"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
+				},
 				callback: function(value, elt) {
 					console.log(value);
 				}				
@@ -149,7 +172,23 @@
 				floor: true,
 				step: 10,
 				dimension: " km",
-				vertical: true				
+				vertical: true			
+			};
+
+			$scope.options2VCSS = {				
+				from: 1,
+				to: 100,
+				floor: true,
+				step: 10,
+				dimension: " km",
+				vertical: true,
+				css: {
+					background: {"background-color": "silver"},
+					before: {"background-color": "purple"},
+					default: {"background-color": "blue"},
+					after: {"background-color": "green"},
+					pointer: {"background-color": "red"}
+				}			
 			};
 
 			$scope.options3 = {				

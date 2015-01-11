@@ -24,20 +24,34 @@
 
       this.is = { init: false };
       this.o = {};
+      this.initValue = {};
 
       this.create(templateNode);
     };
 
     Slider.prototype.create = function(templateNode){
-      var $this = this;
+      var self = this;
 
       this.domNode = templateNode;
+
+      var divs = this.domNode.find('div');
+      var is = this.domNode.find('i');
 
       //this.inputNode.after( this.domNode );   
 
       // set skin class
       //   if( this.settings.skin && this.settings.skin.length > 0 )
       //     this.setSkin( this.settings.skin );
+
+      var pointer1 = angular.element(divs[1]);
+      var pointer2 = angular.element(divs[2]);
+      var pointerLabel1 = angular.element(divs[5]);
+      var pointerLabel2 = angular.element(divs[6]);
+      var indicator = angular.element(is[0]);
+      var range = angular.element(is[2]);
+      var indicator1 = angular.element(is[3]);
+      var indicator2 = angular.element(is[4]);
+      var indicator3 = angular.element(is[5]);
 
       var off = utils.offset(this.domNode);
 
@@ -53,18 +67,9 @@
       // find some objects
       angular.extend(this.o, {
         pointers: {},
-        labels: {
-          0: {            
-            o : angular.element(this.domNode.find('div')[5])
-          },
-          1: {            
-            o : angular.element(this.domNode.find('div')[6])
-          }
-        },
-        limits: {          
-          0: angular.element(this.domNode.find('div')[3]),          
-          1: angular.element(this.domNode.find('div')[5])
-        }
+        labels: { 0: { o : pointerLabel1 }, 1: { o : pointerLabel2 } },
+        limits: { 0: angular.element(divs[3]), 1: angular.element(divs[5]) },
+        indicators: { 0: indicator1, 1: indicator2, 2: indicator3 }
       });
 
       angular.extend(this.o.labels[0], {
@@ -75,40 +80,53 @@
         value: this.o.labels[1].o.find("span")
       });
 
-      if( !$this.settings.value.split(";")[1] ) {
+      if( !self.settings.value.split(";")[1] ) {
         this.settings.single = true;
       }
 
       var clickPtr;
-
-      var domNodeDivs = this.domNode.find('div');
-      var pointers = [ angular.element(domNodeDivs[1]), angular.element(domNodeDivs[2]) ];
+      
+      var pointers = [pointer1, pointer2];
 
       angular.forEach(pointers, function(pointer, key ) {
-        $this.settings = angular.copy($this.settings);
-        var value = $this.settings.value.split(';')[key];
-        if( value ) {
-          $this.o.pointers[key] = new SliderPointer( pointer, key, $this.settings.vertical, $this );
+        self.settings = angular.copy(self.settings);
+        var value = self.settings.value.split(';')[key];
+        if(value) {
+          self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, self);
 
-          var prev = $this.settings.value.split(';')[key-1];
+          var prev = self.settings.value.split(';')[key-1];
           if( prev && parseInt(value, 10) < parseInt(prev, 10 )) value = prev;
 
-          var value1 = value < $this.settings.from ? $this.settings.from : value;
-          value1 = value > $this.settings.to ? $this.settings.to : value;
+          var value1 = value < self.settings.from ? self.settings.from : value;
+          value1 = value > self.settings.to ? self.settings.to : value;
 
-          $this.o.pointers[key].set( value1, true );
+          self.o.pointers[key].set( value1, true );
 
           if (key === 0) {
-            $this.domNode.bind('mousedown', $this.clickHandler.apply($this));
+            self.domNode.bind('mousedown', self.clickHandler.apply(self));
           }
         }
       });
 
-      this.o.value = angular.element(this.domNode.find("i")[2]);
+      this.o.value = angular.element(this.domNode.find("i")[2]);      
       this.is.init = true;
 
+      // CSS SKIN
+      if (this.settings.css) {        
+        indicator.css(this.settings.css.background ? this.settings.css.background : {});
+        if (!this.o.pointers[1]) {
+          indicator1.css(this.settings.css.before ? this.settings.css.before : {});
+          indicator2.css(this.settings.css.default ? this.settings.css.default : {});  
+          indicator3.css(this.settings.css.after ? this.settings.css.after : {});
+        }
+        
+        range.css(this.settings.css.range ? this.settings.css.range : {});
+        pointer1.css(this.settings.css.pointer ? this.settings.css.pointer : {});
+        pointer2.css(this.settings.css.pointer ? this.settings.css.pointer : {});
+      }
+
       angular.forEach(this.o.pointers, function(pointer, key){
-        $this.redraw(pointer);
+        self.redraw(pointer);
       });
 
     };
@@ -211,8 +229,16 @@
       });
     };
 
-    Slider.prototype.redraw = function( pointer ){
-      if( !this.is.init ) return false;
+    Slider.prototype.redraw = function( pointer ){      
+      if( !this.is.init ) {
+        if(this.o.pointers[0] && !this.o.pointers[1]) {
+          this.originValue = this.o.pointers[0].value.prc;
+          this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
+          this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+          this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+      }
+        return false;
+      }
 
       this.setValue();
 
@@ -223,7 +249,25 @@
           :
           { top: this.o.pointers[0].value.prc + "%", height: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" };
         
-        this.o.value.css(newPos);
+        this.o.value.css(newPos);        
+      }
+      
+      if(this.o.pointers[0] && !this.o.pointers[1]) {
+        var newWidth = this.o.pointers[0].value.prc - parseFloat(this.o.indicators[2].css(!this.settings.vertical ? "left" : "top").replace("%", ""));
+        if (newWidth >= 0) {
+          this.o.indicators[2].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
+        }
+        else {
+          this.o.indicators[2].css(!this.settings.vertical ? {width: 0} : {height: 0});
+        }
+
+        if (this.o.pointers[0].value.prc < this.originValue) {
+         this.o.indicators[0].css(!this.settings.vertical ? {width: this.o.pointers[0].value.prc + "%"} : {height: this.o.pointers[0].value.prc + "%"});
+        }
+        else {
+          this.o.indicators[0].css(!this.settings.vertical ? {width: this.originValue + "%"} : {height: this.originValue + "%"});
+        }        
+
       }
 
       this.o.labels[pointer.uid].value.html(this.nice(pointer.value.origin));
