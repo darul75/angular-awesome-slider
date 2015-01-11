@@ -112,6 +112,12 @@ Using bower:
 bower install ng-slider
 ```
 
+RELEASE
+-------------
+
+* 2.1.1: override css, colors...
+* 2.1.0: new version and bug fixes
+
 ### Build
 
 You can run the tests by running
