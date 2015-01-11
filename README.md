@@ -17,7 +17,7 @@ Source files were divided in several files, and not angular integrated.
 Screenshot
 -------------
 
-![angular slider demo](http://darul75.github.io/ng-slider/images/screenshot.png "angular slider demo screenshot")
+![angular slider demo](http://darul75.github.io/ng-slider/images/slider1.png "angular slider demo screenshot")
 
 Demo
 -------------
@@ -83,11 +83,13 @@ Options for your slider in json format {from:.....}
 * `smooth`: true/false; false snaps the button to value
 * `vertical`: true/false; vertical slider, default false
 * `css`: hash object 
+
+![angular slider css](http://darul75.github.io/ng-slider/images/slider2.png "angular slider css explained")
 ```
 css: {
 	background: {"background-color": "silver"},
 	before: {"background-color": "purple"},// zone before default value
-	default: {"background-color": "blue"}, // default value: 1px
+	default: {"background-color": "white"}, // default value: 1px
 	after: {"background-color": "green"},  // zone after default value
 	pointer: {"background-color": "red"}   // circle pointer
 	range: {"background-color": "red"} // use it if double value
