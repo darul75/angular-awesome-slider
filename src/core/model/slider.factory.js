@@ -187,13 +187,7 @@
       if( x > 100 ) x = 100;
 
       return Math.round( x*10 ) / 10;
-    };
-
-    Slider.prototype.setPointersIndex = function( i ){
-      angular.forEach(this.getPointers(), function(pointer, i) {
-        pointer.index( i );
-      });
-    };
+    };    
 
     Slider.prototype.getPointers = function(){
       return this.o.pointers;
