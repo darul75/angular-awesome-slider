@@ -5,9 +5,11 @@
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
-	<!--<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+
+	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	
-	-->
+	
+	<!--
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -15,7 +17,7 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	
+	-->
 </head>
 <body>
 
@@ -112,18 +114,11 @@
 	        };
 
 			$scope.options = {				
-				from: 0,
-				to: 40,
-				step: 1,
-    			dimension: ' min',
-    			css: {
-					background: {"background-color": "silver"},
-					before: {"background-color": "purple"},
-					default: {"background-color": "white"},
-					after: {"background-color": "green"},
-					pointer: {"background-color": "red"},
-					range: {"background-color": "blue"}
-				}    			
+				from: 1,
+            to: 100,
+            step: 1,
+            dimension: " km",
+            vertical: false		
 			};
 
 			$scope.optionsV = {				
