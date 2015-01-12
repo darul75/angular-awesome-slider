@@ -115,8 +115,10 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.2: bug fixes, changes in z-index via CSS and not js
 * 2.1.1: override css, colors...
-* 2.1.0: new version and bug fixes
+* 2.1.0: bug fixes
+* 2.0.0: no JQuery
 
 ### Build
 
