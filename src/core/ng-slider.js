@@ -12,7 +12,16 @@
           scope: { options:'=' },
           priority: 1,
           link : function(scope, element, attrs, ngModel) {
-            if(!ngModel) return;
+          
+          if(!ngModel) return;
+
+          if (!scope.options)
+            throw new Error('You must provide a value for "options" attribute.');
+
+          // options as inline variable
+          if (angular.isString(scope.options)) {
+            scope.options = angular.toJson(scope.options);
+          }
 
           // TODO : skin        
           scope.mainSliderClass = 'jslider';
@@ -23,7 +32,7 @@
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          
             scope.tmplElt = clonedElement;
-          }));        
+          }));                  
 
           // model -> view
           ngModel.$render = function () {
@@ -51,6 +60,9 @@
           };
 
           // INIT
+
+          var initialized = false;
+
           var init = function() {
             scope.from = ''+scope.options.from;
             scope.to = ''+scope.options.to;
@@ -71,20 +83,30 @@
               scale: scope.options.scale,
               vertical: scope.options.vertical,
               css: scope.options.css,
-              callback: forceApply
+              cb: forceApply
             };
             
             OPTIONS.calculate = scope.options.calculate || undefined;
             OPTIONS.onstatechange = scope.options.onstatechange || undefined;
-            
-            timeout(function() {
-              var scaleDiv = scope.tmplElt.find('div')[7];
-              scope.slider = angular.element.slider(element, scope.tmplElt, OPTIONS);
-              angular.element(scaleDiv).html(scope.generateScale());
-              scope.drawScale(scaleDiv);
-
+                                    
+            // slider
+            if (!scope.slider) {
+              scope.slider = slidering(element, scope.tmplElt, OPTIONS);
+            }
+            else {
+              scope.slider.init(element, scope.tmplElt, OPTIONS);
+            }
+                              
+            if (!initialized) {
               initListener();
-            });           
+            }
+            
+            // scale
+            var scaleDiv = scope.tmplElt.find('div')[7];
+            angular.element(scaleDiv).html(scope.generateScale());
+            scope.drawScale(scaleDiv);
+
+            initialized = true;            
           };
 
           function initListener() {
@@ -134,24 +156,22 @@
               scope.options.callback(value);
           };
 
-          // WATCH OPTIONS CHANGES
+          // watch options
           scope.$watch('options', function(value) {
             init();
           });
 
-          // DISABLE
+          // disabling
           attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {
-            scope.disabled = value;            
+            scope.disabled = value;
             if (scope.slider) {
               scope.tmplElt.toggleClass('disabled');              
               scope.slider.disable(value);
             }            
           });
 
-          angular.element.slider = function( inputElement, element, settings) {
-            if(!element.data('jslider'))
-              element.data('jslider', new Slider( inputElement, element, settings ));
-            return element.data('jslider');
+          var slidering = function( inputElement, element, settings) {
+            return new Slider( inputElement, element, settings );            
           };
         }
       };

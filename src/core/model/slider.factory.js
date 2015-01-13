@@ -7,10 +7,8 @@
       return this.init.apply( this, arguments );
     }
 
-    Slider.prototype.init = function( inputNode, templateNode, settings ){
-      this.settings = sliderConstants.SLIDER.settings;
-      angular.extend(this.settings, angular.copy(settings));
-
+    Slider.prototype.init = function( inputNode, templateNode, settings ){   
+      this.settings = settings;            
       this.inputNode = inputNode;
       this.inputNode.addClass("ng-hide");
 
@@ -68,7 +66,7 @@
       angular.extend(this.o, {
         pointers: {},
         labels: { 0: { o : pointerLabel1 }, 1: { o : pointerLabel2 } },
-        limits: { 0: angular.element(divs[3]), 1: angular.element(divs[5]) },
+        limits: { 0: angular.element(divs[3]), 1: angular.element(divs[4]) },
         indicators: { 0: indicator1, 1: indicator2, 2: indicator3 }
       });
 
@@ -262,7 +260,7 @@
           this.o.indicators[0].css(!this.settings.vertical ? {width: this.originValue + "%"} : {height: this.originValue + "%"});
         }        
 
-      }
+      }      
 
       this.o.labels[pointer.uid].value.html(this.nice(pointer.value.origin));
 
@@ -298,7 +296,7 @@
 
       var self = this;
       var label = this.o.labels[pointer.uid];
-      var prc = pointer.value.prc;
+      var prc = pointer.value.prc;      
 
       var sizes = {
         label: label.o[0].offsetWidth,
@@ -355,16 +353,6 @@
       sizes = setPosition( label, sizes, prc );
 
       var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
-
-      /* draw second label */
-      if( another_label ){
-        sizes = {
-          label: another_label.o[0].clientWidth,
-          right: false,
-          border: ( another.value.prc * this.sizes.domWidth ) / 100
-        };
-        sizes = setPosition( another_label, sizes, another.value.prc );
-      }
 
       this.redrawLimits();
     };

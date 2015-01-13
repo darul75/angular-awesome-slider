@@ -42,8 +42,8 @@
     };
 
     SliderPointer.prototype.onmouseup = function(evt) {
-      if( this.settings.callback && angular.isFunction(this.settings.callback) )
-        this.settings.callback.call( this.parent, this.parent.getValue() );
+      if( this.settings.cb && angular.isFunction(this.settings.cb) )
+        this.settings.cb.call( this.parent, this.parent.getValue() );
 
       if (!this.is.drag)
         this.ptr.removeClass("jslider-pointer-hover");

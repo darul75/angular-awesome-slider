@@ -1,11 +1,15 @@
 <head>	
+	<!-- 
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
-	<!-- 
-	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css"> -->
+	-->
+	
+	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
+	
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
 
+	
 	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
 	
 	
@@ -18,12 +22,13 @@
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
 	-->
+	
 </head>
 <body>
 
 	<div ng-app="myApp" ng-controller="ctrl">
 		<div>
-			<input ng-model="value3"  type="text" id="{{id}}" slider options="options2" ng-disabled="disabled" />
+			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="options" />
 		</div>
 		<div>
 			Current value is: {{value3}}
@@ -31,7 +36,33 @@
 		</br>
 		</br>
 		<div>
+			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="{
+                from: 1,
+                to: 100,
+                step: 1,
+                dimension: 'km',
+                vertical: false,
+                css: {
+                    background: {'background-color': 'silver'},
+                    before: {'background-color': 'purple'},
+                    default: {'background-color': 'white'},
+                    after: {'background-color': 'green'},
+                    pointer: {'background-color': 'red'}
+                }
+            }"/>
+		</div>
+		<div>
+			Current value is: {{value3}}
+		</div>
+		</br>
+		<div>
 			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
+		</div>
+		<div>
+			Current value is: {{value}}
+		</div>
+		<div>
+			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="optionsCss" ng-disabled="disabled" />
 		</div>
 		<div>
 			Current value is: {{value}}
@@ -78,21 +109,20 @@
 		function ctrl($scope, $filter) {
 			$scope.id = "bob";			
 			$scope.id2 = "bob";
-			$scope.value = "10;15";
+			$scope.value = "10;30";
 			$scope.value2 = "12;15";
-			$scope.value3 = 15;
+			$scope.value3 = 13;
 			$scope.value4 = "999;1700";			 
-			$scope.value5 = 30;
+			$scope.value5 = 10;
 			$scope.value6 = "10;53";
-		    $scope.data = {
-		        quote: {
-		            coverages: {
-		                coverageA: 20000
-		            }
-		        }
-		    };
-
-	        $scope.defaultAmount=190000;
+	    $scope.data = {
+	        quote: {
+	            coverages: {
+	                coverageA: 20000
+	            }
+	        }
+	    };
+      $scope.defaultAmount=190000;
 
 			$scope.coverageASliderOptions = {
 				from: $scope.defaultAmount,
@@ -118,7 +148,28 @@
             to: 100,
             step: 1,
             dimension: " km",
-            vertical: false		
+            vertical: false,
+				callback: function(value, elt) {
+					console.log(value);
+				}		
+			};
+
+			$scope.optionsCss = {				
+				from: 1,
+            to: 100,
+            step: 1,
+            dimension: " km",
+            vertical: false,
+            css: {
+                    background: {'background-color': 'silver'},
+                    before: {'background-color': 'purple'},
+                    default: {'background-color': 'white'},
+                    after: {'background-color': 'green'},
+                    pointer: {'background-color': 'red'}
+                },
+				callback: function(value, elt) {
+					console.log(value);
+				}		
 			};
 
 			$scope.optionsV = {				
@@ -127,8 +178,7 @@
 				step: 0.5,
 				dimension: " $",
 				round: 1,
-				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
-				heterogeneity: ['50/100', '75/250'],
+				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],				
 				vertical: true,
 				css: {
 					background: {"background-color": "silver"},
@@ -167,7 +217,10 @@
 				floor: true,
 				step: 10,
 				dimension: " km",
-				vertical: true			
+				vertical: true,
+				callback: function(value, elt) {
+					console.log(value);
+				}			
 			};
 
 			$scope.options2VCSS = {				
@@ -183,6 +236,9 @@
 					default: {"background-color": "blue"},
 					after: {"background-color": "green"},
 					pointer: {"background-color": "red"}
+				},
+				callback: function(value, elt) {
+					console.log(value);
 				}			
 			};
 
@@ -191,18 +247,20 @@
 				to: 2100,
 				step: 1,
 				smooth: false,
-				dimension: " mb"
+				dimension: " mb",
+				callback: function(value, elt) {
+					console.log(value);
+				}
 			};
 
 			$scope.changeOptions = function() {
 
 				$scope.options = {				
 					from: 0,
-					to: 100,
+					to: 80,
 					step: 1,
 					dimension: " $",
-					scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40, '|', 50, '|', 60, '|', 80, '|', 90, '|', 100],
-					heterogeneity: ['50/100', '75/250']				
+					scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40, '|', 50, '|', 60, '|', 70, '|', 80]									
 				};
 
 			};
