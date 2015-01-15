@@ -1,19 +1,18 @@
 <head>	
-	<!-- 
+	
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
-	-->
 	
+	<!-- 
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
+	-->
 	
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
-
-	
-	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
-	
-	
 	<!--
+	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
+	-->
+		
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
@@ -21,12 +20,13 @@
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
 	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
-	-->
+	
 	
 </head>
 <body>
 
-	<div ng-app="myApp" ng-controller="ctrl">
+	<div ng-app="myApp" ng-controller="ctrl" style="width:300px;">
+		
 		<div>
 			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="options" />
 		</div>
@@ -54,19 +54,21 @@
 		<div>
 			Current value is: {{value3}}
 		</div>
+		
 		</br>
 		<div>
 			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
 		</div>
 		<div>
 			Current value is: {{value}}
-		</div>
+		</div>		
 		<div>
 			sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="optionsCss" ng-disabled="disabled" />
 		</div>
 		<div>
 			Current value is: {{value}}
 		</div>
+
 		</br>
 		</br>
 		<div>

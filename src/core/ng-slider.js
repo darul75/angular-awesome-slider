@@ -158,7 +158,9 @@
 
           // watch options
           scope.$watch('options', function(value) {
-            init();
+            timeout(function(){
+              init();
+            });            
           });
 
           // disabling

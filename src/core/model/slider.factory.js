@@ -60,7 +60,11 @@
         height: this.domNode[0].clientHeight
       };      
 
-      this.sizes = { domWidth: this.domNode[0].clientWidth, domOffset: offset };
+      this.sizes = { 
+        domWidth: this.domNode[0].clientWidth,
+        domHeight: this.domNode[0].clientHeight,
+        domOffset: offset 
+      };
 
       // find some objects
       angular.extend(this.o, {
@@ -270,7 +274,7 @@
 
     Slider.prototype.redrawLabels = function( pointer ) {
 
-      function setPosition( label, sizes, prc ){
+      function setPosition( label, sizes, prc ) {        
         sizes.margin = -sizes.label/2;
         var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
@@ -287,10 +291,15 @@
         sizes.right = false;
 
         if (!self.settings.vertical)        
-          label.o.css({ left: prc + "%", marginLeft: sizes.margin, right: "auto" });
+          label.o.css({ left: prc + "%", marginLeft: sizes.margin+"px", right: "auto" });
         else
-          label.o.css({ top: prc + "%", marginLeft: 20, bottom: "auto" });
-        if( sizes.right ) label.o.css({ left: "auto", right: 0 });
+          label.o.css({ top: prc + "%", marginLeft: "20px", marginTop: sizes.margin, bottom: "auto" });
+        if(sizes.right ) {
+          if (!self.settings.vertical)
+            label.o.css({ left: "auto", right: 0 });
+          else
+            label.o.css({ top: "auto", bottom: 0 });
+        }
         return sizes;
       }
 
@@ -299,15 +308,15 @@
       var prc = pointer.value.prc;      
 
       var sizes = {
-        label: label.o[0].offsetWidth,
+        label: !self.settings.vertical ? label.o[0].offsetWidth : label.o[0].offsetHeight,
         right: false,
-        border: ( prc * domSize ) / 100
+        border: ( prc * (!self.settings.vertical ? this.sizes.domWidth: this.sizes.domHeight) ) / 100
       };
 
       var another_label = null;
       var another = null;
 
-      if (!this.settings.single){
+      if (!this.settings.single && !this.settings.vertical){
         // glue if near;
         another = this.o.pointers[1-pointer.uid];
         another_label = this.o.labels[another.uid];
@@ -323,7 +332,7 @@
             prc = ( another.value.prc - prc ) / 2 + prc;
             if( another.value.prc != pointer.value.prc ){
               label.value.html( this.nice(pointer.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(another.value.origin) );
-              sizes.label = label.o[0].clientWidth;
+              sizes.label = label.o[0].offsetWidth;
               sizes.border = ( prc * domSize ) / 100;
             }
           } else {
@@ -331,7 +340,7 @@
           }
           break;
           case 1:
-          if( sizes.border - sizes.label / 2 < another_label.o[0].offsetLeft - this.sizes.domOffset.left + another_label.o[0].clientWidth ){
+          if( sizes.border - sizes.label / 2 < another_label.o[0].offsetLeft - this.sizes.domOffset.left + another_label.o[0].offsetWidth ){
             another_label.o.css({ visibility: "hidden" });
             another_label.value.html( this.nice(another.value.origin) );
 
@@ -340,7 +349,7 @@
             prc = ( prc - another.value.prc ) / 2 + another.value.prc;
             if( another.value.prc != pointer.value.prc ){
               label.value.html( this.nice(another.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(pointer.value.origin) );
-              sizes.label = label.o[0].clientWidth;
+              sizes.label = label.o[0].offsetWidth;
               sizes.border = ( prc * domSize ) / 100;
             }
           } else {
@@ -353,6 +362,16 @@
       sizes = setPosition( label, sizes, prc );
 
       var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
+
+      /* draw second label */
+      if( another_label ){
+        var sizes2 = {
+          label: !self.settings.vertical ? another_label.o[0].offsetWidth: another_label.o[0].offsetHeight,
+          right: false,
+          border: ( another.value.prc * this.sizes.domWidth ) / 100
+        };
+        sizes = setPosition( another_label, sizes2, another.value.prc );
+      }
 
       this.redrawLimits();
     };
