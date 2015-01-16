@@ -140,17 +140,18 @@
 			};			 
 
 			var calculate = function( value ) {
-	          var hours = Math.floor( value / 60 );
-	          var mins = ( value - hours*60 );
-	          return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
-	        };
+        var hours = Math.floor( value / 60 );
+        var mins = ( value - hours*60 );
+        return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
+      };
 
 			$scope.options = {				
 				from: 1,
             to: 100,
-            step: 1,
+            step: 0.5,
             dimension: " km",
-            vertical: false,
+            vertical: false,            
+            round: 2,
 				callback: function(value, elt) {
 					console.log(value);
 				}		
