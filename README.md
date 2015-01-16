@@ -115,6 +115,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.5: directive refactoring
 * 2.1.4: fix overlap on labels
 * 2.1.3: bug fixes, refactoring, inline options param
 * 2.1.2: bug fixes, changes in z-index via CSS and not js
