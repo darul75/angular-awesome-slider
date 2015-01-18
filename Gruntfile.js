@@ -17,19 +17,36 @@ module.exports = function(grunt) {
     },
     // KARMA TASK CONFIG
     karma: {
-      unit: {
-        options: {
+      options: {
           basePath: './',
           frameworks: ['jasmine'],
-          browsers: ['Chrome'],
-          autoWatch: true,
-          singleRun: true,
-          files: [            
+          files: [
             'bower_components/angular/angular.js',
-            'bower_components/angular-mocks/angular-mocks.js',                                    
-            'src/ng-slider.js',
-            'test/**/*Spec.js']
-        }
+            'bower_components/angular-mocks/angular-mocks.js',
+            'dist/ng-slider.min.js',
+            // 'src/core/ng-slider.js',
+            // 'src/core/config/constants.js',
+            // 'src/core/model/draggable.factory.js',
+            // 'src/core/model/pointer.factory.js',
+            // 'src/core/model/slider.factory.js',
+            // 'src/core/utils/utils.factory.js',
+            // 'src/core/template/slider.tmpl.js',
+            'dist/css/ng-slider.min.css',
+            'test/**/*Spec.js'
+          ],
+          autoWatch: true,
+          singleRun: false
+      },
+      unit: {
+          options: {
+              browsers: ['Chrome']                
+          }
+      },
+      captureTimeout: 20000,
+      continuous: {
+          options: {
+              browsers: ['PhantomJS']                
+          }
       }
     },
     // UGLIFY TASK
@@ -87,8 +104,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-karma');
   
   // TASK REGISTER
   //grunt.registerTask('default', ['jshint', 'cssmin', 'uglify:task1', 'karma']);
   grunt.registerTask('default', ['bower', 'copy', 'cssmin', 'jshint', 'uglify:task1']);
+  grunt.registerTask('test-continuous', ['jshint', 'bower', 'karma:unit']);
 };
