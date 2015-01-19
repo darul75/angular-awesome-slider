@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       },
       unit: {
           options: {
-              browsers: ['Firefox']                
+              browsers: ['PhantomJS']                
           }
       },
       captureTimeout: 20000,
