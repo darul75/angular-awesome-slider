@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             'test/**/*Spec.js'
           ],
           autoWatch: true,
-          singleRun: false
+          singleRun: true
       },
       unit: {
           options: {

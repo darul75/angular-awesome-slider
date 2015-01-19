@@ -1,7 +1,7 @@
 {
   "name": "ng-slider",
   "description": "AngularJS directive slider control.",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
@@ -20,6 +20,9 @@
   ],  
   "bugs": {
     "url": "https://github.com/darul75/ng-slider/issues"
+  },
+  "scripts": {
+    "test": "grunt test-continuous"
   },
   "dependencies": {
   },
