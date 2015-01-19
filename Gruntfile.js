@@ -24,13 +24,13 @@ module.exports = function(grunt) {
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'dist/ng-slider.min.js',
-            // 'src/core/ng-slider.js',
-            // 'src/core/config/constants.js',
-            // 'src/core/model/draggable.factory.js',
-            // 'src/core/model/pointer.factory.js',
-            // 'src/core/model/slider.factory.js',
-            // 'src/core/utils/utils.factory.js',
-            // 'src/core/template/slider.tmpl.js',
+            /*'src/core/ng-slider.js',
+            'src/core/config/constants.js',
+            'src/core/model/draggable.factory.js',
+            'src/core/model/pointer.factory.js',
+            'src/core/model/slider.factory.js',
+            'src/core/utils/utils.factory.js',
+            'src/core/template/slider.tmpl.js',*/
             'dist/css/ng-slider.min.css',
             'test/**/*Spec.js'
           ],
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       },
       unit: {
           options: {
-              browsers: ['Chrome']                
+              browsers: ['Firefox']                
           }
       },
       captureTimeout: 20000,
