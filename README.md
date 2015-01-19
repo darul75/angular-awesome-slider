@@ -115,6 +115,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.6: starting mocha tests
 * 2.1.5: directive refactoring
 * 2.1.4: fix overlap on labels
 * 2.1.3: bug fixes, refactoring, inline options param
