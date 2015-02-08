@@ -115,6 +115,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.7: fix pointer position on click for double value
 * 2.1.6: starting mocha tests
 * 2.1.5: directive refactoring
 * 2.1.4: fix overlap on labels
