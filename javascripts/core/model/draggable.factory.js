@@ -92,7 +92,7 @@
           event.stopPropagation();
           event.preventDefault();
           if (!self.parent.disabled) {
-            self._mousemove(event);
+            self._mousemove(event);            
           }  
         }
       });
@@ -127,9 +127,9 @@
       this.cx = coords.x - this.ptr[0].offsetLeft;
       this.cy = coords.y - this.ptr[0].offsetTop;
 
-      angular.extend(this.d, {
-        left: this.ptr[0].offsetLeft,
-        top: this.ptr[0].offsetTop,
+      angular.extend(this.d, {        
+        left: coords.x,
+        top: coords.y,
         width: this.ptr[0].clientWidth,
         height: this.ptr[0].clientHeight
       });

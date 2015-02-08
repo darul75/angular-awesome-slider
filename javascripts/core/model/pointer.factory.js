@@ -54,7 +54,6 @@
     };
 
     SliderPointer.prototype.calc = function(coords) {
-
       return !this.vertical ? 
         this.limits(((coords-this._parent.offset.left)*100)/this._parent.width)
         :

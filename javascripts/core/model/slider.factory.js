@@ -111,13 +111,11 @@
             top: offset.top,
             width: self.o.pointers[key].ptr.clientWidth,
             height: self.o.pointers[key].ptr.clientHeight
-          };
-
-          if (key === 0) {
-            self.domNode.bind('mousedown', self.clickHandler.apply(self));
-          }
-        }
+          };          
+        }        
       });
+
+      self.domNode.bind('mousedown', self.clickHandler.apply(self));
 
       this.o.value = angular.element(this.domNode.find("i")[2]);      
       this.is.init = true;
@@ -148,21 +146,36 @@
       return function(evt) {
         if (self.disabled)
           return;        
+        var targetIdx = 0;        
+
         var _off = utils.offset(self.domNode);
 
-        var offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight};
         var firstPtr = self.o.pointers[0];
-        var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null;
-        var targetPtr = firstPtr;
+        var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null;        
+        var evtPosition = evt.originalEvent ? evt.originalEvent: evt;
+        var mouse = vertical ? evtPosition.pageY : evtPosition.pageX;
+        console.log(mouse);
+
+        var offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight };              
+        var targetPtr = self.o.pointers[targetIdx];
         var css = vertical ? 'top' : 'left';
-        var evtPosition = evt.originalEvent ? evt.originalEvent : evt;
-        var mouse = vertical ? evtPosition.y : evtPosition.x;
-        if (secondPtr && (mouse > secondPtr.d[css] || mouse > (firstPtr.d[css] + ( (secondPtr.d[css] - firstPtr.d[css]) / 2 ))))
-          targetPtr = secondPtr;
+        if (secondPtr) {
+          var middleGap = (secondPtr.d[css] - firstPtr.d[css]) / 2;
+          var mousePosBetween = mouse - firstPtr.d[css];        
+          if (mousePosBetween > middleGap)
+            targetPtr = secondPtr;
+        }
         targetPtr._parent = {offset: offset, width: offset.width, height: offset.height};
-        targetPtr._mousemove(evt);
-        targetPtr.onmouseup();
-      
+        var coords = firstPtr._getPageCoords( evt );          
+        targetPtr.cx = coords.x - targetPtr.d.left;
+        targetPtr.cy = coords.y - targetPtr.d.top;      
+        targetPtr.onmousemove( evt, coords.x, coords.y);
+        targetPtr.onmouseup();        
+        angular.extend(targetPtr.d, {
+           left: coords.x,
+           top: coords.y          
+        });
+        self.redraw(targetPtr);
         return false;
       };
     };
