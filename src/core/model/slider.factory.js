@@ -155,7 +155,8 @@
         var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null;
         var targetPtr = firstPtr;
         var css = vertical ? 'top' : 'left';
-        var mouse = vertical ? evt.y : evt.x;
+        var evtPosition = evt.originalEvent ? evt.originalEvent : evt;
+        var mouse = vertical ? evtPosition.y : evtPosition.x;
         if (secondPtr && (mouse > secondPtr.d[css] || mouse > (firstPtr.d[css] + ( (secondPtr.d[css] - firstPtr.d[css]) / 2 ))))
           targetPtr = secondPtr;
         targetPtr._parent = {offset: offset, width: offset.width, height: offset.height};
