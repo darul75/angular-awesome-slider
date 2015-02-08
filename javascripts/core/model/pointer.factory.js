@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderPointer', ['sliderDraggable', 'utils', function(Draggable, utils) {
+  angular.module('ngSlider').factory('sliderPointer', ['sliderDraggable', 'sliderUtils', function(Draggable, utils) {
 
     function SliderPointer() {
       Draggable.apply(this, arguments);
@@ -33,8 +33,7 @@
         height: offset.height
       };      
 
-      this.ptr.addClass("jslider-pointer-hover");
-      this.setIndexOver();
+      this.ptr.addClass("jslider-pointer-hover");      
     };
 
     SliderPointer.prototype.onmousemove = function(evt, x, y) {
@@ -43,19 +42,11 @@
     };
 
     SliderPointer.prototype.onmouseup = function(evt) {
-      if( this.settings.callback && angular.isFunction(this.settings.callback) )
-        this.settings.callback.call( this.parent, this.parent.getValue() );
+      if( this.settings.cb && angular.isFunction(this.settings.cb) )
+        this.settings.cb.call( this.parent, this.parent.getValue() );
 
-      this.ptr.removeClass("jslider-pointer-hover");
-    };
-
-    SliderPointer.prototype.setIndexOver = function() {
-      this.parent.setPointersIndex(1);
-      this.index(2);
-    };
-
-    SliderPointer.prototype.index = function(i) {
-      this.ptr.css({zIndex:i});
+      if (!this.is.drag)
+        this.ptr.removeClass("jslider-pointer-hover");
     };
 
     SliderPointer.prototype.limits = function(x) {

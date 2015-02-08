@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderDraggable', ['$timeout', function() {
+  angular.module('ngSlider').factory('sliderDraggable', ['sliderUtils', function(utils) {
 
     function Draggable(){
       this._init.apply( this, arguments );
@@ -41,10 +41,11 @@
 
         this.is = {};
         angular.extend( this.is, this.isDefault );
+        var offset = utils.offset(this.ptr);
 
         this.d = {
-          left: this.ptr[0].offsetLeft,
-          top: this.ptr[0].offsetTop,
+          left: offset.left,
+          top: offset.top,
           width: this.ptr[0].clientWidth,
           height: this.ptr[0].clientHeight
         };
@@ -80,26 +81,29 @@
         "click": this.supportTouches_ ? "touchstart" : "click",
         "down": this.supportTouches_ ? "touchstart" : "mousedown",
         "move": this.supportTouches_ ? "touchmove" : "mousemove",
-        "up"  : this.supportTouches_ ? "touchend" : "mouseup"
+        "up"  : this.supportTouches_ ? "touchend" : "mouseup",
+        "mousedown"  : this.supportTouches_ ? "mousedown" : "mousedown"
       };
 
       var documentElt = angular.element(window.document);
 
-      this._bindEvent( documentElt, "move", function( event ){
-        if( self.is.drag ){
+      this._bindEvent(documentElt, "move", function(event) {        
+        if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
-          self._mousemove( event );
+          if (!self.parent.disabled) {
+            self._mousemove(event);
+          }  
         }
       });
-      this._bindEvent( documentElt, "down", function( event ){
-        if( self.is.drag ){
+      this._bindEvent(documentElt, "down", function(event) {
+        if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
         }
       });
-      this._bindEvent( documentElt, "up", function(event) {
-        self._mouseup( event );
+      this._bindEvent(documentElt, "up", function(event) {        
+        self._mouseup(event);        
       });
 
       this._bindEvent( this.ptr, "down", function(event) {
@@ -108,8 +112,8 @@
       });
       this._bindEvent( this.ptr, "up", function(event) {
         self._mouseup( event );
-      });
-
+      });      
+     
       // TODO see if needed
       this.events();
     };
@@ -117,9 +121,7 @@
     Draggable.prototype._mousedown = function( evt ){
       this.is.drag = true;
       this.is.clicked = false;
-      this.is.mouseup = false;
-
-      //var _offset = this.ptr.offset();    
+      this.is.mouseup = false;   
 
       var coords = this._getPageCoords( evt );
       this.cx = coords.x - this.ptr[0].offsetLeft;
@@ -143,7 +145,7 @@
       this.is.toclick = false;
       var coords = this._getPageCoords( evt );
       this.onmousemove( evt, coords.x - this.cx, coords.y - this.cy );
-    };
+    };    
 
     Draggable.prototype._mouseup = function( evt ){
       var oThis = this;
@@ -151,19 +153,24 @@
       if( this.is.drag ){
         this.is.drag = false;
 
+        var browser = utils.browser();
+
         if( this.outer && this.outer.get(0) ) {
 
-          if( $.browser.mozilla ){
+          if( browser === 'mozilla' ){
             this.outer.css({ overflow: "hidden" });
           } else {
             this.outer.css({ overflow: "visible" });
           }
 
-          if( $.browser.msie && $.browser.version == '6.0' ){
-            this.outer.css({ height: "100%" });
-          } else {
-            this.outer.css({ height: "auto" });
-          }
+          // TODO finish browser detection and this case, remove following line
+          this.outer.css({ height: "auto" });
+          // if( browser === 'ie' && $.browser.version == '6.0' ){
+          //   this.outer.css({ height: "100%" });
+          // } else {
+          //   this.outer.css({ height: "auto" });
+          // }
+          
         }
 
         this.onmouseup( evt );
