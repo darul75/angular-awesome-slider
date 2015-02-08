@@ -103,6 +103,15 @@
           value1 = value > self.settings.to ? self.settings.to : value;
 
           self.o.pointers[key].set( value1, true );
+          // reinit position d
+          var offset = utils.offset(self.o.pointers[key].ptr);
+
+          self.o.pointers[key].d = {
+            left: offset.left,
+            top: offset.top,
+            width: self.o.pointers[key].ptr.clientWidth,
+            height: self.o.pointers[key].ptr.clientHeight
+          };
 
           if (key === 0) {
             self.domNode.bind('mousedown', self.clickHandler.apply(self));
@@ -135,26 +144,20 @@
 
     Slider.prototype.clickHandler = function() {
       var self = this;
+      var vertical = this.settings.vertical;
       return function(evt) {
         if (self.disabled)
-          return;
-        var className = evt.target.className;
-        var targetIdx = 0;
-
-        if (className.indexOf('jslider-pointer-to') > 0) {
-          targetIdx = 1;
-        }
-
+          return;        
         var _off = utils.offset(self.domNode);
 
-        var offset = {
-          left: _off.left,
-          top: _off.top,
-          width: self.domNode[0].clientWidth,
-          height: self.domNode[0].clientHeight
-        };              
-
-        var targetPtr = self.o.pointers[targetIdx];
+        var offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight};
+        var firstPtr = self.o.pointers[0];
+        var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null;
+        var targetPtr = firstPtr;
+        var css = vertical ? 'top' : 'left';
+        var mouse = vertical ? evt.y : evt.x;
+        if (secondPtr && (mouse > secondPtr.d[css] || mouse > (firstPtr.d[css] + ( (secondPtr.d[css] - firstPtr.d[css]) / 2 ))))
+          targetPtr = secondPtr;
         targetPtr._parent = {offset: offset, width: offset.width, height: offset.height};
         targetPtr._mousemove(evt);
         targetPtr.onmouseup();

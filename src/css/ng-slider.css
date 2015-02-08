@@ -56,10 +56,10 @@
 
 .jslider .jslider-pointer-hover { background-position: -21px -60px; }
 
-.jslider.vertical .jslider-pointer { left: 62%; background-position: 80px -3px; }
-.jslider.vertical .jslider-pointer.jslider-pointer-hover { background-position: 0px -23px; }
+.jslider.vertical .jslider-pointer { left: 62%; background-position: -1px -3px; }
+.jslider.vertical .jslider-pointer.jslider-pointer-hover { background-position: -1px -23px; }
 .jslider.vertical .jslider-pointer-to { left: 62%; }
-.jslider.vertical .jslider-pointer-to.jslider-pointer-hover { background-position: 0px -23px; }
+.jslider.vertical .jslider-pointer-to.jslider-pointer-hover { background-position: -1px -23px; }
 
 .jslider .jslider-label { font-size: 9px; line-height: 12px; color: black; opacity: 0.4; white-space: nowrap; padding: 0px 2px; position: absolute; top: -18px; left: 0px; }
 .jslider .jslider-label-to { left: auto; right: 0; }
