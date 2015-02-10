@@ -376,6 +376,7 @@
           }
         }
         else {          
+          anotherLabel.value.html(this.nice(anotherPtr.value.origin));
           anotherLabel.o.css({ visibility: "visible" });
         }              
       }
