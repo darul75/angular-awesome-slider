@@ -373,7 +373,7 @@
           }
           break;
           case 1:
-          if (sizes.border - sizes.label / 2 < another_label.o[0].offsetLeft - this.sizes.domOffset.left + another_label.o[0].offsetWidth){
+          if (sizes.border - sizes.label / 2 < another_label.o[0].offsetLeft - this.sizes.domOffset.left + another_label.o[0].clientWidth){
             another_label.o.css({ visibility: "hidden" });
             another_label.value.html( this.nice(another.value.origin) );
             label.o.css({ visibility: "visible" });
