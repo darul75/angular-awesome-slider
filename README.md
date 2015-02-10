@@ -83,6 +83,7 @@ Options for your slider in json format {from:.....}
 * `smooth`: true/false; false snaps the button to value
 * `vertical`: true/false; vertical slider, default false
 * `css`: hash object 
+* `realtime`: triggers changes and model update on every moves
 
 ![angular slider css](http://darul75.github.io/ng-slider/images/slider2.png "angular slider css explained")
 ```
@@ -115,6 +116,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.8: fix labels positions while gluing + realtime model changes option + ngDisable option fix
 * 2.1.7: fix pointer position on click for double value
 * 2.1.6: starting mocha tests
 * 2.1.5: directive refactoring

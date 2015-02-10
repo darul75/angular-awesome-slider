@@ -39,6 +39,8 @@
     SliderPointer.prototype.onmousemove = function(evt, x, y) {
       var coords = this._getPageCoords( evt );      
       this._set(!this.vertical ? this.calc( coords.x ) : this.calc( coords.y ));
+      if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) )
+        this.settings.cb.call( this.parent, this.parent.getValue() );
     };
 
     SliderPointer.prototype.onmouseup = function(evt) {

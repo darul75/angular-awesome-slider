@@ -58,6 +58,7 @@
               scale: scope.options.scale,
               vertical: scope.options.vertical,
               css: scope.options.css,
+              realtime: scope.options.realtime,
               cb: forceApply
             };
             
