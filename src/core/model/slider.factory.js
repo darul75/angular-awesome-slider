@@ -347,48 +347,37 @@
         border: (prc * (!self.settings.vertical ? this.sizes.domWidth: this.sizes.domHeight)) / 100
       };
 
-      var another_label = null;
-      var another = null;
+      var anotherIdx = pointer.uid === 0 ? 1:0;
+      var anotherLabel;
+      var anotherPtr;          
 
       if (!this.settings.single && !this.settings.vertical){
-        // glue if near;
-        another = this.o.pointers[1-pointer.uid];
-        another_label = this.o.labels[another.uid];
+        // glue if near;        
+        anotherLabel = this.o.labels[anotherIdx];
+        anotherPtr = this.o.pointers[anotherIdx];          
+        var label1 = this.o.labels[0];
+        var label2 = this.o.labels[1];
+        var ptr1 = this.o.pointers[0];
+        var ptr2 = this.o.pointers[1];
 
-        switch(pointer.uid){
-          case 0:
-          if (sizes.border+sizes.label / 2 > another_label.o[0].offsetLeft-this.sizes.domOffset.left){
-            another_label.o.css({ visibility: "hidden" });
-            another_label.value.html(this.nice(another.value.origin));
-            label.o.css({ visibility: "visible" });
-            prc = (another.value.prc - prc) / 2 + prc;
-
-            if(another.value.prc != pointer.value.prc){
-              label.value.html(this.nice(pointer.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(another.value.origin));
-              sizes.label = label.o[0].offsetWidth;
-              sizes.border = (prc * domSize) / 100;
-            }
-          } else {
-            another_label.o.css({ visibility: "visible" });
+        label1.o.css({ visibility: "visible" });
+        label2.o.css({ visibility: "visible" });
+        
+        var gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft;                
+        
+        if (gapBetweenLabel < 2* (label1.o[0].offsetWidth+label2.o[0].offsetWidth)) {          
+          anotherLabel.o.css({ visibility: "hidden" });
+          anotherLabel.value.html(this.nice(anotherPtr.value.origin));
+          prc = (anotherPtr.value.prc - prc) / 2 + prc;
+          if(anotherPtr.value.prc != pointer.value.prc){
+            label.value.html(this.nice(this.o.pointers[0].value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(this.o.pointers[1].value.origin));
+            sizes.label = label.o[0].offsetWidth;
+            sizes.border = (prc * domSize) / 100;
           }
-          break;
-          case 1:
-          if (sizes.border - sizes.label / 2 < another_label.o[0].offsetLeft - this.sizes.domOffset.left + another_label.o[0].clientWidth){
-            another_label.o.css({ visibility: "hidden" });
-            another_label.value.html( this.nice(another.value.origin) );
-            label.o.css({ visibility: "visible" });
-            prc = ( prc - another.value.prc ) / 2 + another.value.prc;
-
-            if( another.value.prc != pointer.value.prc ){
-              label.value.html( this.nice(another.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(pointer.value.origin) );
-              sizes.label = label.o[0].offsetWidth;
-              sizes.border = ( prc * domSize ) / 100;
-            }
-          } else {
-            another_label.o.css({ visibility: "visible" });
-          }
-          break;
         }
+        else {          
+          anotherLabel.o.css({ visibility: "visible" });
+        }              
       }
 
       sizes = setPosition(label, sizes, prc);
@@ -396,15 +385,15 @@
       var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
       /* draw second label */
-      if(another_label){
+      if(anotherLabel){
         var sizes2 = {
-          label: !self.settings.vertical ? another_label.o[0].offsetWidth: another_label.o[0].offsetHeight,
+          label: !self.settings.vertical ? anotherLabel.o[0].offsetWidth: anotherLabel.o[0].offsetHeight,
           right: false,
-          border: (another.value.prc * this.sizes.domWidth) / 100
+          border: (anotherPtr.value.prc * this.sizes.domWidth) / 100
         };
-        sizes = setPosition(another_label, sizes2, another.value.prc);
+        sizes = setPosition(anotherLabel, sizes2, anotherPtr.value.prc);
       }
-
+      
       this.redrawLimits();
     };
 
