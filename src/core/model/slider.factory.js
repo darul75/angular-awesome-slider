@@ -20,12 +20,13 @@
       if(this.settings.onstatechange && angular.isFunction(this.settings.onstatechange))
         this.onstatechange = this.settings.onstatechange;
 
+      this.css = sliderConstants.SLIDER.css;
       this.is = {init: false};
       this.o = {};
       this.initValue = {};
 
       this.create(templateNode);
-
+      
       return this;
     };
 
@@ -360,13 +361,13 @@
         var ptr1 = this.o.pointers[0];
         var ptr2 = this.o.pointers[1];
 
-        label1.o.css({ visibility: "visible" });
-        label2.o.css({ visibility: "visible" });
+        label1.o.css(this.css.visible);
+        label2.o.css(this.css.visible);
         
         var gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft;                
         
-        if (gapBetweenLabel < 2* (label1.o[0].offsetWidth+label2.o[0].offsetWidth)) {          
-          anotherLabel.o.css({ visibility: "hidden" });
+        if (gapBetweenLabel + 10 < label1.o[0].offsetWidth+label2.o[0].offsetWidth) {
+          anotherLabel.o.css(this.css.hidden);
           anotherLabel.value.html(this.nice(anotherPtr.value.origin));
           prc = (anotherPtr.value.prc - prc) / 2 + prc;
           if(anotherPtr.value.prc != pointer.value.prc){
@@ -377,7 +378,7 @@
         }
         else {          
           anotherLabel.value.html(this.nice(anotherPtr.value.origin));
-          anotherLabel.o.css({ visibility: "visible" });
+          anotherLabel.o.css(this.css.visible);
         }              
       }
 

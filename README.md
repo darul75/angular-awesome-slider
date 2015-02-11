@@ -116,6 +116,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.1.9: fix labels positions while gluing, gap was too big + options changed watch by value
 * 2.1.8: fix labels positions while gluing + realtime model changes option + ngDisable option fix
 * 2.1.7: fix pointer position on click for double value
 * 2.1.6: starting mocha tests

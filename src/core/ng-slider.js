@@ -77,7 +77,7 @@
             angular.element(scaleDiv).html(scope.slider.generateScale());
             scope.slider.drawScale(scaleDiv);
 
-             if (scope.ngDisabled) {
+            if (scope.ngDisabled) {
               disabler(true);
             }
 
@@ -132,7 +132,7 @@
             timeout(function(){
               init();
             });            
-          });
+          }, true);
 
           // disabling
           var disabler = function(value) {

@@ -18,7 +18,11 @@
         realtime: false
       },
       className: "jslider",
-      selector: ".jslider-"
+      selector: ".jslider-",
+      css: {
+        visible : { visibility: "visible" },
+        hidden : { visibility: "hidden" }
+      }
     },
     EVENTS: {
       
