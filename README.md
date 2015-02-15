@@ -84,6 +84,8 @@ Options for your slider in json format {from:.....}
 * `vertical`: true/false; vertical slider, default false
 * `css`: hash object 
 * `realtime`: triggers changes and model update on every moves
+* `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap 
+
 
 ![angular slider css](http://darul75.github.io/ng-slider/images/slider2.png "angular slider css explained")
 ```

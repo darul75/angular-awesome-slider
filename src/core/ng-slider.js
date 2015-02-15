@@ -59,7 +59,8 @@
               vertical: scope.options.vertical,
               css: scope.options.css,
               realtime: scope.options.realtime,
-              cb: forceApply
+              cb: forceApply,
+              threshold: scope.options.threshold
             };
             
             OPTIONS.calculate = scope.options.calculate || undefined;

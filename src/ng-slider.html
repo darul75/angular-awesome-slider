@@ -153,10 +153,11 @@
 			$scope.options = {				
 				to: 1,
 	            from: 100,
-	            step: 0.5,
+	            step: 1,
 	            dimension: " km",
 	            vertical: false,            
-	            round: 2,
+	            // round: 2,
+	            threshold: 1,
 	            realtime: true,
 					callback: function(value, elt) {
 						console.log(value);

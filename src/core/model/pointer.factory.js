@@ -14,7 +14,9 @@
       this.parent = _constructor;
       this.value = {};
       this.vertical = vertical;
-      this.settings = angular.copy(_constructor.settings);
+      this.settings = angular.copy(_constructor.settings);   
+      this.normalOrder = this.parent.settings.from < this.parent.settings.to;
+      this.threshold = this.parent.settings.threshold;   
     };
 
     SliderPointer.prototype.onmousedown = function(evt) {
@@ -39,12 +41,12 @@
     SliderPointer.prototype.onmousemove = function(evt, x, y) {
       var coords = this._getPageCoords( evt );      
       this._set(!this.vertical ? this.calc( coords.x ) : this.calc( coords.y ));
-      if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) )
+      if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
         this.settings.cb.call( this.parent, this.parent.getValue() );
     };
 
     SliderPointer.prototype.onmouseup = function(evt) {
-      if( this.settings.cb && angular.isFunction(this.settings.cb) )
+      if( this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
         this.settings.cb.call( this.parent, this.parent.getValue() );
 
       if (!this.is.drag)
@@ -68,10 +70,26 @@
     };
 
     SliderPointer.prototype._set = function(prc, opt_origin) {
-      if(!opt_origin)
-        this.value.origin = this.parent.prcToValue(prc);
-
+      this.allowed = true;      
+      this.value.origin = this.parent.prcToValue(prc);      
+      // check threshold      
+      if (this.threshold && this.parent.o.pointers[1]) {        
+        var v1 = this.parent.o.pointers[0].value.origin;
+        var v2 = this.parent.o.pointers[1].value.origin;
+        this.allowed =  (this.normalOrder ? v2 - v1 : v1 - v2) >= this.threshold;              
+      }
+      // if(!opt_origin)
+              
+      if (!this.allowed) {        
+        var otherPtr = this.parent.o.pointers[this.uid === 0 ? 1:0];
+        if (this.uid === 0)        
+          this.value.origin = this.normalOrder ? otherPtr.value.origin - this.threshold : otherPtr.value.origin + this.threshold;
+        else
+          this.value.origin = this.normalOrder ? otherPtr.value.origin + this.threshold : otherPtr.value.origin - this.threshold;
+        return;
+      }
       this.value.prc = prc;
+
       if (!this.vertical)
         this.ptr.css({left:prc+"%"});
       else

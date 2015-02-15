@@ -186,7 +186,8 @@
         angular.extend(targetPtr.d, {
            left: coords.x,
            top: coords.y          
-        });
+        });        
+        
         self.redraw(targetPtr);
         return false;
       };
