@@ -33,7 +33,7 @@
 		<div>
 			Current value is: {{value3}}
 		</div>
-		<!-- </br>
+		</br>
 		</br>
 		<div>
 			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="{
@@ -101,7 +101,7 @@
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
 			<button ng-click='disable()'>DISABLE</button>
-		</div>	 -->
+		</div>
 	</div>
 
 	<script type="text/javascript">	
@@ -115,9 +115,9 @@
 				}, 1000);
 			$scope.id = "bob";			
 			$scope.id2 = "bob";
-			$scope.value = "50;10";
+			$scope.value = "10;50";
 			$scope.value2 = "12;15";
-			$scope.value3 = "50;10";
+			$scope.value3 = "10;50";
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = 10;
 			$scope.value6 = "10;53";
@@ -151,8 +151,8 @@
       };
 
 			$scope.options = {				
-				to: 1,
-	            from: 100,
+				to: 100,
+	            from: 1,
 	            step: 1,
 	            dimension: " km",
 	            vertical: false,            
