@@ -88,20 +88,25 @@
       }
 
       var clickPtr;
-      
       var pointers = [pointer1, pointer2];
+      var isAsc = self.settings.from < self.settings.to ? true : false;
+      var values = self.settings.value.split(';');
 
       angular.forEach(pointers, function(pointer, key) {
         self.settings = angular.copy(self.settings);
-        var value = self.settings.value.split(';')[key];
+        var value = values[key];
         if(value) {
           self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, self);
 
-          var prev = self.settings.value.split(';')[key-1];
-          if( prev && parseInt(value, 10) < parseInt(prev, 10 )) value = prev;
-
-          var value1 = value < self.settings.from ? self.settings.from : value;
-          value1 = value > self.settings.to ? self.settings.to : value;
+          var prev = values[key-1];
+          var prevValue = prev ? parseInt(prev, 10 ) : undefined;
+          value = parseInt(value, 10);
+          if( prev && isAsc ? value < prevValue : value > prevValue) value = prev;
+          // limit threshold adjust
+          var test = isAsc ? value < self.settings.from : value > self.settings.from;
+          var value1 = test ? self.settings.from : value;  
+          test = isAsc ? value > self.settings.to : value < self.settings.to;        
+          value1 = test ? self.settings.to : value;
 
           self.o.pointers[key].set( value1, true );
           // reinit position d
@@ -147,24 +152,30 @@
       return function(evt) {
         if (self.disabled)
           return;        
-        var targetIdx = 0;        
-
+        var normalOrder = self.settings.from < self.settings.to;
+        var targetIdx = 0;
         var _off = utils.offset(self.domNode);
 
         var firstPtr = self.o.pointers[0];
-        var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null;        
+        var secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null; 
+        if (!normalOrder && secondPtr) {
+          var tmp = secondPtr;
+          secondPtr = firstPtr;
+          firstPtr = tmp;
+        }       
         var evtPosition = evt.originalEvent ? evt.originalEvent: evt;
-        var mouse = vertical ? evtPosition.pageY : evtPosition.pageX;
-        console.log(mouse);
+        var mouse = vertical ? evtPosition.pageY : evtPosition.pageX;        
 
         var offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight };              
         var targetPtr = self.o.pointers[targetIdx];
         var css = vertical ? 'top' : 'left';
-        if (secondPtr) {
-          var middleGap = (secondPtr.d[css] - firstPtr.d[css]) / 2;
-          var mousePosBetween = mouse - firstPtr.d[css];        
-          if (mousePosBetween > middleGap)
-            targetPtr = secondPtr;
+        if (secondPtr) {          
+          var middleGap = (secondPtr.d[css] - firstPtr.d[css]) / 2;                    
+          var ptr = firstPtr.d[css];
+          var mousePosBetween = mouse - ptr;          
+          var test = mousePosBetween > middleGap;    
+          if (test)
+            targetPtr = normalOrder ? secondPtr : firstPtr;
         }
         targetPtr._parent = {offset: offset, width: offset.width, height: offset.height};
         var coords = firstPtr._getPageCoords( evt );          
@@ -313,23 +324,25 @@
         sizes.margin = -sizes.label/2;
         var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
-        // left limit
-        var label_left = sizes.border + sizes.margin;
-        if(label_left < 0)
-          sizes.margin -= label_left;
+        if (self.sizes.domWidth) {
+          // left limit
+          var label_left = sizes.border + sizes.margin;
+          if(label_left < 0)
+            sizes.margin -= label_left;
 
-        // right limit
-        if(sizes.border+sizes.label / 2 > domSize){
-          sizes.margin = 0;
-          sizes.right = true;
-        } else
-        sizes.right = false;
+          // right limit
+          if(self.sizes.domWidth > 0 && sizes.border+sizes.label / 2 > domSize){
+            sizes.margin = 0;
+            sizes.right = true;
+          } else
+          sizes.right = false;  
+        }        
 
         if (!self.settings.vertical)        
           label.o.css({ left: prc + "%", marginLeft: sizes.margin+"px", right: "auto" });
         else
           label.o.css({ top: prc + "%", marginLeft: "20px", marginTop: sizes.margin, bottom: "auto" });
-        if(sizes.right) {
+        if(sizes.right && self.sizes.domWidth > 0) {
           if (!self.settings.vertical)
             label.o.css({ left: "auto", right: 0 });
           else
@@ -341,9 +354,15 @@
       var self = this;
       var label = this.o.labels[pointer.uid];
       var prc = pointer.value.prc;      
+      
+      this.sizes.domWidth = this.domNode[0].clientWidth;
+      this.sizes.domHeight = this.domNode[0].clientHeight;
+
+      // case hidden
+      var labelWidthSize = label.o[0].offsetWidth === 0 ? (label.o[0].textContent.length)*7 : label.o[0].offsetWidth;
 
       var sizes = {
-        label: !self.settings.vertical ? label.o[0].offsetWidth : label.o[0].offsetHeight,
+        label: !self.settings.vertical ? labelWidthSize : label.o[0].offsetHeight,
         right: false,
         border: (prc * (!self.settings.vertical ? this.sizes.domWidth: this.sizes.domHeight)) / 100
       };
@@ -388,8 +407,10 @@
 
       /* draw second label */
       if(anotherLabel){
+        // case hidden
+        var labelWidthSize2 = label.o[0].offsetWidth === 0 ? (label.o[0].textContent.length/2)*7 : label.o[0].offsetWidth;
         var sizes2 = {
-          label: !self.settings.vertical ? anotherLabel.o[0].offsetWidth: anotherLabel.o[0].offsetHeight,
+          label: !self.settings.vertical ? labelWidthSize2: anotherLabel.o[0].offsetHeight,
           right: false,
           border: (anotherPtr.value.prc * this.sizes.domWidth) / 100
         };
