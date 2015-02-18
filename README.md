@@ -157,6 +157,12 @@ To help me on reproducing any issues, please feel free to modify/fork this fiddl
 
 [![NPM](https://nodei.co/npm/ng-slider.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ng-slider/)
 
+## who's who
+
+Who use it ? feel free add issue or edit readme with PR, to see how you use it and give some ideas, thx
+
+[google?](https://www.google.com)
+
 ## License
 
 The MIT License (MIT)
