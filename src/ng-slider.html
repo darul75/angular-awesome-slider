@@ -9,17 +9,17 @@
 	
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>			
 	
-	<!--
+	
 	<script type="text/javascript" src="../dist/ng-slider.min.js"></script>
-	-->
-		
+	
+	<!--	
 	<script type="text/javascript" src="core/ng-slider.js"></script>
 	<script type="text/javascript" src="core/config/constants.js"></script>
 	<script type="text/javascript" src="core/model/draggable.factory.js"></script>
 	<script type="text/javascript" src="core/model/pointer.factory.js"></script>
 	<script type="text/javascript" src="core/model/slider.factory.js"></script>
 	<script type="text/javascript" src="core/utils/utils.factory.js"></script>
-	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>
+	<script type="text/javascript" src="core/template/slider.tmpl.js"></script>-->
 	
 	
 </head>
@@ -27,7 +27,7 @@
 
 	<div ng-app="myApp" ng-controller="ctrl" style="width:300px;">
 		
-		<div ng-show="show">
+		<div>
 			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="options" />
 		</div>
 		<div>
@@ -68,6 +68,12 @@
 		<div>
 			Current value is: {{value}}
 		</div>
+		<div ng-show="show">
+			sdsdqsdsqd<input ng-model="valueVisibility"  type="text" id="vvvv" slider options="optionsVisibility" ng-disabled="disabled" />
+		</div>
+		<div>
+			Current value is: {{valueVisibility}}
+		</div>
 
 		</br>
 		</br>
@@ -93,7 +99,7 @@
 			Current value is: {{value4}}
 		</div>
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
-			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabled" />
+			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabledtoto" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
 			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/>
 		</div>
@@ -101,6 +107,7 @@
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
 			<button ng-click='disable()'>DISABLE</button>
+			<button ng-click="toggleVisibility()">VISIBILITY</button>
 		</div>
 	</div>
 
@@ -121,7 +128,9 @@
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = 10;
 			$scope.value6 = "10;53";
+			$scope.valueVisibility = 50;
 			$scope.disa = true;
+			$scope.disabledtoto = false;
 	    $scope.data = {
 	        quote: {
 	            coverages: {
@@ -141,8 +150,11 @@
 			};
 
 			$scope.disable = function() {
-				$scope.disabled = !$scope.disabled;
-			};			 
+				$scope.disabledtoto = !$scope.disabledtoto;
+			};	
+			$scope.toggleVisibility = function () {
+        $scope.show = !$scope.show;
+    	};		 
 
 			var calculate = function( value ) {
         var hours = Math.floor( value / 60 );
@@ -152,16 +164,26 @@
 
 			$scope.options = {				
 				to: 100,
-	            from: 1,
-	            step: 1,
-	            dimension: " km",
-	            vertical: false,            
-	            // round: 2,
-	            threshold: 1,
-	            realtime: true,
-					callback: function(value, elt) {
-						console.log(value);
-					}		
+        from: 1,
+        step: 1,
+        dimension: " km",
+        vertical: false,            
+        // round: 2,
+        threshold: 1,
+        realtime: true,
+				callback: function(value, elt) {
+					console.log(value);
+				}		
+			};
+
+			$scope.optionsVisibility = {								
+        from: 40,
+        to: 70,
+        step: 1,
+        dimension: ' min',
+				callback: function(value, elt) {
+					console.log(value);
+				}		
 			};
 
 			$scope.optionsCss = {				

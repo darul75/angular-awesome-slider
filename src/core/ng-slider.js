@@ -79,7 +79,7 @@
             scope.slider.drawScale(scaleDiv);
 
             if (scope.ngDisabled) {
-              disabler(true);
+              disabler(scope.ngDisabled);
             }
 
             initialized = true;            
@@ -142,10 +142,10 @@
               scope.tmplElt.toggleClass('disabled');              
               scope.slider.disable(value);
             }
-          };                   
+          };                             
 
-          attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {
-            disabler(value);
+          scope.$watch('ngDisabled', function(value) {            
+            disabler(value);    
           });
 
           var slidering = function( inputElement, element, settings) {

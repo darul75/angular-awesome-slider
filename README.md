@@ -118,6 +118,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.2.1: fix disable+default position css+decimal value on init value
 * 2.2.0: handle from greater than to + gap pointer threshold option
 * 2.1.9: fix labels positions while gluing, gap was too big + options changed watch by value
 * 2.1.8: fix labels positions while gluing + realtime model changes option + ngDisable option fix

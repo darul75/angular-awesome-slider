@@ -100,7 +100,7 @@
 
           var prev = values[key-1];
           var prevValue = prev ? parseInt(prev, 10 ) : undefined;
-          value = parseInt(value, 10);
+          value = self.settings.round ? parseFloat(value) : parseInt(value, 10);
           if( prev && isAsc ? value < prevValue : value > prevValue) value = prev;
           // limit threshold adjust
           var test = isAsc ? value < self.settings.from : value > self.settings.from;
