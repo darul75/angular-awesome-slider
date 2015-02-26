@@ -43,7 +43,8 @@
 .jslider.vertical .jslider-bg i { width: 5px; position: absolute; font-size: 0; top: 0; }
 .jslider.vertical .jslider-bg .l { height: 50%; top: 0; left: 12px; background-position: -55px 0; background-repeat: repeat-y}
 .jslider.vertical .jslider-bg .r { height: 50%; top: 50%; left: 12px; background-position: right 0; background-repeat: repeat-y}
-.jslider.vertical .jslider-bg .v { z-index: 1; position: absolute; width: 60%; left: 12px; top: 0; height: 100%; background-repeat: repeat-y; background-position: -35px 16px; }
+.jslider.vertical .jslider-bg .v { z-index: 1; position: absolute; width: 60%; left: 12px; top: 0; height: 100%; background-repeat: repeat-y; background-position: -35px 0px; }
+.jslider.vertical .jslider-bg .s { width: 5px; z-index: 1;left: 12px; height:1px; background-color: #185F83;}
 
 .jslider.vertical.sliderCSS .jslider-bg .l { width: 5px; height: 50%; top: 0;  background-color: silver; background-image: none;}
 .jslider.vertical.sliderCSS .jslider-bg .r { width: 5px; height: 50%; top: 50%; background-color: silver; background-image: none;}

@@ -51,6 +51,7 @@
       var indicator1 = angular.element(is[3]);
       var indicator2 = angular.element(is[4]);
       var indicator3 = angular.element(is[5]);
+      var indicator4 = angular.element(is[6]);
 
       var off = utils.offset(this.domNode);
 
@@ -72,7 +73,7 @@
         pointers: {},
         labels: { 0: { o : pointerLabel1 }, 1: { o : pointerLabel2 } },
         limits: { 0: angular.element(divs[3]), 1: angular.element(divs[4]) },
-        indicators: { 0: indicator1, 1: indicator2, 2: indicator3 }
+        indicators: { 0: indicator1, 1: indicator2, 2: indicator3, 3: indicator4 }
       });
 
       angular.extend(this.o.labels[0], {
@@ -84,8 +85,8 @@
       });
 
       if( !self.settings.value.split(";")[1] ) {
-        this.settings.single = true;
-      }
+        this.settings.single = true;        
+      }      
 
       var clickPtr;
       var pointers = [pointer1, pointer2];
@@ -114,9 +115,7 @@
 
           self.o.pointers[key].d = {
             left: offset.left,
-            top: offset.top,
-            width: self.o.pointers[key].ptr.clientWidth,
-            height: self.o.pointers[key].ptr.clientHeight
+            top: offset.top
           };          
         }        
       });
@@ -130,10 +129,12 @@
       if (this.settings.css) {        
         indicator.css(this.settings.css.background ? this.settings.css.background : {});
         if (!this.o.pointers[1]) {
-          indicator1.css(this.settings.css.before ? this.settings.css.before : {});
-          indicator2.css(this.settings.css.default ? this.settings.css.default : {});  
-          indicator3.css(this.settings.css.after ? this.settings.css.after : {});
+          indicator1.css(this.settings.css.before ? this.settings.css.before : {});          
+          indicator4.css(this.settings.css.after ? this.settings.css.after : {});
         }
+
+        indicator2.css(this.settings.css.default ? this.settings.css.default : {});  
+        indicator3.css(this.settings.css.default ? this.settings.css.default : {});
         
         range.css(this.settings.css.range ? this.settings.css.range : {});
         pointer1.css(this.settings.css.pointer ? this.settings.css.pointer : {});
@@ -149,6 +150,29 @@
     Slider.prototype.clickHandler = function() {
       var self = this;
       var vertical = this.settings.vertical;
+
+      // in case of showing/hiding
+      var resetPtrSize = function(ptr) {
+        var ptr1 = self.o.pointers[0].ptr;
+        var ptr2 = self.o.pointers[1].ptr;
+        var offset1 = utils.offset(ptr1);
+        var offset2 = utils.offset(ptr2);
+
+        self.o.pointers[0].d = {
+          left: offset1.left,
+          top: offset1.top,
+          width: ptr1[0].clientWidth,
+          height: ptr1[0].clientHeight
+        };
+
+        self.o.pointers[1].d = {
+          left: offset2.left,
+          top: offset2.top,
+          width: ptr2[0].clientWidth,
+          height: ptr2[0].clientHeight
+        };
+      };
+
       return function(evt) {
         if (self.disabled)
           return;        
@@ -169,7 +193,10 @@
         var offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight };              
         var targetPtr = self.o.pointers[targetIdx];
         var css = vertical ? 'top' : 'left';
-        if (secondPtr) {          
+        if (secondPtr) {
+          if (!secondPtr.d.width) {
+            resetPtrSize();
+          }         
           var middleGap = (secondPtr.d[css] - firstPtr.d[css]) / 2;                    
           var ptr = firstPtr.d[css];
           var mousePosBetween = mouse - ptr;          
@@ -192,6 +219,8 @@
         return false;
       };
     };
+
+
 
     Slider.prototype.disable = function(bool) {   
       this.disabled = bool;
@@ -278,8 +307,12 @@
           this.originValue = this.o.pointers[0].value.prc;
           this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
           this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
-          this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
-      }
+          this.o.indicators[3].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+        } else {
+          this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[1].value.prc + "%"} : {top:this.o.pointers[1].value.prc + "%"});
+
+        }
+
         return false;
       }
 
@@ -298,10 +331,10 @@
       if(this.o.pointers[0] && !this.o.pointers[1]) {
         var newWidth = this.o.pointers[0].value.prc - this.originValue;
         if (newWidth >= 0) {
-          this.o.indicators[2].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
+          this.o.indicators[3].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
         }
         else {
-          this.o.indicators[2].css(!this.settings.vertical ? {width: 0} : {height: 0});
+          this.o.indicators[3].css(!this.settings.vertical ? {width: 0} : {height: 0});
         }
 
         if (this.o.pointers[0].value.prc < this.originValue) {
