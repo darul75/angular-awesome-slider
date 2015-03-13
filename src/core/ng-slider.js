@@ -118,14 +118,15 @@
           };        
 
           // view -> model
-          var forceApply = function(value) {
+          var forceApply = function(value, released) {
             if (scope.disabled) 
               return;
             scope.$apply(function() {
               ngModel.$setViewValue(value);
             });
-            if (scope.options.callback)
-              scope.options.callback(value);
+            if (scope.options.callback){              
+              scope.options.callback(value, released);
+            }
           };
 
           // watch options

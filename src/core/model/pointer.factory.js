@@ -42,12 +42,12 @@
       var coords = this._getPageCoords( evt );      
       this._set(!this.vertical ? this.calc( coords.x ) : this.calc( coords.y ));
       if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
-        this.settings.cb.call( this.parent, this.parent.getValue() );
+        this.settings.cb.call( this.parent, this.parent.getValue(), !this.is.drag );
     };
 
     SliderPointer.prototype.onmouseup = function(evt) {
       if( this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
-        this.settings.cb.call( this.parent, this.parent.getValue() );
+        this.settings.cb.call( this.parent, this.parent.getValue(), !this.is.drag );
 
       if (!this.is.drag)
         this.ptr.removeClass("jslider-pointer-hover");
