@@ -100,6 +100,15 @@ css: {
 ````
 * `callback` : function triggering current value, can be useful
 
+```javascript
+// example
+callback: function(value, released) {
+	// useful when combined with 'realtime' option
+	// released it triggered when mouse up
+	console.log(value + " " + released);
+}
+```
+
 Installation
 ------------
 
@@ -118,6 +127,8 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.2.3: mouse up event indicator in callback
+* 2.2.2: default indicator display + visibility and move events
 * 2.2.1: fix disable+default position css+decimal value on init value
 * 2.2.0: handle from greater than to + gap pointer threshold option
 * 2.1.9: fix labels positions while gluing, gap was too big + options changed watch by value
