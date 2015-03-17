@@ -257,17 +257,14 @@
 
 			$scope.options2VCSS = {				
 				from: 1,
-				to: 100,
+				to: 1000,
 				floor: true,
 				step: 10,
 				dimension: " km",
 				vertical: true,
-				css: {
-					background: {"background-color": "silver"},
-					before: {"background-color": "purple"},
-					default: {"background-color": "blue"},
-					after: {"background-color": "green"},
-					pointer: {"background-color": "red"}
+				styler: function (classname,value) {
+					console.log(classname,value);
+					return 'background-color: #00b;';
 				},
 				callback: function(value, elt) {
 					console.log(value);

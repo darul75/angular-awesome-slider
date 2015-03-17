@@ -58,6 +58,7 @@
               scale: scope.options.scale,
               vertical: scope.options.vertical,
               css: scope.options.css,
+			  styler: scope.options.styler,
               realtime: scope.options.realtime,
               cb: forceApply,
               threshold: scope.options.threshold
@@ -67,7 +68,8 @@
             OPTIONS.onstatechange = scope.options.onstatechange || undefined;
                                     
             // slider
-            scope.slider = !scope.slider ? slidering(element, scope.tmplElt, OPTIONS) : scope.slider.init(element, scope.tmplElt, OPTIONS);            
+            scope.slider = !scope.slider ? slidering(element, scope.tmplElt, OPTIONS) : scope.slider.init(element, scope.tmplElt, OPTIONS);
+			scope.currentValue = OPTIONS.value;            
                               
             if (!initialized) {
               initListener();
@@ -115,12 +117,14 @@
                 scope.slider.getPointers()[1].set(ngModel.$viewValue.split(";")[1], true);
               }
             }
+			scope.currentValue = ngModel.$viewValue;
           };        
 
           // view -> model
           var forceApply = function(value, released) {
             if (scope.disabled) 
               return;
+			scope.currentValue = value;
             scope.$apply(function() {
               ngModel.$setViewValue(value);
             });
