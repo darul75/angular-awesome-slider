@@ -582,7 +582,7 @@
         value = Math.round(value * Math.pow(10, this.settings.round)) / Math.pow(10, this.settings.round);
       else 
         value = Math.round(value);
-      return value;
+      return value;      
     };
 
     return Slider;
