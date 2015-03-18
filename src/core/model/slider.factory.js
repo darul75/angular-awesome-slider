@@ -47,7 +47,7 @@
       var pointerLabel1 = angular.element(divs[5]);
       var pointerLabel2 = angular.element(divs[6]);
       var indicator = angular.element(is[0]);
-      var range = angular.element(is[2]);
+      var range = angular.element(is[2]);									// below you call this element the value, one is likely incorrect, no? - I think this should be is[1]
       var indicator1 = angular.element(is[3]);
       var indicator2 = angular.element(is[4]);
       var indicator3 = angular.element(is[5]);
@@ -122,23 +122,23 @@
 
       self.domNode.bind('mousedown', self.clickHandler.apply(self));
 
-      this.o.value = angular.element(this.domNode.find("i")[2]);      
+      this.o.value = angular.element(this.domNode.find("i")[2]);      // above you call this element the range, one is likely incorrect, no?
       this.is.init = true;
 
       // CSS SKIN
       if (this.settings.css) {        
-        indicator.css(this.settings.css.background ? this.settings.css.background : {});
+        utils.css(indicator, (this.settings.css.background ? this.settings.css.background : {}), this.settings.styler('l', self.settings.value));
         if (!this.o.pointers[1]) {
-          indicator1.css(this.settings.css.before ? this.settings.css.before : {});          
-          indicator4.css(this.settings.css.after ? this.settings.css.after : {});
+          utils.css(indicator1, (this.settings.css.before ? this.settings.css.before : {}), this.settings.styler('p', self.settings.value));          
+          utils.css(indicator4, (this.settings.css.after ? this.settings.css.after : {}), this.settings.styler('f', self.settings.value));
         }
 
-        indicator2.css(this.settings.css.default ? this.settings.css.default : {});  
-        indicator3.css(this.settings.css.default ? this.settings.css.default : {});
+        utils.css(indicator2, (this.settings.css.default ? this.settings.css.default : {}), this.settings.styler('s', self.settings.value));  
+        utils.css(indicator3, (this.settings.css.default ? this.settings.css.default : {}), this.settings.styler('s', self.settings.value));
         
-        range.css(this.settings.css.range ? this.settings.css.range : {});
-        pointer1.css(this.settings.css.pointer ? this.settings.css.pointer : {});
-        pointer2.css(this.settings.css.pointer ? this.settings.css.pointer : {});
+        utils.css(range, (this.settings.css.range ? this.settings.css.range : {}), this.settings.styler('v', self.settings.value));
+        utils.css(pointer1, (this.settings.css.pointer ? this.settings.css.pointer : {}), this.settings.styler('pointer', this.settings.value));
+        utils.css(pointer2, (this.settings.css.pointer ? this.settings.css.pointer : {}), this.settings.styler('pointer-to', this.settings.value));
       }
 
       angular.forEach(this.o.pointers, function(pointer, key){
@@ -305,11 +305,11 @@
       if(!this.is.init) {
         if(this.o.pointers[0] && !this.o.pointers[1]) {
           this.originValue = this.o.pointers[0].value.prc;
-          this.o.indicators[0].css(!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"});
-          this.o.indicators[1].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
-          this.o.indicators[3].css(!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"});
+          utils.css(this.o.indicators[0], (!this.settings.vertical ? {left:0, width:this.o.pointers[0].value.prc + "%"} : {top:0, height:this.o.pointers[0].value.prc + "%"}), this.settings.styler('p', this.getValue()));
+          utils.css(this.o.indicators[1], (!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"}), this.settings.styler('s', this.getValue()));
+          utils.css(this.o.indicators[3], (!this.settings.vertical ? {left:this.o.pointers[0].value.prc + "%"} : {top:this.o.pointers[0].value.prc + "%"}), this.settings.styler('f', this.getValue()));
         } else {
-          this.o.indicators[2].css(!this.settings.vertical ? {left:this.o.pointers[1].value.prc + "%"} : {top:this.o.pointers[1].value.prc + "%"});
+          utils.css(this.o.indicators[2], (!this.settings.vertical ? {left:this.o.pointers[1].value.prc + "%"} : {top:this.o.pointers[1].value.prc + "%"}), this.settings.styler('s', this.getValue()));
 
         }
 
@@ -325,23 +325,23 @@
           :
           { top: this.o.pointers[0].value.prc + "%", height: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" };
         
-        this.o.value.css(newPos);        
+        utils.css(this.o.value, newPos, this.settings.styler('v', this.getValue()));        
       }
       
       if(this.o.pointers[0] && !this.o.pointers[1]) {
         var newWidth = this.o.pointers[0].value.prc - this.originValue;
         if (newWidth >= 0) {
-          this.o.indicators[3].css(!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"});
+          utils.css(this.o.indicators[3], (!this.settings.vertical ? {width: newWidth + "%"} : {height: newWidth + "%"}), this.settings.styler('f', this.getValue()));
         }
         else {
-          this.o.indicators[3].css(!this.settings.vertical ? {width: 0} : {height: 0});
+          utils.css(this.o.indicators[3], (!this.settings.vertical ? {width: 0} : {height: 0}), this.settings.styler('f', this.getValue()));
         }
 
         if (this.o.pointers[0].value.prc < this.originValue) {
-         this.o.indicators[0].css(!this.settings.vertical ? {width: this.o.pointers[0].value.prc + "%"} : {height: this.o.pointers[0].value.prc + "%"});
+         utils.css(this.o.indicators[0], (!this.settings.vertical ? {width: this.o.pointers[0].value.prc + "%"} : {height: this.o.pointers[0].value.prc + "%"}), this.settings.styler('p', this.getValue()));
         }
         else {
-          this.o.indicators[0].css(!this.settings.vertical ? {width: this.originValue + "%"} : {height: this.originValue + "%"});
+          utils.css(this.o.indicators[0], (!this.settings.vertical ? {width: this.originValue + "%"} : {height: this.originValue + "%"}), this.settings.styler('p', this.getValue()));
         }        
 
       }      
@@ -354,7 +354,8 @@
 
     Slider.prototype.redrawLabels = function(pointer) {
 
-      function setPosition(label, sizes, prc) {
+      function setPosition(label, sizes, prc, secondary) {
+				var labelClass = secondary ? 'value-to' : 'value';
         sizes.margin = -sizes.label/2;
         var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
@@ -372,15 +373,25 @@
           sizes.right = false;  
         }        
 
-        if (!self.settings.vertical)        
-          label.o.css({ left: prc + "%", marginLeft: sizes.margin+"px", right: "auto" });
-        else
-          label.o.css({ top: prc + "%", marginLeft: "20px", marginTop: sizes.margin, bottom: "auto" });
+				var cssSet, stylerCss;
+				stylerCss = self.settings.styler(labelClass, self.getValue());
+        if (!self.settings.vertical) {
+					cssSet = { left: prc + "%", 'margin-left': sizes.margin+"px", right: "auto" };
+          utils.css(label.o, cssSet, stylerCss);
+				}
+        else {
+					cssSet = { top: prc + "%", 'margin-left': "20px", 'margin-top': sizes.margin, bottom: "auto" };
+          utils.css(label.o, cssSet, stylerCss);
+				}
         if(sizes.right && self.sizes.domWidth > 0) {
-          if (!self.settings.vertical)
-            label.o.css({ left: "auto", right: 0 });
-          else
-            label.o.css({ top: "auto", bottom: 0 });
+          if (!self.settings.vertical) {
+						cssSet = { left: "auto", right: 0 };
+            utils.css(label.o, cssSet, stylerCss);
+					}
+          else {
+						cssSet = { top: "auto", bottom: 0 };
+            utils.css(label.o, cssSet, stylerCss);
+					}
         }
         return sizes;
       }
@@ -414,13 +425,13 @@
         var ptr1 = this.o.pointers[0];
         var ptr2 = this.o.pointers[1];
 
-        label1.o.css(this.css.visible);
-        label2.o.css(this.css.visible);
+        label1.o.css(this.css.visible); // these shouldn't pass through the styler, since they shouldn't be overridable
+        label2.o.css(this.css.visible); // these shouldn't pass through the styler, since they shouldn't be overridable
         
         var gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft;                
         
         if (gapBetweenLabel + 10 < label1.o[0].offsetWidth+label2.o[0].offsetWidth) {
-          anotherLabel.o.css(this.css.hidden);
+          anotherLabel.o.css(this.css.hidden); // these shouldn't pass through the styler, since they shouldn't be overridable
           anotherLabel.value.html(this.nice(anotherPtr.value.origin));
           prc = (anotherPtr.value.prc - prc) / 2 + prc;
           if(anotherPtr.value.prc != pointer.value.prc){
@@ -431,11 +442,11 @@
         }
         else {          
           anotherLabel.value.html(this.nice(anotherPtr.value.origin));
-          anotherLabel.o.css(this.css.visible);
+          anotherLabel.o.css(this.css.visible); // these shouldn't pass through the styler, since they shouldn't be overridable
         }              
       }
 
-      sizes = setPosition(label, sizes, prc);
+      sizes = setPosition(label, sizes, prc, pointer.uid);
 
       var domSize = !self.settings.vertical ? self.sizes.domWidth : self.sizes.domHeight;
 
@@ -448,7 +459,7 @@
           right: false,
           border: (anotherPtr.value.prc * this.sizes.domWidth) / 100
         };
-        sizes = setPosition(anotherLabel, sizes2, anotherPtr.value.prc);
+        sizes = setPosition(anotherLabel, sizes2, anotherPtr.value.prc, anotherIdx);
       }
       
       this.redrawLimits();

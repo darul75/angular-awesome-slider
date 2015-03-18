@@ -26,6 +26,26 @@
         }
         return 'unknown';
       },
+			css: function (element, css, stylerStyles) {
+				//applies css to an element, merging the styles from the styler function if applicable
+				var finalStyles, initStyles;
+	
+				stylerStyles = angular.isObject(stylerStyles) ? stylerStyles : {};
+				css = angular.isObject(css) ? css : {};
+
+				if (stylerStyles.override === true) {
+					finalStyles = css;
+					initStyles = stylerStyles;
+				}
+				else {
+					finalStyles = stylerStyles;
+					initStyles = css;
+				}
+				for (var style in initStyles) {
+					finalStyles[style] = initStyles[style];
+				}
+				return element.css(finalStyles);
+			},
 			compileCss: function (css) {
 				var finalString = '';
 				css = angular.isObject(css) ? css : {};
