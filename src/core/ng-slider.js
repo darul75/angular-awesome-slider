@@ -4,8 +4,8 @@
   angular.module('ngSlider', [])
     // DIRECTIVE
     .directive('slider', [
-      '$compile', '$templateCache','$timeout', '$window', 'slider',
-      function(compile, templateCache, timeout, win, Slider) {
+      '$compile', '$templateCache','$timeout', '$window', 'slider', 'sliderUtils',
+      function(compile, templateCache, timeout, win, Slider, utils) {
         return {
           restrict : 'AE',
           require: '?ngModel',
@@ -24,6 +24,7 @@
           }
 
           // TODO : skin        
+		  scope.compileCss = utils.compileCss;
           scope.mainSliderClass = 'jslider';
           scope.mainSliderClass += ' jslider_round';
           scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';

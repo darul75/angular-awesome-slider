@@ -25,7 +25,15 @@
           }
         }
         return 'unknown';
-      }
+      },
+			compileCss: function (css) {
+				var finalString = '';
+				css = angular.isObject(css) ? css : {};
+				for (var style in css) {
+					finalString += style + ':' + css[style] + '; ';
+				}
+				return finalString;
+			}
     };
   }]);  
 })(angular);
