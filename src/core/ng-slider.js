@@ -62,7 +62,7 @@
               scale: scope.options.scale,
               vertical: scope.options.vertical,
               css: scope.options.css,
-	      styler: scope.options.styler,
+              styler: scope.options.styler,
               realtime: scope.options.realtime,
               cb: forceApply,
               threshold: scope.options.threshold
