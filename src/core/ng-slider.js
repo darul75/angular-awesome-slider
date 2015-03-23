@@ -46,7 +46,7 @@
               scope.from = scope.options.calculate(scope.from);
               scope.to = scope.options.calculate(scope.to);
             }
-            if (!(typeof scope.options.styler === 'function')) {
+            if (typeof scope.options.styler !== 'function') {
             	scope.options.styler = function () { return {}; };
             }
 
