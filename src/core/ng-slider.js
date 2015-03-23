@@ -46,6 +46,9 @@
               scope.from = scope.options.calculate(scope.from);
               scope.to = scope.options.calculate(scope.to);
             }
+            if (!(typeof scope.options.styler === 'function')) {
+            	scope.options.styler = function () { return {}; };
+            }
 
             var OPTIONS = {
               from: scope.options.from,
@@ -59,7 +62,7 @@
               scale: scope.options.scale,
               vertical: scope.options.vertical,
               css: scope.options.css,
-			  styler: scope.options.styler,
+	      styler: scope.options.styler,
               realtime: scope.options.realtime,
               cb: forceApply,
               threshold: scope.options.threshold
