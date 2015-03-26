@@ -1,7 +1,7 @@
 <head>	
 	
 	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">
-	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/ng-slider.round.css"> -->
 	
 	<!-- 
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
@@ -54,6 +54,7 @@
 		<div>
 			Current value is: {{value3}}
 		</div>
+		<!-- 
 		
 		</br>
 		<div>
@@ -102,7 +103,7 @@
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabledtoto" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
 			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/> 
-		</div>
+		</div> -->
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -124,7 +125,7 @@
 			$scope.id2 = "bob";
 			$scope.value = "10;50";
 			$scope.value2 = "12;15";
-			$scope.value3 = "10;50";
+			$scope.value3 = "10";
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = "10;20";
 			$scope.value6 = "10;53";
@@ -167,10 +168,12 @@
         from: 1,
         step: 1,
         dimension: " km",
-        vertical: false,            
+        vertical: false,
+        // skin: 'jslider_round',            
         // round: 2,
-        threshold: 1,
+        modelLabels: {1: 'test1', 2: 'test3'},        
         realtime: true,
+        limits: false,        
 				callback: function(value, released) {
 					console.log(value + " " + released);
 				}		

@@ -1,7 +1,7 @@
 {
   "name": "ng-slider",
   "description": "AngularJS directive slider control.",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
@@ -32,7 +32,8 @@
     "grunt-contrib-uglify": "latest",
     "grunt-bower-task": "0.4.0",
     "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-karma": "~0.8.2",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-karma": "~0.8.2",    
     "karma": "0.12.31",
     "grunt-bower-task": "0.4.0",
     "karma-chrome-launcher": "^0.1.3",

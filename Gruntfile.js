@@ -49,6 +49,17 @@ module.exports = function(grunt) {
           }
       }
     },
+    // LESS CSS TASKS
+    less: {
+      development: {
+        options: {
+          paths: ['src/css/less/']
+        },
+        files: {
+          'src/css/ng-slider.css': 'src/css/less/main.less'
+        }
+      }
+    },
     // UGLIFY TASK
     uglify: {
       task1: {
@@ -101,7 +112,8 @@ module.exports = function(grunt) {
   // LOAD PLUGINS  
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');    
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-karma');

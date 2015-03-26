@@ -346,7 +346,12 @@
 
       }      
 
-      this.o.labels[pointer.uid].value.html(this.nice(pointer.value.origin));
+      var value = this.nice(pointer.value.origin);
+      if (this.settings.modelLabels) {
+        value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;        
+      }
+      
+      this.o.labels[pointer.uid].value.html(value);            
 
       // redraw position of labels
       this.redrawLabels( pointer );
@@ -418,19 +423,30 @@
         label2.o.css(this.css.visible);
         
         var gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft;                
+        var value = this.nice(anotherPtr.value.origin);
+        if (this.settings.modelLabels) {
+          value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;        
+        }
         
         if (gapBetweenLabel + 10 < label1.o[0].offsetWidth+label2.o[0].offsetWidth) {
           anotherLabel.o.css(this.css.hidden);
-          anotherLabel.value.html(this.nice(anotherPtr.value.origin));
+          
+          anotherLabel.value.html(value);
           prc = (anotherPtr.value.prc - prc) / 2 + prc;
           if(anotherPtr.value.prc != pointer.value.prc){
-            label.value.html(this.nice(this.o.pointers[0].value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(this.o.pointers[1].value.origin));
+            value = this.nice(this.o.pointers[0].value.origin);
+            var value1 = this.nice(this.o.pointers[1].value.origin);
+            if (this.settings.modelLabels) {
+              value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;        
+              value1 = this.settings.modelLabels[value1] !== undefined ? this.settings.modelLabels[value1] : value1;
+            }
+            label.value.html(value + "&nbsp;&ndash;&nbsp;" + value1);
             sizes.label = label.o[0].offsetWidth;
             sizes.border = (prc * domSize) / 100;
           }
         }
         else {          
-          anotherLabel.value.html(this.nice(anotherPtr.value.origin));
+          anotherLabel.value.html(value);
           anotherLabel.o.css(this.css.visible);
         }              
       }
