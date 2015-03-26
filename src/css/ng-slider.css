@@ -77,10 +77,10 @@
   width: 1px;
   background-color: #185F83;
 }
-.jslider .jslider-single .jslider-pointer-to,
-.jslider .jslider-single .jslider-value-to,
-.jslider .jslider-single .jslider-bg .v,
-.jslider .jslider-limitless .jslider-label {
+.jslider.jslider-single .jslider-pointer-to,
+.jslider.jslider-single .jslider-value-to,
+.jslider.jslider-single .jslider-bg .v,
+.jslider.jslider-single .jslider-limitless .jslider-label {
   display: none;
 }
 .jslider .jslider-pointer {
@@ -192,6 +192,10 @@
 }
 .jslider.sliderCSS .jslider-pointer {
   background-color: silver;
+}
+.jslider.sliderCSS .jslider-bg i,
+.jslider.sliderCSS .jslider-pointer {
+  background: none;
 }
 .jslider.vertical {
   display: block;
@@ -346,6 +350,10 @@
   left: 12px;
   background-color: transparent;
   background-image: none;
+}
+.jslider.vertical.sliderCSS .jslider-bg i,
+.jslider.vertical.sliderCSS .jslider-pointer {
+  background: none;
 }
 .jslider.jslider_round .jslider-bg i,
 .jslider.jslider_round .jslider-pointer {

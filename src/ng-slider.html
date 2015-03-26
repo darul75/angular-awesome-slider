@@ -99,11 +99,12 @@
 		<div>
 			Current value is: {{value4}}
 		</div>
+		 -->
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabledtoto" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
 			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/> 
-		</div> -->
+		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
 			<button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -213,6 +214,7 @@
 				step: 0.5,
 				dimension: " $",
 				round: 1,
+				skin: 'jslider_round',
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],				
 				vertical: true,
 				css: {

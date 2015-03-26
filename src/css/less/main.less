@@ -75,11 +75,13 @@
 
   // POINTERS
   // single value hide to
-  .jslider-single .jslider-pointer-to, 
-  .jslider-single .jslider-value-to, 
-  .jslider-single .jslider-bg .v,
-  .jslider-limitless .jslider-label { 
-    display: none; 
+  &.jslider-single {
+    .jslider-pointer-to, 
+    .jslider-value-to, 
+    .jslider-bg .v,
+    .jslider-limitless .jslider-label {
+      display: none;
+    } 
   }
 
   .jslider-pointer { z-index: 2; width: 15px; height: 15px; background-position: 2px -60px; position: absolute; left: 20%; top: -4px; margin-left: -8px; cursor: pointer; cursor: hand; }
@@ -121,6 +123,10 @@
 
     .jslider-pointer { 
       background-color: silver; 
+    }
+
+    .jslider-bg i,.jslider-pointer {
+      background: none;
     }
 
   }
@@ -191,7 +197,12 @@
         .p { left: 12px; width: 5px; background-color: transparent; background-image: none;}
         .s { left: 12px; width: 5px; background-color: transparent; background-image: none;z-index: 2;height: 1px;}
         .f { left: 12px; background-color: transparent; background-image: none;}
-      }      
+      }
+
+      .jslider-bg i,.jslider-pointer {
+        background: none;
+      }
+
     }
     
   }
