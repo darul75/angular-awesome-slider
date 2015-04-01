@@ -127,6 +127,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.2.4: fix when 2 pointers overlap on limits
 * 2.2.3: mouse up event indicator in callback
 * 2.2.2: default indicator display + visibility and move events
 * 2.2.1: fix disable+default position css+decimal value on init value

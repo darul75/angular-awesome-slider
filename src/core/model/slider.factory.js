@@ -325,7 +325,13 @@
           :
           { top: this.o.pointers[0].value.prc + "%", height: ( this.o.pointers[1].value.prc - this.o.pointers[0].value.prc ) + "%" };
         
-        this.o.value.css(newPos);        
+        this.o.value.css(newPos);
+
+        // both pointer overlap on limits
+        if (this.o.pointers[0].value.prc === this.o.pointers[1].value.prc) {
+          this.o.pointers[1].ptr.css("z-index", this.o.pointers[0].value.prc === 0 ? '3' : '1');
+        }
+
       }
       
       if(this.o.pointers[0] && !this.o.pointers[1]) {
