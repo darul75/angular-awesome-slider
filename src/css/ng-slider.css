@@ -41,17 +41,17 @@
   top: 0;
   height: 5px;
 }
-.jslider div.jslider-bg i.l {
+.jslider div.jslider-bg i.left {
   left: 0;
   width: 50%;
   background-position: 0 0;
 }
-.jslider div.jslider-bg i.r {
+.jslider div.jslider-bg i.right {
   left: 50%;
   width: 50%;
   background-position: right 0;
 }
-.jslider div.jslider-bg i.v {
+.jslider div.jslider-bg i.range {
   position: absolute;
   top: 0;
   left: 20%;
@@ -61,7 +61,7 @@
   background-repeat: repeat-x;
   background-position: 0 -40px;
 }
-.jslider div.jslider-bg i.s {
+.jslider div.jslider-bg i.default {
   left: 0;
   width: 1px;
   z-index: 1;
@@ -176,25 +176,25 @@
   width: 5px;
   font-size: 0;
 }
-.jslider.vertical div.jslider-bg i.p {
+.jslider.vertical div.jslider-bg i.before {
   left: 50%;
   background: none;
 }
-.jslider.vertical div.jslider-bg i.l {
+.jslider.vertical div.jslider-bg i.left {
   top: 0;
   left: 50%;
   height: 50%;
   background-position: right 0;
   background-repeat: repeat-y;
 }
-.jslider.vertical div.jslider-bg i.r {
+.jslider.vertical div.jslider-bg i.right {
   top: 50%;
   left: 50%;
   height: 50%;
   background-position: right 0;
   background-repeat: repeat-y;
 }
-.jslider.vertical div.jslider-bg i.v {
+.jslider.vertical div.jslider-bg i.range {
   position: absolute;
   top: 0;
   left: 50%;
@@ -204,7 +204,7 @@
   background-repeat: repeat-y;
   background-position: -36px 0px;
 }
-.jslider.vertical div.jslider-bg i.s {
+.jslider.vertical div.jslider-bg i.default {
   left: 50%;
   width: 5px;
   height: 1px;
@@ -261,37 +261,37 @@
   text-decoration: none;
   color: #999999;
 }
-.jslider.sliderCSS div.jslider-bg i.l {
+.jslider.sliderCSS div.jslider-bg i.left {
   left: 0;
   width: 50%;
   background-color: #c0c0c0;
   background-image: none;
 }
-.jslider.sliderCSS div.jslider-bg i.r {
+.jslider.sliderCSS div.jslider-bg i.right {
   width: 50%;
   left: 50%;
   background-color: #c0c0c0;
   background-image: none;
 }
-.jslider.sliderCSS div.jslider-bg i.p {
+.jslider.sliderCSS div.jslider-bg i.before {
   left: 0;
   width: 1px;
   background-color: rgba(92, 98, 203, 0.89);
   background-image: none;
 }
-.jslider.sliderCSS div.jslider-bg i.s {
+.jslider.sliderCSS div.jslider-bg i.default {
   left: 0;
   width: 1px;
   z-index: 1;
   background-color: #ffffff;
   background-image: none;
 }
-.jslider.sliderCSS div.jslider-bg i.f {
+.jslider.sliderCSS div.jslider-bg i.after {
   left: 0;
   background-color: #0e1773;
   background-image: none;
 }
-.jslider.sliderCSS div.jslider-bg i.v {
+.jslider.sliderCSS div.jslider-bg i.range {
   position: absolute;
   top: 0;
   left: 20%;
@@ -318,35 +318,35 @@
   left: 50%;
   width: 5px;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.l {
+.jslider.sliderCSS.vertical div.jslider-bg i.left {
   top: 0;
   height: 50%;
   background-color: #c0c0c0;
   background-image: none;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.r {
+.jslider.sliderCSS.vertical div.jslider-bg i.right {
   height: 50%;
   top: 50%;
   background-color: #c0c0c0;
   background-image: none;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.v {
+.jslider.sliderCSS.vertical div.jslider-bg i.range {
   height: 100%;
   z-index: 1;
   background-color: #777575;
   background-image: none;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.p {
+.jslider.sliderCSS.vertical div.jslider-bg i.before {
   background-color: rgba(92, 98, 203, 0.89);
   background-image: none;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.s {
+.jslider.sliderCSS.vertical div.jslider-bg i.default {
   height: 1px;
   background-color: #ffffff;
   background-image: none;
   z-index: 2;
 }
-.jslider.sliderCSS.vertical div.jslider-bg i.f {
+.jslider.sliderCSS.vertical div.jslider-bg i.after {
   background-color: #0e1773;
   background-image: none;
 }
@@ -372,10 +372,10 @@
 .jslider.jslider_round div.jslider-bg i {
   background-position: 0 -20px;
 }
-.jslider.jslider_round div.jslider-bg i.s {
+.jslider.jslider_round div.jslider-bg i.default {
   background-color: #C2C7CA;
 }
-.jslider.jslider_round div.jslider-bg i.v {
+.jslider.jslider_round div.jslider-bg i.range {
   z-index: 1;
   background-position: 0 -40px;
 }
@@ -393,14 +393,14 @@
 .jslider.jslider_round.vertical div.jslider-bg i {
   background-position: right 0;
 }
-.jslider.jslider_round.vertical div.jslider-bg i.v {
+.jslider.jslider_round.vertical div.jslider-bg i.range {
   background-position: -37px 0;
 }
-.jslider.jslider_round.vertical div.jslider-bg i.p,
-.jslider.jslider_round.vertical div.jslider-bg i.f {
+.jslider.jslider_round.vertical div.jslider-bg i.before,
+.jslider.jslider_round.vertical div.jslider-bg i.after {
   background: none;
 }
-.jslider.jslider_round.vertical div.jslider-bg i.s {
+.jslider.jslider_round.vertical div.jslider-bg i.default {
   background-color: #c2c7ca;
 }
 .jslider.jslider_round.vertical div.jslider-pointer {
@@ -425,10 +425,10 @@
 .jslider.jslider_blue .jslider-bg i {
   background-position: 2px -20px;
 }
-.jslider.jslider_blue .jslider-bg i.s {
+.jslider.jslider_blue .jslider-bg i.default {
   background-color: #c2c7ca;
 }
-.jslider.jslider_blue .jslider-bg i.v {
+.jslider.jslider_blue .jslider-bg i.range {
   z-index: 1;
   background-position: 0 -40px;
 }
@@ -446,14 +446,14 @@
 .jslider.jslider_blue.vertical div.jslider-bg i {
   background-position: right 0;
 }
-.jslider.jslider_blue.vertical div.jslider-bg i.v {
+.jslider.jslider_blue.vertical div.jslider-bg i.range {
   background-position: -37px 0;
 }
-.jslider.jslider_blue.vertical div.jslider-bg i.p,
-.jslider.jslider_blue.vertical div.jslider-bg i.f {
+.jslider.jslider_blue.vertical div.jslider-bg i.before,
+.jslider.jslider_blue.vertical div.jslider-bg i.after {
   background: none;
 }
-.jslider.jslider_blue.vertical div.jslider-bg i.s {
+.jslider.jslider_blue.vertical div.jslider-bg i.default {
   background-color: #c2c7ca;
 }
 .jslider.jslider_blue.vertical div.jslider-pointer {
@@ -475,10 +475,10 @@
 .jslider.jslider_plastic .jslider-bg i {
   background-position: 2px -20px;
 }
-.jslider.jslider_plastic .jslider-bg i.s {
+.jslider.jslider_plastic .jslider-bg i.default {
   background-color: #c2c7ca;
 }
-.jslider.jslider_plastic .jslider-bg i.v {
+.jslider.jslider_plastic .jslider-bg i.range {
   z-index: 1;
   background-position: 0 -40px;
 }
@@ -496,14 +496,14 @@
 .jslider.jslider_plastic.vertical div.jslider-bg i {
   background-position: right 0;
 }
-.jslider.jslider_plastic.vertical div.jslider-bg i.v {
+.jslider.jslider_plastic.vertical div.jslider-bg i.range {
   background-position: -35px 0;
 }
-.jslider.jslider_plastic.vertical div.jslider-bg i.p,
-.jslider.jslider_plastic.vertical div.jslider-bg i.f {
+.jslider.jslider_plastic.vertical div.jslider-bg i.before,
+.jslider.jslider_plastic.vertical div.jslider-bg i.after {
   background: none;
 }
-.jslider.jslider_plastic.vertical div.jslider-bg i.s {
+.jslider.jslider_plastic.vertical div.jslider-bg i.default {
   background-color: #c2c7ca;
 }
 .jslider.jslider_plastic.vertical div.jslider-pointer {

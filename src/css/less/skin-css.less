@@ -7,37 +7,37 @@
   div.jslider-bg {
 
     i {
-      &.l {
+      &.left {
         left: 0;
         width: 50%;         
         background-color: @color-skin-background; 
         background-image: none;
       }
-      &.r { 
+      &.right { 
         width: 50%; 
         left: 50%; 
         background-color: @color-skin-background; 
         background-image: none;
       }
-      &.p { 
+      &.before { 
         left: 0; 
         width: 1px; 
         background-color: @color-skin-css-pointers-before-value; 
         background-image: none;
       }
-      &.s {
+      &.default {
         left: 0; 
         width: 1px;
         z-index: 1;        
         background-color: @color-skin-css-pointers-default-value; 
         background-image: none;
       }
-      &.f { 
+      &.after { 
         left: 0; 
         background-color: @color-skin-css-pointers-after-value; 
         background-image: none;
       }
-      &.v {
+      &.range {
         position: absolute;
         top: 0;
         left: 20%;
@@ -73,40 +73,40 @@
         left: 50%;
         width: 5px;
 
-        &.l {
+        &.left {
           top: 0;                    
           height: 50%;         
           background-color: @color-skin-background; 
           background-image: none;
         }
 
-        &.r {           
+        &.right {           
           height: 50%; 
           top: 50%; 
           background-color: @color-skin-background; 
           background-image: none;
         }
 
-        &.v {           
+        &.range {           
           height: 100%;
           z-index: 1;
           background-color: #777575; 
           background-image: none;
         }
 
-        &.p {            
+        &.before {            
           background-color: @color-skin-css-pointers-before-value; 
           background-image: none;
         }
 
-        &.s {
+        &.default {
           height: 1px;
           background-color: @color-skin-css-pointers-default-value; 
           background-image: none;
           z-index: 2;          
         }
 
-        &.f {            
+        &.after {            
           background-color: @color-skin-css-pointers-after-value; 
           background-image: none;
         }

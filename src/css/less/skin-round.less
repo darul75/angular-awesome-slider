@@ -11,11 +11,11 @@
   div.jslider-bg {
     i {
       background-position: 0 -20px;
-      &.s {
+      &.default {
         background-color: #C2C7CA;
       }
 
-      &.v {    
+      &.range {    
         z-index: 1;
         background-position: 0 -40px;
       }
@@ -39,16 +39,16 @@
     div.jslider-bg {
       i {
         background-position: right 0;
-        &.v {
+        &.range {
           background-position: -37px 0;
         }
 
-        &.p, 
-        &.f {
+        &.before, 
+        &.after {
           background: none;
         }
 
-        &.s {
+        &.default {
           background-color: @color-skin-pointers-default-value;
         }
       }      

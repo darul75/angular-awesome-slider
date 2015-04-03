@@ -11,11 +11,11 @@
   .jslider-bg {
     i {
       background-position: 2px -20px;
-      &.s {
+      &.default {
         background-color: @color-skin-pointers-default-value;
       }
 
-      &.v {    
+      &.range {    
         z-index: 1;
         background-position: 0 -40px;
       }
@@ -40,16 +40,16 @@
       i {
         background-position: right 0;
 
-        &.v {
+        &.range {
           background-position: -37px 0;
         }
 
-        &.p, 
-        &.f {
+        &.before, 
+        &.after {
           background: none;
         }
 
-        &.s {
+        &.default {
           background-color: @color-skin-pointers-default-value;
         }
       }
