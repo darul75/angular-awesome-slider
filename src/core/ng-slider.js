@@ -32,7 +32,7 @@
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          
             scope.tmplElt = clonedElement;
-          }));                  
+          }));
 
           // init
 
