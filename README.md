@@ -5,6 +5,8 @@ Angular directive slider control.
 
 **No JQUERY dependency needed anymore**
 
+**Skins available**
+
 Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmelev/jslider
 
 Why
