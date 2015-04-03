@@ -130,6 +130,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.2.6: refactoring classnames
 * 2.2.5: skin availables + less all css
 * 2.2.4: fix when 2 pointers overlap on limits
 * 2.2.3: mouse up event indicator in callback
