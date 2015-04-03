@@ -437,7 +437,7 @@
             label2 = this.o.labels[1],
             ptr1 = this.o.pointers[0],
             ptr2 = this.o.pointers[1],
-            gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft
+            gapBetweenLabel = ptr2.ptr[0].offsetLeft - ptr1.ptr[0].offsetLeft;
 
         label1.o.css(this.css.visible);
         label2.o.css(this.css.visible);              
