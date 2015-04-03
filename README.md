@@ -25,6 +25,8 @@ Demo
 -------------
 http://darul75.github.io/ng-slider/
 
+http://jsfiddle.net/darul75/g9e9n8xc/
+
 How to use it
 -------------
 
