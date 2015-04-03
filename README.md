@@ -17,7 +17,7 @@ Source files were divided in several files, and not angular integrated.
 Screenshot
 -------------
 
-![angular slider demo](http://darul75.github.io/ng-slider/images/slider1.png "angular slider demo screenshot")
+![angular slider demo](http://darul75.github.io/ng-slider/images/slider3.png "angular slider demo screenshot")
 
 Demo
 -------------
