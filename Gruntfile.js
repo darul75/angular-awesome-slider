@@ -49,6 +49,17 @@ module.exports = function(grunt) {
           }
       }
     },
+    // LESS CSS TASKS
+    less: {
+      development: {
+        options: {
+          paths: ['src/css/less/']
+        },
+        files: {
+          'src/css/ng-slider.css': 'src/css/less/main.less'
+        }
+      }
+    },
     // UGLIFY TASK
     uglify: {
       task1: {
@@ -83,7 +94,7 @@ module.exports = function(grunt) {
       },
       compress: {
         files: {          
-          'dist/css/ng-slider.min.css': ['src/css/ng-slider.css', 'src/css/ng-slider.round.css']
+          'dist/css/ng-slider.min.css': ['src/css/ng-slider.css']
         }
       }
     },
@@ -101,13 +112,14 @@ module.exports = function(grunt) {
   // LOAD PLUGINS  
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');    
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-karma');
   
   // TASK REGISTER
   //grunt.registerTask('default', ['jshint', 'cssmin', 'uglify:task1', 'karma']);
-  grunt.registerTask('default', ['bower', 'copy', 'cssmin', 'jshint', 'uglify:task1']);
+  grunt.registerTask('default', ['bower', 'copy', 'less', 'cssmin', 'jshint', 'uglify:task1']);
   grunt.registerTask('test-continuous', ['jshint', 'bower', 'karma:unit']);
 };

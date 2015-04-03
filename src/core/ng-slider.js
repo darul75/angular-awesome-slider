@@ -22,10 +22,9 @@
           if (angular.isString(scope.options)) {
             scope.options = angular.toJson(scope.options);
           }
-
-          // TODO : skin        
+                  
           scope.mainSliderClass = 'jslider';
-          scope.mainSliderClass += ' jslider_round';
+          scope.mainSliderClass += scope.options.skin ? ' jslider_' + scope.options.skin : ' ';
           scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';
           scope.mainSliderClass += scope.options.css ? ' sliderCSS' : '';
 
@@ -51,11 +50,12 @@
               to: scope.options.to,
               step: scope.options.step,
               smooth: scope.options.smooth,
-              limits: true,
+              limits: scope.options.smooth,
               round: scope.options.round || false,
               value: ngModel.$viewValue,
               dimension: "",
               scale: scope.options.scale,
+              modelLabels: scope.options.modelLabels,
               vertical: scope.options.vertical,
               css: scope.options.css,
               realtime: scope.options.realtime,

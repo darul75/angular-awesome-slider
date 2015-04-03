@@ -1,0 +1,135 @@
+//
+// Main slider custom overrided js css rules
+// --------------------------------------------------
+
+&.sliderCSS {
+
+  div.jslider-bg {
+
+    i {
+      &.l {
+        left: 0;
+        width: 50%;         
+        background-color: @color-skin-background; 
+        background-image: none;
+      }
+      &.r { 
+        width: 50%; 
+        left: 50%; 
+        background-color: @color-skin-background; 
+        background-image: none;
+      }
+      &.p { 
+        left: 0; 
+        width: 1px; 
+        background-color: @color-skin-css-pointers-before-value; 
+        background-image: none;
+      }
+      &.s {
+        left: 0; 
+        width: 1px;
+        z-index: 1;        
+        background-color: @color-skin-css-pointers-default-value; 
+        background-image: none;
+      }
+      &.f { 
+        left: 0; 
+        background-color: @color-skin-css-pointers-after-value; 
+        background-image: none;
+      }
+      &.v {
+        position: absolute;
+        top: 0;
+        left: 20%;
+        width: 60%;                  
+        height: 5px;
+        z-index: 1;          
+        background-image: none; 
+        background-color: #777575 
+      }
+    }
+  }
+
+  div.jslider-pointer {
+    top: -3px;
+    left: 15px; 
+    width: 10px; 
+    height: 10px;
+    background-color: silver;      
+    background-color: #615959;    
+    border-radius: 50%;    
+  }
+
+  div.jslider-bg i,div.jslider-pointer {
+    background: none;
+  }
+
+  // vertical
+  &.vertical {
+
+    div.jslider-bg {
+
+      i {
+        left: 50%;
+        width: 5px;
+
+        &.l {
+          top: 0;                    
+          height: 50%;         
+          background-color: @color-skin-background; 
+          background-image: none;
+        }
+
+        &.r {           
+          height: 50%; 
+          top: 50%; 
+          background-color: @color-skin-background; 
+          background-image: none;
+        }
+
+        &.v {           
+          height: 100%;
+          z-index: 1;
+          background-color: #777575; 
+          background-image: none;
+        }
+
+        &.p {            
+          background-color: @color-skin-css-pointers-before-value; 
+          background-image: none;
+        }
+
+        &.s {
+          height: 1px;
+          background-color: @color-skin-css-pointers-default-value; 
+          background-image: none;
+          z-index: 2;          
+        }
+
+        &.f {            
+          background-color: @color-skin-css-pointers-after-value; 
+          background-image: none;
+        }
+
+      }
+      
+    }
+
+    div.jslider-bg i,div.jslider-pointer {
+      background: none;
+    }
+
+    div.jslider-pointer {
+      left: 50%;
+      width: 10px; 
+      height: 10px;
+      background-color: #615959;       
+      border-radius: 50%; 
+      margin-left: -3px;
+
+      &.jslider-pointer-to {
+        left: 50%;
+      }
+    }
+  }
+}  

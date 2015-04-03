@@ -82,7 +82,8 @@ Options for your slider in json format {from:.....}
 * `round`: how many numbers allowed after comma
 * `smooth`: true/false; false snaps the button to value
 * `vertical`: true/false; vertical slider, default false
-* `css`: hash object 
+* `skin`: empty or 'blue' 'plastic' 'round'
+* `css`: hash object, do not mix with 'skin' !
 * `realtime`: triggers changes and model update on every moves
 * `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap 
 
@@ -127,6 +128,7 @@ bower install ng-slider
 RELEASE
 -------------
 
+* 2.2.5: skin availables + less all css
 * 2.2.4: fix when 2 pointers overlap on limits
 * 2.2.3: mouse up event indicator in callback
 * 2.2.2: default indicator display + visibility and move events

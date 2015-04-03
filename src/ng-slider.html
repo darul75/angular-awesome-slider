@@ -1,7 +1,6 @@
 <head>	
 	
-	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">
-	<link rel="stylesheet" type="text/css" href="css/ng-slider.round.css">
+	<link rel="stylesheet" type="text/css" href="css/ng-slider.css">	
 	
 	<!-- 
 	<link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
@@ -25,11 +24,12 @@
 </head>
 <body>
 
-	<div ng-app="myApp" ng-controller="ctrl" style="width:300px;">
+	<div ng-app="myApp" ng-controller="ctrl" style="width:700px;">
 		
 		<div>
 			<input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="options" />
 		</div>
+		
 		<div>
 			Current value is: {{value3}}
 		</div>
@@ -43,7 +43,7 @@
                 dimension: 'km',
                 vertical: false,
                 css: {
-                    background: {'background-color': 'silver'},
+                    background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
                     default: {'background-color': 'white'},
                     after: {'background-color': 'green'},
@@ -54,6 +54,7 @@
 		<div>
 			Current value is: {{value3}}
 		</div>
+		
 		
 		</br>
 		<div>
@@ -97,11 +98,11 @@
 		</div>
 		<div>
 			Current value is: {{value4}}
-		</div>
+		</div>		 
 		<div style="display: inline-flex;position:relative;left:200px;height:300px;">
 			<input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabledtoto" />
 			<input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
-			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/> 
+			<input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/>
 		</div>
 		<div>
 			<button ng-click='changeOptions()'>CHANGE OPTIONS</button>
@@ -109,6 +110,7 @@
 			<button ng-click='disable()'>DISABLE</button>
 			<button ng-click="toggleVisibility()">VISIBILITY</button>
 		</div>
+		
 	</div>
 
 	<script type="text/javascript">	
@@ -124,7 +126,7 @@
 			$scope.id2 = "bob";
 			$scope.value = "10;50";
 			$scope.value2 = "12;15";
-			$scope.value3 = "10;50";
+			$scope.value3 = "10;12";
 			$scope.value4 = "999;1700";			 
 			$scope.value5 = "10;20";
 			$scope.value6 = "10;53";
@@ -163,14 +165,24 @@
       };
 
 			$scope.options = {				
-				to: 100,
-        from: 1,
+				to: 40,
+        from: 0,
         step: 1,
         dimension: " km",
-        vertical: false,            
+        vertical: false,
+         scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],      
         // round: 2,
-        threshold: 1,
+        skin: 'blue',
+        modelLabels: {1: 'test1', 2: 'test3'},        
         realtime: true,
+       	/*css: {
+                    background: {'background-color': 'yellow'},
+                    before: {'background-color': 'purple'},
+                    default: {'background-color': 'white'},
+                    after: {'background-color': 'green'},
+                    pointer: {'background-color': 'red'}
+                },*/
+        limits: false,        
 				callback: function(value, released) {
 					console.log(value + " " + released);
 				}		
@@ -193,7 +205,7 @@
             dimension: " km",
             vertical: false,
             css: {
-                    background: {'background-color': 'silver'},
+                    background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
                     default: {'background-color': 'white'},
                     after: {'background-color': 'green'},
@@ -210,15 +222,16 @@
 				step: 0.5,
 				dimension: " $",
 				round: 1,
+				skin: 'jslider_blue',
 				scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],				
 				vertical: true,
-				css: {
-					background: {"background-color": "silver"},
+				/*css: {
+					background: {"background-color": "yellow"},
 					before: {"background-color": "purple"},
 					default: {"background-color": "blue"},
 					after: {"background-color": "green"},
 					pointer: {"background-color": "red"}
-				},
+				},*/
 				callback: function(value, elt) {
 					console.log(value);
 					console.log(elt);
@@ -233,7 +246,7 @@
 				step: 10,
 				dimension: " km",
 				css: {
-					background: {"background-color": "silver"},
+					background: {"background-color": "yellow"},
 					before: {"background-color": "purple"},
 					default: {"background-color": "white"},
 					after: {"background-color": "green"},
@@ -264,7 +277,7 @@
 				dimension: " km",
 				vertical: true,
 				css: {
-					background: {"background-color": "silver"},
+					background: {"background-color": "yellow"},
 					before: {"background-color": "purple"},
 					default: {"background-color": "blue"},
 					after: {"background-color": "green"},
