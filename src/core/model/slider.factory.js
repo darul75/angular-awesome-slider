@@ -256,10 +256,11 @@
         x = Math.round( x/step ) * step;
       }
 
-      var another = this.o.pointers[1-pointer.uid];
-      if(another && pointer.uid && x < another.value.prc) x = another.value.prc;
-      if(another && !pointer.uid && x > another.value.prc) x = another.value.prc;
-
+      if (pointer) {
+        var another = this.o.pointers[1-pointer.uid];
+        if(another && pointer.uid && x < another.value.prc) x = another.value.prc;
+        if(another && !pointer.uid && x > another.value.prc) x = another.value.prc;
+      }
       // base limit
       if(x < 0) x = 0;
       if(x > 100) x = 100;
@@ -277,11 +278,18 @@
             s = this.settings.scale,
         // FIX Big Scale Failure #34
         // var prc = Math.round((100/(s.length-1))*10)/10;
-            prc = (100/(s.length-1)).toFixed(2),
+            prc,
+            label,
+            duplicate = {},
             position = this.settings.vertical ? 'top' : 'left',
             i=0;
-        for(; i < s.length; i++){
-          str += '<span style="'+ position + ': ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
+        for(; i < s.length; i++) {
+          if (s[i].val <= this.settings.to && s[i].val >= this.settings.from &&  ! duplicate[s[i].val]) {
+            duplicate[s[i].val] = true;
+            prc = this.valueToPrc(s[i].val);
+            label = s[i].label ? s[i].label : s[i].val;
+            str += '<span style="'+ position + ': ' + prc + '%">' + '<ins>' + label + '</ins>' + '</span>';
+          }
         }
         return str;
       }
@@ -608,14 +616,22 @@
             v = [100, this.settings.to];        
 
           if(value >= _from && value <= v[1]){
-            prc = pointer.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
+            if (pointer) {
+              prc = pointer.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
+            } else {
+              prc = this.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
+            }
           }
 
           _start = v[0]; _from = v[1];
         }
 
       } else {
-        prc = pointer.limits((value-this.settings.from)*100/this.settings.interval);
+        if (pointer) {
+          prc = pointer.limits((value-this.settings.from)*100/this.settings.interval);
+        } else {
+          prc = this.limits((value-this.settings.from)*100/this.settings.interval);
+        }
       }
 
       return prc;
