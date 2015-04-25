@@ -21,10 +21,11 @@
     "./dist/css/ng-slider.min.css"
   ],
   "dependencies": {
-    "angular": "1.3.x"    
+    "angular": "1.3.x"
   },
   "devDependencies": {
-    "angular-mocks": "1.3.x"
+    "angular-mocks": "1.3.x",
+    "bourbon": "~4.2.2"
   },
   "authors": [
     "darul <darul75@gmail.com>"
