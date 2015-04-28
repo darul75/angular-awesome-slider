@@ -47,8 +47,8 @@
             }
 
             var OPTIONS = {
-              from: scope.options.from,
-              to: scope.options.to,
+              from: parseInt(scope.options.from, 10),
+              to: parseInt(scope.options.to, 10),
               step: scope.options.step,
               smooth: scope.options.smooth,
               limits: scope.options.smooth,
