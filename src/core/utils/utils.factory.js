@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderUtils', ['$window', function(win) {
+  angular.module('angularAwesomeSlider').factory('sliderUtils', ['$window', function(win) {
     return {
       offset: function(elm) { 
         // try {return elm.offset();} catch(e) {} 

@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
 
-  angular.module('ngSlider', [])
+  angular.module('angularAwesomeSlider', [])
     // DIRECTIVE
     .directive('slider', [
       '$compile', '$templateCache','$timeout', '$window', 'slider',

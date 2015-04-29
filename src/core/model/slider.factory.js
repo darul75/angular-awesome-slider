@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'sliderUtils', function(SliderPointer, sliderConstants, utils) {
+  angular.module('angularAwesomeSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'sliderUtils', function(SliderPointer, sliderConstants, utils) {
 
     function Slider(){
       return this.init.apply(this, arguments);
@@ -284,7 +284,12 @@
             position = this.settings.vertical ? 'top' : 'left',
             i=0;
         for(; i < s.length; i++) {
-          if (s[i].val <= this.settings.to && s[i].val >= this.settings.from &&  ! duplicate[s[i].val]) {
+          if (!s[i].val) {
+             prc = (100/(s.length-1)).toFixed(2);
+             str += '<span style="'+ position + ': ' + i*prc + '%">' + ( s[i] != '|' ? '<ins>' + s[i] + '</ins>' : '' ) + '</span>';
+          }
+
+          if (s[i].val <= this.settings.to && s[i].val >= this.settings.from &&  ! duplicate[s[i].val]) {            
             duplicate[s[i].val] = true;
             prc = this.valueToPrc(s[i].val);
             label = s[i].label ? s[i].label : s[i].val;

@@ -1,24 +1,26 @@
 <head>
 
-  <link rel="stylesheet" type="text/css" href="css/ng-slider.css">
-
-  <!--
-  <link rel="stylesheet" type="text/css" href="../dist/css/ng-slider.min.css">
-  -->
-
+<!--
+  <link rel="stylesheet" type="text/css" href="../dist/css/angular-awesome-slider.min.css">
+-->
+  
+  <link rel="stylesheet" type="text/css" href="css/angular-awesome-slider.css">
+  
   <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-
-  <!--
-  <script type="text/javascript" src="../dist/ng-slider.min.js"></script>
-  -->
-
-  <script type="text/javascript" src="core/ng-slider.js"></script>
+  
+  <script type="text/javascript" src="core/index.js"></script>
   <script type="text/javascript" src="core/config/constants.js"></script>
   <script type="text/javascript" src="core/model/draggable.factory.js"></script>
   <script type="text/javascript" src="core/model/pointer.factory.js"></script>
   <script type="text/javascript" src="core/model/slider.factory.js"></script>
   <script type="text/javascript" src="core/utils/utils.factory.js"></script>
   <script type="text/javascript" src="core/template/slider.tmpl.js"></script>
+  
+
+<!--
+  <script type="text/javascript" src="../dist/angular-awesome-slider.min.js"></script>
+  -->
+
 
 
 </head>
@@ -27,14 +29,14 @@
   <div ng-app="myApp" ng-controller="ctrl" style="width:700px;">
 
     <div>
-      <input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="options" />
+      <div id="slider-range-container" slider-range-filter ng-if="true"></div>
     </div>
-
+    <button ng-click='changeValueAndProperty()'>CHANGE VALUE</button>  
     <div>
       Current value is: {{value3}}
     </div>
-     </br>
-    </br>
+   </br>
+   </br>
     <div>
       <input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="{
                 from: 1,
@@ -111,7 +113,7 @@
       <button ng-click='disable()'>DISABLE</button>
       <button ng-click="toggleVisibility()">VISIBILITY</button>
     </div>
-
+ 
   </div>
 
   <script type="text/javascript">
@@ -171,11 +173,12 @@
         step: 1,
         dimension: " km",
         vertical: false,
-         scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
+        scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40],
+         //scale: [{val:5, label:"low"}, {val:10, label:"medium"}, {val:30, label:"high"}],
         // round: 2,
         skin: 'round',
         modelLabels: {1: 'test1', 2: 'test3'},
-        realtime: true,
+        //realtime: true,
          /*css: {
                     background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
@@ -321,10 +324,30 @@
 
       };
 
+      $scope.changeValueAndProperty = function() {
+        $scope.options = {
+            from: 1,
+            to: 60,
+            step: 1,
+            dimension: ""
+        };
+        //$scope.value3 = "10;50";        
+      };
+
 
     }
 
-    var app = angular.module('myApp', ['ngSlider']).controller('ctrl', ctrl);
+    var app = angular.module('myApp', ['angularAwesomeSlider']).controller('ctrl', ctrl);
+
+    app.directive('sliderRangeFilter', [function() { 
+      return {
+        restrict: 'A',
+        template: '<div id="searchBySliderFilter" class="filter-slider"><input ng-model="value3"  type="text" id="mySlider1" slider options="options" /></div>',
+        link: function($scope, element, attrs) {
+        }
+
+      };
+    }]);
 
   </script>
 

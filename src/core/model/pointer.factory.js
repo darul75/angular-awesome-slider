@@ -1,7 +1,7 @@
 (function(angular){
   'use strict';
 
-  angular.module('ngSlider').factory('sliderPointer', ['sliderDraggable', 'sliderUtils', function(Draggable, utils) {
+  angular.module('angularAwesomeSlider').factory('sliderPointer', ['sliderDraggable', 'sliderUtils', function(Draggable, utils) {
 
     function SliderPointer() {
       Draggable.apply(this, arguments);

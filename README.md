@@ -1,4 +1,4 @@
-ng-slider [![NPM version](https://badge.fury.io/js/ng-slider.png)](http://badge.fury.io/js/ng-slider) [![Build Status](https://travis-ci.org/darul75/ng-slider.png?branch=master)](https://travis-ci.org/darul75/ng-slider) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/ng-slider/counters/views.png)](https://sourcegraph.com/github.com/darul75/ng-slider)
+angular-awesome-slider [![NPM version](https://badge.fury.io/js/angular-awesome-slider.png)](http://badge.fury.io/js/angular-awesome-slider) [![Build Status](https://travis-ci.org/darul75/angular-awesome-slider.png?branch=master)](https://travis-ci.org/darul75/angular-awesome-slider) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/angular-awesome-slider/counters/views.png)](https://sourcegraph.com/github.com/darul75/angular-awesome-slider)
 =====================
 
 Angular directive slider control.
@@ -6,8 +6,6 @@ Angular directive slider control.
 **No JQUERY dependency needed anymore**
 
 **Skins available**
-
-Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmelev/jslider
 
 Why
 -------------
@@ -19,11 +17,11 @@ Source files were divided in several files, and not angular integrated.
 Screenshot
 -------------
 
-![angular slider demo](http://darul75.github.io/ng-slider/images/slider3.png "angular slider demo screenshot")
+![angular slider demo](http://darul75.github.io/angular-awesome-slider/images/slider3.png "angular slider demo screenshot")
 
 Demo
 -------------
-http://darul75.github.io/ng-slider/
+http://darul75.github.io/angular-awesome-slider/
 
 http://jsfiddle.net/darul75/g9e9n8xc/
 
@@ -39,11 +37,11 @@ You should already have script required for Angular.
 to the list above, you should add:
 
 ```html
-<link rel="stylesheet" type="text/css" href="ng-slider.min.css">
+<link rel="stylesheet" type="text/css" href="angular-awesome-slider.min.css">
 ```
 
 ```html
-<script type="text/javascript" src="ng-slider.min.js"></script>
+<script type="text/javascript" src="angular-awesome-slider.min.js"></script>
 ```
 in case you want to use your own template, omit the last line and instead add some template code
 to your project:
@@ -53,10 +51,10 @@ to your project:
 </script>
 ```
 
-Then, inject `ngSlider` in your application module:
+Then, inject `angularAwesomeSlider` in your application module:
 
 ```javascript
-angular.module('myApp', ['ngSlider']);
+angular.module('myApp', ['angularAwesomeSlider']);
 ```
 
 and then just add an `input` with `slider` directive name attribute, `value` and `options` scope variable attribute.
@@ -120,13 +118,13 @@ Installation
 Using npm:
 
 ```
-npm install ng-slider
+npm install angular-awesome-slider
 ```
 
 Using bower:
 
 ```
-bower install ng-slider
+bower install angular-awesome-slider
 ```
 
 RELEASE

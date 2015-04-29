@@ -40,7 +40,7 @@ describe('ngSlider', function () {
 
   obj;
 
-  beforeEach(module('ngSlider'));
+  beforeEach(module('angularAwesomeSlider'));
 
   beforeEach(inject(function ($injector) {      
     options = {       

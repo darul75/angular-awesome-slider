@@ -1,6 +1,6 @@
 (function(angular){
   'use strict';
-  angular.module('ngSlider').constant('sliderConstants', {
+  angular.module('angularAwesomeSlider').constant('sliderConstants', {
     SLIDER: {
       settings: {
         from: 1,

@@ -1,7 +1,7 @@
 (function(angular, undefined) {
 'use strict';
 
-  angular.module('ngSlider')
+  angular.module('angularAwesomeSlider')
   .run(['$templateCache', function ($templateCache) {
     $templateCache.put('ng-slider/slider-bar.tmpl.html',
     '<span ng-class="mainSliderClass" id="{{sliderTmplId}}">' +
