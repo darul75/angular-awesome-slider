@@ -17,7 +17,7 @@
     "ui"
   ],
   "main": [
-    "./dist/angular-awesome-slider.min.js",
+    "./dist/angular-awesome-slider.js",
     "./dist/css/angular-awesome-slider.min.css"
   ],
   "dependencies": {
