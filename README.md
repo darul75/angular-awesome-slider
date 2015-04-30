@@ -131,7 +131,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
-* 2.2.7: new module name, no more ng-sorry-prefix, classname option, sass/scss support, scale object option
+* 2.3.0: new module name, no more ng-sorry-prefix, classname option, sass/scss support, scale object option
 * 2.2.6: refactoring classnames
 * 2.2.5: skin availables + less all css
 * 2.2.4: fix when 2 pointers overlap on limits
