@@ -86,7 +86,7 @@ Options for your slider in json format {from:.....}
 * `vertical`: true/false; vertical slider, default false
 * `skin`: empty or 'blue' 'plastic' 'round'
 * `css`: hash object, do not mix with 'skin' !
-* `classname`: custom class added to root slider DOM
+* `className`: custom class added to root slider DOM
 * `realtime`: triggers changes and model update on every moves
 * `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap 
 
