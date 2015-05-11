@@ -131,6 +131,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.3.2: fix css pointer position + hover sking pointers background positions
 * 2.3.1: fix from and to in floating values
 * 2.3.0: new module name, no more ng-sorry-prefix, classname option, sass/scss support, scale object option
 * 2.2.6: refactoring classnames
