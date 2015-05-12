@@ -9,6 +9,7 @@
         smooth: true,
         limits: false,
         round: false,
+	showLabels: true,
         value: "3",
         dimension: "",
         vertical: false,
