@@ -173,7 +173,7 @@ npm install -g grunt-cli
 
 ### Issue
 
-To help me on reproducing any issues, please feel free to modify/fork this fiddle: http://jsfiddle.net/darul75/g9e9n8xc/
+To help me on reproducing any issues, please feel free to modify/fork this fiddle: http://jsfiddle.net/darul75/b09m7183/
 
 ## Metrics
 
