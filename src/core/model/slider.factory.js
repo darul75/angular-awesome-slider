@@ -89,7 +89,11 @@
       });
       
       // single pointer
-      this.settings.single = !self.settings.value.split(";")[1];        
+      this.settings.single = !self.settings.value.split(";")[1];       
+
+      if (this.settings.single) {
+        range.addClass('ng-hide');
+      }
 
       angForEach(pointers, function(pointer, key) {
         self.settings = angular.copy(self.settings);
@@ -390,7 +394,12 @@
 
       var value = this.nice(pointer.value.origin);
       if (this.settings.modelLabels) {
-        value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;        
+        if (angular.isFunction(this.settings.modelLabels)) {
+          value = this.settings.modelLabels(value);
+        }
+        else {
+          value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;
+        }
       }
       
       this.o.labels[pointer.uid].value.html(value);            
@@ -464,6 +473,8 @@
 
         label1.o.css(this.css.visible);
         label2.o.css(this.css.visible);
+
+        value = this.getLabelValue(value);
         
         if (gapBetweenLabel + 10 < label1.o[0].offsetWidth+label2.o[0].offsetWidth) {
           anotherLabel.o.css(this.css.hidden);
@@ -473,10 +484,9 @@
           if(anotherPtr.value.prc != pointer.value.prc){
             value = this.nice(this.o.pointers[0].value.origin);
             var value1 = this.nice(this.o.pointers[1].value.origin);
-            if (this.settings.modelLabels) {
-              value = this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;        
-              value1 = this.settings.modelLabels[value1] !== undefined ? this.settings.modelLabels[value1] : value1;
-            }
+            value = this.getLabelValue(value);
+            value1 = this.getLabelValue(value1);             
+            
             label.value.html(value + "&nbsp;&ndash;&nbsp;" + value1);
             sizes.label = label.o[0].offsetWidth;
             sizes.border = (prc * domSize) / 100;
@@ -505,7 +515,7 @@
       }
       
       this.redrawLimits();
-    };
+    };    
 
     Slider.prototype.redrawLimits = function() {
       if (this.settings.limits) {
@@ -560,6 +570,19 @@
         if(pointer.value.prc !== undefined && !isNaN(pointer.value.prc)) 
           value += (key > 0 ? ";" : "") + $this.prcToValue(pointer.value.prc);
       });
+      return value;
+    };
+
+    Slider.prototype.getLabelValue = function(value){
+      if (this.settings.modelLabels) {
+        if (angular.isFunction(this.settings.modelLabels)) {                
+          return this.settings.modelLabels(value);
+        }
+        else {
+          return this.settings.modelLabels[value] !== undefined ? this.settings.modelLabels[value] : value;
+        }
+      }  
+      
       return value;
     };
 

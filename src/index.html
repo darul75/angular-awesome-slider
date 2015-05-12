@@ -28,23 +28,25 @@
 
   <div ng-app="myApp" ng-controller="ctrl" style="width:700px;">
 
-    <div>
+  <div>
       <div id="slider-range-container" slider-range-filter ng-if="true"></div>
     </div>
     <button ng-click='changeValueAndProperty()'>CHANGE VALUE</button>  
     <div>
       Current value is: {{value3}}
     </div>
-   </br>
+  </br>
   </br>
     <div>
-      <input ng-model="value3"  type="text" id="{{id}}" slider ng-disabled="disabled" options="{
+      <input ng-model="value3bis"  type="text" id="coucou" slider ng-disabled="disabled" options="{
                 from: 1,
                 to: 100,
                 step: 1,
-                dimension: 'km',
+                dimension: ' km',
                 vertical: false,
+                limits: false,
                 css: {
+                    range: {'background': 'transparent'},
                     background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
                     default: {'background-color': 'white'},
@@ -55,11 +57,11 @@
             }"/>
     </div>
     <div>
-      Current value is: {{value3}}
+      Current value is: {{value3bis}}
     </div>
 
 
-    </br>
+   </br>
     <div>
       sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
     </div>
@@ -113,7 +115,7 @@
       <button ng-click='disable()'>DISABLE</button>
       <button ng-click="toggleVisibility()">VISIBILITY</button>
     </div>
- 
+  
   </div>
 
   <script type="text/javascript">
@@ -130,6 +132,7 @@
       $scope.value = "10;50";
       $scope.value2 = "12;15";
       $scope.value3 = "7.2";
+      $scope.value3bis = "8";
       $scope.value4 = "999;1700";
       $scope.value5 = "10;20";
       $scope.value6 = "10;53";
@@ -167,6 +170,10 @@
         return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
       };
 
+      var modelLabelsFn = function(value) {
+        return 'I am ' + value;
+      }
+
       $scope.options = {
         from: 6.3,
         to: 9.7,
@@ -177,7 +184,8 @@
          //scale: [{val:5, label:"low"}, {val:10, label:"medium"}, {val:30, label:"high"}],
         // round: 2,
         skin: 'plastic',
-        modelLabels: {7.2: 'hot', 2: 'test3'},        
+        limits: true,
+        modelLabels: modelLabelsFn,
         //realtime: true,
          /*css: {
                     background: {'background-color': 'yellow'},
@@ -185,8 +193,7 @@
                     default: {'background-color': 'white'},
                     after: {'background-color': 'green'},
                     pointer: {'background-color': 'red'}
-                },*/
-        limits: false,
+                },*/        
         callback: function(value, released) {
           console.log(value + " " + released);
         }

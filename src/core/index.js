@@ -29,6 +29,9 @@
           scope.mainSliderClass += scope.options.css ? ' sliderCSS' : '';
           scope.mainSliderClass += scope.options.className ? ' ' + scope.options.className : '';
 
+          // handle limit conversion value
+          scope.options.limits = scope.options.limits || true;
+
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {
             scope.tmplElt = clonedElement;
@@ -44,19 +47,19 @@
             if (scope.options.calculate && typeof scope.options.calculate === 'function') {
               scope.from = scope.options.calculate(scope.from);
               scope.to = scope.options.calculate(scope.to);
-            }
+            }            
 
             var OPTIONS = {
               from: !scope.options.round ? parseInt(scope.options.from, 10) : parseFloat(scope.options.from),
               to: !scope.options.round ? parseInt(scope.options.to, 10) : parseFloat(scope.options.to),
               step: scope.options.step,
               smooth: scope.options.smooth,
-              limits: scope.options.smooth,
+              limits: scope.options.limits,
               round: scope.options.round || false,
               value: ngModel.$viewValue,
               dimension: "",
               scale: scope.options.scale,
-              modelLabels: scope.options.modelLabels,
+              modelLabels: scope.options.modelLabels,              
               vertical: scope.options.vertical,
               css: scope.options.css,
               className: scope.options.className,
@@ -149,7 +152,17 @@
 
           scope.$watch('ngDisabled', function(value) {
             disabler(value);
-          });
+          });                    
+
+          scope.limitValue = function(value) {
+            if (scope.options.modelLabels) {
+              if (angular.isFunction(scope.options.modelLabels)) {
+                return scope.options.modelLabels(value);
+              }              
+              return scope.options.modelLabels[value] !== undefined ? scope.options.modelLabels[value] : value;              
+            }
+            return value;
+          };
 
           var slidering = function( inputElement, element, settings) {
             return new Slider( inputElement, element, settings );

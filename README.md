@@ -89,8 +89,8 @@ Options for your slider in json format {from:.....}
 * `className`: custom class added to root slider DOM
 * `realtime`: triggers changes and model update on every moves
 * `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap
-* `showLabels`: true/false; toggles bounds labels visibility
-* `modelLabels`: custom model for labels based on pointer value
+* `limits`: true/false; toggles bounds labels visibility
+* `modelLabels`: custom model for pointers labels based on pointer value
 
 
 ![angular slider css](http://darul75.github.io/angular-awesome-slider/images/slider2.png "angular slider css explained")
@@ -115,9 +115,16 @@ callback: function(value, released) {
 }
 ```
 
+* `modelLabels` : model for pointers labels by object or function
+
 ```javascript
 // overrides default value label displayed combined with 'dimension' by an arbitrary label model
-modelLabels: {1: 'top', 2: 'middle', 3: 'bottom'}
+modelLabels: {1: 'top', 2: 'middle', 3: 'bottom'};
+
+// or dynamicaly based
+modelLabels: function(value) {
+	return 'my value is' + value; // momentjs external library call...
+}
 ```
 
 Installation
@@ -138,6 +145,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.3.4: fix css regressions + modelLabels with function
 * 2.3.3: details for modelLabels options + merge showLabels option
 * 2.3.2: fix css pointer position + hover sking pointers background positions
 * 2.3.1: fix from and to in floating values
