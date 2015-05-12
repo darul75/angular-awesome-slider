@@ -1,5 +1,5 @@
 /** 
-* @license angular-awesome-slider - v2.3.4
+* @license angular-awesome-slider - v2.3.5
 * (c) 2013 Julien VALERY https://github.com/darul75/angular-awesome-slider
 * License: MIT 
 **/
