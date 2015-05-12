@@ -30,7 +30,7 @@
           scope.mainSliderClass += scope.options.className ? ' ' + scope.options.className : '';
 
           // handle limit conversion value
-          scope.options.limits = scope.options.limits || true;
+          scope.options.limits = angular.isDefined(scope.options.limits) ? scope.options.limits : true;
 
           // compile template
           element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {
