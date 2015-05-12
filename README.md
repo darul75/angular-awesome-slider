@@ -88,7 +88,9 @@ Options for your slider in json format {from:.....}
 * `css`: hash object, do not mix with 'skin' !
 * `className`: custom class added to root slider DOM
 * `realtime`: triggers changes and model update on every moves
-* `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap 
+* `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap
+* `showLabels`: true/false; toggles bounds labels visibility
+* `modelLabels`: custom model for labels based on pointer value
 
 
 ![angular slider css](http://darul75.github.io/angular-awesome-slider/images/slider2.png "angular slider css explained")
@@ -113,6 +115,11 @@ callback: function(value, released) {
 }
 ```
 
+```javascript
+// overrides default value label displayed combined with 'dimension' by an arbitrary label model
+modelLabels: {1: 'top', 2: 'middle', 3: 'bottom'}
+```
+
 Installation
 ------------
 
@@ -131,6 +138,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.3.3: details for modelLabels options + merge showLabels option
 * 2.3.2: fix css pointer position + hover sking pointers background positions
 * 2.3.1: fix from and to in floating values
 * 2.3.0: new module name, no more ng-sorry-prefix, classname option, sass/scss support, scale object option
