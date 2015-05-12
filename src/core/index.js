@@ -29,7 +29,7 @@
           scope.mainSliderClass += scope.options.css ? ' sliderCSS' : '';
           scope.mainSliderClass += scope.options.className ? ' ' + scope.options.className : '';
 
-          // handle limit conversion value
+          // handle limit labels visibility
           scope.options.limits = angular.isDefined(scope.options.limits) ? scope.options.limits : true;
 
           // compile template
