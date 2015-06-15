@@ -89,7 +89,7 @@
   left: 80%;
 }
 .jslider div.jslider-pointer.jslider-pointer-hover {
-  background-position: -18px -60px;
+  background-position: -19px -60px;
 }
 .jslider div.jslider-label small,
 .jslider div.jslider-value small {
@@ -306,7 +306,6 @@
   left: 15px;
   width: 10px;
   height: 10px;
-  margin-left: -3px;
   background-color: silver;
   background-color: #615959;
   border-radius: 50%;
@@ -387,9 +386,6 @@
   background-position: 0 -60px;
   z-index: 2;
 }
-.jslider.jslider_round div.jslider-pointer.jslider-pointer-hover {
-  background-position: -20px -60px;
-}
 .jslider.jslider_round.vertical div.jslider-bg i,
 .jslider.jslider_round.vertical div.jslider-pointer {
   background: url(../img/jslider.round.vertical.png) no-repeat 0 0;
@@ -443,9 +439,6 @@
   background-position: 2px -60px;
   z-index: 2;
 }
-.jslider.jslider_blue div.jslider-pointer.jslider-pointer-hover {
-  background-position: -20px -60px;
-}
 .jslider.jslider_blue.vertical div.jslider-bg i,
 .jslider.jslider_blue.vertical div.jslider-pointer {
   background: url(../img/jslider.blue.vertical.png) no-repeat 0 0;
@@ -493,11 +486,8 @@
   z-index: 2;
   width: 20px;
   height: 17px;
-  top: -4px;
+  top: -6px;
   background-position: 2px -60px;
-}
-.jslider.jslider_plastic .jslider-pointer.jslider-pointer-hover {
-  background-position: -18px -60px;
 }
 .jslider.jslider_plastic.vertical div.jslider-bg i,
 .jslider.jslider_plastic.vertical div.jslider-pointer {

@@ -1,4 +1,4 @@
-angular-awesome-slider [![NPM version](https://badge.fury.io/js/angular-awesome-slider.png)](http://badge.fury.io/js/angular-awesome-slider) [![Build Status](https://travis-ci.org/darul75/angular-awesome-slider.png?branch=master)](https://travis-ci.org/darul75/angular-awesome-slider) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/angular-awesome-slider/counters/views.png)](https://sourcegraph.com/github.com/darul75/angular-awesome-slider) [![Join the chat at https://gitter.im/darul75/angular-awesome-slider](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/angular-awesome-slider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+ng-slider [![NPM version](https://badge.fury.io/js/ng-slider.png)](http://badge.fury.io/js/ng-slider) [![Build Status](https://travis-ci.org/darul75/ng-slider.png?branch=master)](https://travis-ci.org/darul75/ng-slider) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/ng-slider/counters/views.png)](https://sourcegraph.com/github.com/darul75/ng-slider)
 =====================
 
 Angular directive slider control.
@@ -6,6 +6,8 @@ Angular directive slider control.
 **No JQUERY dependency needed anymore**
 
 **Skins available**
+
+Welcome to a fork from awesome job of Egor Khmelev https://github.com/egorkhmelev/jslider
 
 Why
 -------------
@@ -17,13 +19,11 @@ Source files were divided in several files, and not angular integrated.
 Screenshot
 -------------
 
-![angular slider demo](http://darul75.github.io/angular-awesome-slider/images/slider3.png "angular slider demo screenshot")
+![angular slider demo](http://darul75.github.io/ng-slider/images/slider3.png "angular slider demo screenshot")
 
 Demo
 -------------
-http://darul75.github.io/angular-awesome-slider/
-
-http://jsfiddle.net/darul75/g9e9n8xc/
+http://darul75.github.io/ng-slider/
 
 How to use it
 -------------
@@ -37,11 +37,11 @@ You should already have script required for Angular.
 to the list above, you should add:
 
 ```html
-<link rel="stylesheet" type="text/css" href="angular-awesome-slider.min.css">
+<link rel="stylesheet" type="text/css" href="ng-slider.min.css">
 ```
 
 ```html
-<script type="text/javascript" src="angular-awesome-slider.min.js"></script>
+<script type="text/javascript" src="ng-slider.min.js"></script>
 ```
 in case you want to use your own template, omit the last line and instead add some template code
 to your project:
@@ -51,10 +51,10 @@ to your project:
 </script>
 ```
 
-Then, inject `angularAwesomeSlider` in your application module:
+Then, inject `ngSlider` in your application module:
 
 ```javascript
-angular.module('myApp', ['angularAwesomeSlider']);
+angular.module('myApp', ['ngSlider']);
 ```
 
 and then just add an `input` with `slider` directive name attribute, `value` and `options` scope variable attribute.
@@ -86,14 +86,11 @@ Options for your slider in json format {from:.....}
 * `vertical`: true/false; vertical slider, default false
 * `skin`: empty or 'blue' 'plastic' 'round'
 * `css`: hash object, do not mix with 'skin' !
-* `className`: custom class added to root slider DOM
 * `realtime`: triggers changes and model update on every moves
-* `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap
-* `limits`: true/false; toggles bounds labels visibility
-* `modelLabels`: custom model for pointers labels based on pointer value
+* `threshold`: minimum distance allowed between 2 pointers, default both pointers overlap 
 
 
-![angular slider css](http://darul75.github.io/angular-awesome-slider/images/slider2.png "angular slider css explained")
+![angular slider css](http://darul75.github.io/ng-slider/images/slider2.png "angular slider css explained")
 ```
 css: {
 	background: {"background-color": "silver"},
@@ -115,42 +112,24 @@ callback: function(value, released) {
 }
 ```
 
-* `modelLabels` : model for pointers labels by object or function
-
-```javascript
-// overrides default value label displayed combined with 'dimension' by an arbitrary label model
-modelLabels: {1: 'top', 2: 'middle', 3: 'bottom'};
-
-// or dynamicaly based
-modelLabels: function(value) {
-	return 'my value is' + value; // momentjs external library call...
-}
-```
-
 Installation
 ------------
 
 Using npm:
 
 ```
-npm install angular-awesome-slider
+npm install ng-slider
 ```
 
 Using bower:
 
 ```
-bower install angular-awesome-slider
+bower install ng-slider
 ```
 
 RELEASE
 -------------
 
-* 2.3.4: fix css regressions + modelLabels with function
-* 2.3.3: details for modelLabels options + merge showLabels option
-* 2.3.2: fix css pointer position + hover sking pointers background positions
-* 2.3.1: fix from and to in floating values
-* 2.3.0: new module name, no more ng-sorry-prefix, classname option, sass/scss support, scale object option
-* 2.2.6: refactoring classnames
 * 2.2.5: skin availables + less all css
 * 2.2.4: fix when 2 pointers overlap on limits
 * 2.2.3: mouse up event indicator in callback
@@ -189,7 +168,7 @@ npm install -g grunt-cli
 
 ### Issue
 
-To help me on reproducing any issues, please feel free to modify/fork this fiddle: http://jsfiddle.net/darul75/b09m7183/
+To help me on reproducing any issues, please feel free to modify/fork this fiddle: http://jsfiddle.net/darul75/g9e9n8xc/
 
 ## Metrics
 

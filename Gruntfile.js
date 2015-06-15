@@ -23,7 +23,7 @@ module.exports = function(grunt) {
           files: [
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'dist/angular-awesome-slider.min.js',
+            'dist/ng-slider.min.js',
             /*'src/core/ng-slider.js',
             'src/core/config/constants.js',
             'src/core/model/draggable.factory.js',
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             'src/core/model/slider.factory.js',
             'src/core/utils/utils.factory.js',
             'src/core/template/slider.tmpl.js',*/
-            'dist/css/angular-awesome-slider.min.css',
+            'dist/css/ng-slider.min.css',
             'test/**/*Spec.js'
           ],
           autoWatch: true,
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
           paths: ['src/css/less/']
         },
         files: {
-          'src/css/angular-awesome-slider.css': 'src/css/less/main.less'
+          'src/css/ng-slider.css': 'src/css/less/main.less'
         }
       }
     },
@@ -67,12 +67,12 @@ module.exports = function(grunt) {
             preserveComments: 'some',
             report: 'min',
             banner: '/** \n* @license <%= pkg.name %> - v<%= pkg.version %>\n' + 
-             '* (c) 2013 Julien VALERY https://github.com/darul75/angular-awesome-slider\n' +
+             '* (c) 2013 Julien VALERY https://github.com/darul75/ng-slider\n' +
              '* License: MIT \n**/\n'
          },         
          files: {
-             'dist/angular-awesome-slider.min.js': [
-              'src/core/index.js',
+             'dist/ng-slider.min.js': [
+              'src/core/ng-slider.js',
               'src/core/config/constants.js',
               'src/core/utils/utils.factory.js',
               'src/core/model/draggable.factory.js', 
@@ -89,12 +89,12 @@ module.exports = function(grunt) {
       options: {
         keepSpecialComments: false,
         banner: '/** \n* @license <%= pkg.name %> - v<%= pkg.version %>\n' + 
-             '* (c) 2013 Julien VALERY https://github.com/darul75/angular-awesome-slider\n' +
+             '* (c) 2013 Julien VALERY https://github.com/darul75/ng-slider\n' +
              '* License: MIT \n**/\n'
       },
       compress: {
         files: {          
-          'dist/css/angular-awesome-slider.min.css': ['src/css/angular-awesome-slider.css']
+          'dist/css/ng-slider.min.css': ['src/css/ng-slider.css']
         }
       }
     },

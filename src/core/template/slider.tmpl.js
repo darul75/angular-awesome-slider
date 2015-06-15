@@ -1,7 +1,7 @@
 (function(angular, undefined) {
 'use strict';
 
-  angular.module('angularAwesomeSlider')
+  angular.module('ngSlider')
   .run(['$templateCache', function ($templateCache) {
     $templateCache.put('ng-slider/slider-bar.tmpl.html',
     '<span ng-class="mainSliderClass" id="{{sliderTmplId}}">' +
@@ -17,8 +17,8 @@
         '</div>' +
         '<div class="jslider-pointer"></div>' +
         '<div class="jslider-pointer jslider-pointer-to"></div>' +
-        '<div class="jslider-label" ng-show="options.limits"><span ng-bind="limitValue(options.from)"></span>{{options.dimension}}</div>' +
-        '<div class="jslider-label jslider-label-to" ng-show="options.limits"><span ng-bind="limitValue(options.to)"></span>{{options.dimension}}</div>' +
+        '<div class="jslider-label"><span>{{from}}</span>{{options.dimension}}</div>' +
+        '<div class="jslider-label jslider-label-to"><span>{{to}}</span>{{options.dimension}}</div>' +
         '<div class="jslider-value"><span></span>{{options.dimension}}</div>' +
         '<div class="jslider-value jslider-value-to"><span></span>{{options.dimension}}</div>' +
         '<div class="jslider-scale" id="{{sliderScaleDivTmplId}}"></div>' +
