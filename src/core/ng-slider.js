@@ -1,7 +1,7 @@
 (function (angular) {
-  'use strict';
+  'use strict'; 
 
-  angular.module('angularAwesomeSlider', [])
+  angular.module('ngSlider', [])
     // DIRECTIVE
     .directive('slider', [
       '$compile', '$templateCache','$timeout', '$window', 'slider',
@@ -12,7 +12,7 @@
           scope: { options:'=', ngDisabled: '='},
           priority: 1,
           link : function(scope, element, attrs, ngModel) {
-
+          
           if(!ngModel) return;
 
           if (!scope.options)
@@ -23,19 +23,16 @@
             scope.options = angular.toJson(scope.options);
           }
 
+          // TODO : skin        
           scope.mainSliderClass = 'jslider';
-          scope.mainSliderClass += scope.options.skin ? ' jslider_' + scope.options.skin : ' ';
+          scope.mainSliderClass += ' jslider_round';
           scope.mainSliderClass += scope.options.vertical ? ' vertical ' : '';
           scope.mainSliderClass += scope.options.css ? ' sliderCSS' : '';
-          scope.mainSliderClass += scope.options.className ? ' ' + scope.options.className : '';
-
-          // handle limit labels visibility
-          scope.options.limits = angular.isDefined(scope.options.limits) ? scope.options.limits : true;
 
           // compile template
-          element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {
+          element.after(compile(templateCache.get('ng-slider/slider-bar.tmpl.html'))(scope, function(clonedElement, scope) {          
             scope.tmplElt = clonedElement;
-          }));
+          }));                  
 
           // init
 
@@ -47,47 +44,45 @@
             if (scope.options.calculate && typeof scope.options.calculate === 'function') {
               scope.from = scope.options.calculate(scope.from);
               scope.to = scope.options.calculate(scope.to);
-            }            
+            }
 
             var OPTIONS = {
-              from: !scope.options.round ? parseInt(scope.options.from, 10) : parseFloat(scope.options.from),
-              to: !scope.options.round ? parseInt(scope.options.to, 10) : parseFloat(scope.options.to),
+              from: scope.options.from,
+              to: scope.options.to,
               step: scope.options.step,
               smooth: scope.options.smooth,
-              limits: scope.options.limits,
+              limits: true,
               round: scope.options.round || false,
               value: ngModel.$viewValue,
               dimension: "",
               scale: scope.options.scale,
-              modelLabels: scope.options.modelLabels,              
               vertical: scope.options.vertical,
               css: scope.options.css,
-              className: scope.options.className,
               realtime: scope.options.realtime,
               cb: forceApply,
               threshold: scope.options.threshold
             };
-
+            
             OPTIONS.calculate = scope.options.calculate || undefined;
             OPTIONS.onstatechange = scope.options.onstatechange || undefined;
-
+                                    
             // slider
-            scope.slider = !scope.slider ? slidering(element, scope.tmplElt, OPTIONS) : scope.slider.init(element, scope.tmplElt, OPTIONS);
-
+            scope.slider = !scope.slider ? slidering(element, scope.tmplElt, OPTIONS) : scope.slider.init(element, scope.tmplElt, OPTIONS);            
+                              
             if (!initialized) {
               initListener();
             }
-
+            
             // scale
             var scaleDiv = scope.tmplElt.find('div')[7];
             angular.element(scaleDiv).html(scope.slider.generateScale());
             scope.slider.drawScale(scaleDiv);
 
             if (scope.ngDisabled) {
-              disabler(scope.ngDisabled);
+              disabler(true);
             }
 
-            initialized = true;
+            initialized = true;            
           };
 
           function initListener() {
@@ -120,56 +115,46 @@
                 scope.slider.getPointers()[1].set(ngModel.$viewValue.split(";")[1], true);
               }
             }
-          };
+          };        
 
           // view -> model
-          var forceApply = function(value, released) {
-            if (scope.disabled)
+          var forceApply = function(value) {
+            if (scope.disabled) 
               return;
             scope.$apply(function() {
               ngModel.$setViewValue(value);
             });
-            if (scope.options.callback){
-              scope.options.callback(value, released);
-            }
+            if (scope.options.callback)
+              scope.options.callback(value);
           };
 
           // watch options
           scope.$watch('options', function(value) {
             timeout(function(){
               init();
-            });
+            });            
           }, true);
 
           // disabling
           var disabler = function(value) {
             scope.disabled = value;
             if (scope.slider) {
-              scope.tmplElt.toggleClass('disabled');
+              scope.tmplElt.toggleClass('disabled');              
               scope.slider.disable(value);
             }
-          };
+          };                   
 
-          scope.$watch('ngDisabled', function(value) {
+          attrs.$observe(attrs.ngDisabled,  function ngHideWatchAction(value) {
             disabler(value);
-          });                    
-
-          scope.limitValue = function(value) {
-            if (scope.options.modelLabels) {
-              if (angular.isFunction(scope.options.modelLabels)) {
-                return scope.options.modelLabels(value);
-              }              
-              return scope.options.modelLabels[value] !== undefined ? scope.options.modelLabels[value] : value;              
-            }
-            return value;
-          };
+          });
 
           var slidering = function( inputElement, element, settings) {
-            return new Slider( inputElement, element, settings );
-          };
+            return new Slider( inputElement, element, settings );            
+          };         
         }
       };
     }])
 .config(function() {})
 .run(function() {});
 })(angular);
+

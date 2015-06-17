@@ -1,0 +1,18 @@
+.jslider_round .jslider-bg i,
+.jslider_round .jslider-pointer { background-image: url(../img/jslider.round.png); }
+
+.jslider_round.sliderCSS .jslider-bg i,
+.jslider_round.sliderCSS .jslider-pointer { background-image: none; }
+
+.jslider_round.sliderCSS .jslider-pointer { z-index: 3; background-color: #615959; width: 10px; height: 10px; border-radius: 50%; top: -3px;}
+
+.jslider_round .jslider-pointer { z-index: 2; width: 20px; height: 17px; top: -6px; }
+
+.jslider_round.vertical .jslider-bg i,
+.jslider_round.vertical .jslider-pointer { background-image: url(../img/jslider.round.vertical.png); }
+
+.jslider_round.vertical.sliderCSS .jslider-bg i,
+.jslider_round.vertical.sliderCSS .jslider-pointer { background-image: none; }
+.jslider_round.vertical.sliderCSS .jslider-pointer { left: 15px; background-color: #615959; width: 10px; height: 10px; border-radius: 50%; }
+
+.jslider_round.vertical .jslider-pointer { width: 20px; height: 17px; top: -6px; margin-left: -6px; }
