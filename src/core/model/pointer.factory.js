@@ -79,8 +79,8 @@
 
       // check threshold      
       if (this.threshold && this.parent.o.pointers[1]) {        
-        var v1 = this.parent.o.pointers[0].value.origin,
-            v2 = this.parent.o.pointers[1].value.origin;
+        var v1 = this.value.origin,
+            v2 = this.parent.o.pointers[this.uid === 0 ? 1:0].value.origin;
         this.allowed =  Math.abs(v2 - v1) >= this.threshold;              
         if (!this.allowed && oldOrigin !== undefined && oldPerc !== undefined){
           this.value.origin = oldOrigin;

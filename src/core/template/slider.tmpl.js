@@ -7,7 +7,7 @@
     '<span ng-class="mainSliderClass" id="{{sliderTmplId}}">' +
       '<table><tr><td>' +
         '<div class="jslider-bg">' +
-          '<i class="l"></i><i class="r"></i><i class="v"></i><i class="p"></i><i class="s"></i><i class="f"></i>' +
+          '<i class="l"></i><i class="r"></i><i class="v"></i><i class="p"></i><i class="s"></i><i class="s"></i><i class="f"></i>' +
         '</div>' +
         '<div class="jslider-pointer"></div>' +
         '<div class="jslider-pointer jslider-pointer-to"></div>' +

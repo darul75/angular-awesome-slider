@@ -10,8 +10,6 @@ lcov.info
 *.out
 *.pid
 *.gz
-*.scssc
-*.sassc
 
 pids
 logs
