@@ -59,8 +59,6 @@
     <div>
       Current value is: {{value3bis}}
     </div>
-
-
    </br>
     <div>
       sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="options" ng-disabled="disabled" />
@@ -69,11 +67,17 @@
       Current value is: {{value}}
     </div>
     <div>
-      sdsdqsdsqd<input ng-model="value"  type="text" id="{{id2}}" slider options="optionsCss" ng-disabled="disabled" />
+      <input ng-model="valueDate"  type="text" slider options="optionsDate" ng-disabled="disabled" />
+    </div>
+    <div>
+      Current value is: {{valueDate}}
+    </div>
+    <div>
+      sdsdqsdsqd<input ng-model="value"  type="text" id="coucou" slider options="optionsCss" ng-disabled="disabled" />
     </div>
     <div>
       Current value is: {{value}}
-    </div>
+    </div>    
     <div ng-show="show">
       <input ng-model="valueVisibility"  type="text" id="vvvv" slider options="optionsVisibility" ng-disabled="disabled" />
     </div>
@@ -108,7 +112,7 @@
       <input ng-model="value5"  type="text" id="mySlider5" slider options="optionsV" ng-disabled="disabledtoto" />
       <input ng-model="value6"  type="text" id="mySlider6" slider options="options2V" ng-disabled="disabled"/>
       <input ng-model="value6"  type="text" id="mySlider7" slider options="options2VCSS" ng-disabled="disabled"/>
-    </div>
+    </div>     
     <div>
       <button ng-click='changeOptions()'>CHANGE OPTIONS</button>
       <button ng-click='changeValue()'>CHANGE VALUE</button>
@@ -168,24 +172,19 @@
         var hours = Math.floor( value / 60 );
         var mins = ( value - hours*60 );
         return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
-      };
-
-      var modelLabelsFn = function(value) {
-        return 'I am ' + value;
-      }
+      };      
 
       $scope.options = {
         from: 6.3,
         to: 9.7,
         step: 0.1,
         round: 1,        
-        dimension: " ",
+        dimension: '&nbsp;m<small>2</small>',
         vertical: false,        
          //scale: [{val:5, label:"low"}, {val:10, label:"medium"}, {val:30, label:"high"}],
         // round: 2,
         skin: 'plastic',
-        limits: false,
-        modelLabels: modelLabelsFn,
+        limits: false,        
         //realtime: true,
          /*css: {
                     background: {'background-color': 'yellow'},
@@ -194,6 +193,26 @@
                     after: {'background-color': 'green'},
                     pointer: {'background-color': 'red'}
                 },*/        
+        callback: function(value, released) {
+          console.log(value + " " + released);
+        }
+      };
+
+      $scope.valueDate = 1429864200;
+
+      var modelLabelsFn = function(value) {
+        var d = new Date(value);
+        return d.toLocaleDateString() + ' - ' + d.toLocaleTimeString();
+      }
+
+      $scope.optionsDate = {
+        from: 1429798600,
+        to: 1429877200,
+        step: 60 * 60,                        
+        vertical: false,        
+        skin: 'plastic',
+        limits: true,
+        modelLabels: modelLabelsFn,           
         callback: function(value, released) {
           console.log(value + " " + released);
         }
@@ -215,6 +234,7 @@
             step: 1,
             dimension: " km",
             vertical: false,
+            threshold: 2,
             css: {
                     background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
@@ -317,12 +337,33 @@
           from: 0,
           to: 80,
           step: 1,
+          threshold: 10,
           dimension: " $",
           scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40, '|', 50, '|', 60, '|', 70, '|', 80]
         };
 
+        $scope.optionsCss = {
+          from: 1,
+          to: 100,
+          step: 1,
+          dimension: " km",
+          vertical: false,
+          threshold: 10,
+          css: {
+                  background: {'background-color': 'yellow'},
+                  before: {'background-color': 'purple'},
+                  default: {'background-color': 'white'},
+                  after: {'background-color': 'green'},
+                  pointer: {'background-color': 'red'}
+              },
+          callback: function(value, elt) {
+            console.log(value);
+          }
+        };
+
       };
 
+     
       $scope.changeValue = function() {
 
         $scope.value = "11;15";

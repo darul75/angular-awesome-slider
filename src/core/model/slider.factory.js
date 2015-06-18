@@ -197,33 +197,23 @@
             _off = utils.offset(self.domNode),
             firstPtr = self.o.pointers[0],
             secondPtr = self.o.pointers[1] ? self.o.pointers[1] : null,
-            tmpPtr,
-            targetPtr,
+            tmpPtr,            
             evtPosition = evt.originalEvent ? evt.originalEvent: evt,
-            mouse = vertical ? evtPosition.pageY : evtPosition.pageX,
-            offset,
-            css = vertical ? 'top' : 'left';
-
-        if (!self.isAsc && secondPtr) {
-          tmpPtr = secondPtr;
-          secondPtr = firstPtr;
-          firstPtr = tmpPtr;
-        }        
-
-        offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight };              
-        targetPtr = self.o.pointers[targetIdx];
+            mouse = vertical ? evtPosition.pageY : evtPosition.pageX,            
+            css = vertical ? 'top' : 'left',
+            offset = { left: _off.left, top: _off.top, width: self.domNode[0].clientWidth, height: self.domNode[0].clientHeight },
+            targetPtr = self.o.pointers[targetIdx];
         
         if (secondPtr) {
           if (!secondPtr.d.width) {
             resetPtrSize();
           }         
-          var middleGap = (secondPtr.d[css] - firstPtr.d[css]) / 2,
-              ptr = firstPtr.d[css],
-              mousePosBetween = mouse - ptr,
-              test = mousePosBetween > middleGap;
-
-          if (test) {
-            targetPtr = self.isAsc ? secondPtr : firstPtr;
+          var firstPtrPosition = utils.offset(firstPtr.ptr)[css];
+          var secondPtrPosition = utils.offset(secondPtr.ptr)[css];
+          var middleGap = Math.abs((secondPtrPosition - firstPtrPosition) / 2);                    
+          var testSecondPtrToMove = mouse >= secondPtrPosition || mouse >= (secondPtrPosition - middleGap);
+          if (testSecondPtrToMove) {
+            targetPtr = secondPtr;
           }
         }
         targetPtr._parent = {offset: offset, width: offset.width, height: offset.height};
