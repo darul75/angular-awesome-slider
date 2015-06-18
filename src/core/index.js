@@ -18,6 +18,8 @@
           if (!scope.options)
             throw new Error('You must provide a value for "options" attribute.');
 
+          var injector = angular.injector();
+
           // options as inline variable
           if (angular.isString(scope.options)) {
             scope.options = angular.toJson(scope.options);
@@ -65,7 +67,7 @@
               className: scope.options.className,
               realtime: scope.options.realtime,
               cb: forceApply,
-              threshold: scope.options.threshold
+              threshold: scope.options.threshold              
             };
 
             OPTIONS.calculate = scope.options.calculate || undefined;
@@ -85,7 +87,7 @@
 
             if (scope.ngDisabled) {
               disabler(scope.ngDisabled);
-            }
+            }            
 
             initialized = true;
           };
@@ -139,7 +141,7 @@
             timeout(function(){
               init();
             });
-          }, true);
+          }, scope.watchOptions || true);
 
           // disabling
           var disabler = function(value) {
