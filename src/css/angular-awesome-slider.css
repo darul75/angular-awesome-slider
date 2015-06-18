@@ -315,6 +315,9 @@
 .jslider.sliderCSS div.jslider-pointer {
   background: none;
 }
+.jslider.sliderCSS.vertical td {
+  height: 100%;
+}
 .jslider.sliderCSS.vertical div.jslider-bg i {
   left: 50%;
   width: 5px;

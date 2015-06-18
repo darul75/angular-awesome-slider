@@ -58,6 +58,9 @@ $skin-gray-2: #615959;
   }
   // vertical
   &.vertical {
+    td {
+      height: 100%;
+    }
     div.jslider-bg {
       i {
         left: 50%;
