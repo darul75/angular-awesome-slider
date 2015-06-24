@@ -590,25 +590,29 @@
 
     Slider.prototype.prcToValue = function( prc ){
       var value;
-      if (this.settings.heterogeneity && this.settings.heterogeneity.length > 0){
+      if (this.settings.heterogeneity && this.settings.heterogeneity.length > 0){        
         var h = this.settings.heterogeneity,
             _start = 0,
-            _from = this.settings.from,
+            _from = this.settings.round ? parseFloat(this.settings.from) : parseInt(this.settings.from, 10),
+            _to = this.settings.round ? parseFloat(this.settings.to) : parseInt(this.settings.to, 10),
             i = 0;
 
         for (; i <= h.length; i++){
           var v;
-          if( h[i]) 
-            v = h[i].split("/");
+          if(h[i]) 
+            v = h[i].split('/');
           else
-            v = [100, this.settings.to];        
+            v = [100, _to];
 
-          if (prc >= _start && prc <= v[0]) {
-            value = _from + ((prc-_start) * (v[1]-_from)) / (v[0]-_start);
+          var v1 = this.settings.round ? parseFloat(v[0]) : parseInt(v[0], 10);
+          var v2 = this.settings.round ? parseFloat(v[1]) : parseInt(v[1], 10);
+
+          if (prc >= _start && prc <= v1) {
+            value = _from + ((prc-_start) * (v2-_from)) / (v1-_start);
           }
 
-          _start = v[0];
-          _from = v[1];
+          _start = v1;
+          _from = v2;
         }
       } 
       else {
@@ -619,36 +623,40 @@
     };
 
     Slider.prototype.valueToPrc = function( value, pointer ){
-      var prc;
+      var prc,
+          _from = this.settings.round ? parseFloat(this.settings.from) : parseInt(this.settings.from, 10);
+          
       if (this.settings.heterogeneity && this.settings.heterogeneity.length > 0){
         var h = this.settings.heterogeneity,
-            _start = 0,
-            _from = this.settings.from,
+            _start = 0,            
             i = 0;
 
         for (; i <= h.length; i++) {
           var v;
           if(h[i])
-            v = h[i].split("/");
+            v = h[i].split('/');
           else
             v = [100, this.settings.to];        
 
-          if(value >= _from && value <= v[1]){
+          var v1 = this.settings.round ? parseFloat(v[0]) : parseInt(v[0], 10);
+          var v2 = this.settings.round ? parseFloat(v[1]) : parseInt(v[1], 10);
+
+          if(value >= _from && value <= v2){
             if (pointer) {
-              prc = pointer.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
+              prc = pointer.limits(_start + (value-_from)*(v1-_start)/(v2-_from));
             } else {
-              prc = this.limits(_start + (value-_from)*(v[0]-_start)/(v[1]-_from));
+              prc = this.limits(_start + (value-_from)*(v1-_start)/(v2-_from));
             }
           }
 
-          _start = v[0]; _from = v[1];
+          _start = v1; _from = v2;
         }
 
       } else {
         if (pointer) {
-          prc = pointer.limits((value-this.settings.from)*100/this.settings.interval);
+          prc = pointer.limits((value-_from)*100/this.settings.interval);
         } else {
-          prc = this.limits((value-this.settings.from)*100/this.settings.interval);
+          prc = this.limits((value-_from)*100/this.settings.interval);
         }
       }
 

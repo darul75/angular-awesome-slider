@@ -92,7 +92,7 @@ Options for your slider in json format {from:.....}
 * `limits`: true/false; toggles bounds labels visibility
 * `modelLabels`: custom model for pointers labels based on pointer value
 * `watchOptions`: default is 'true', watch this options changes by [equals](https://docs.angularjs.org/api/ng/function/angular.equals)
-
+* heterogeneity: array [percentage of point on slider]/[value in that point]
 
 ![angular slider css](http://darul75.github.io/angular-awesome-slider/images/slider2.png "angular slider css explained")
 ```
@@ -146,6 +146,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.3.7: heterogeneity option
 * 2.3.6: watch options, fix threshold and click handler + date display testing.
 * 2.3.5: do not remember
 * 2.3.4: fix css regressions + modelLabels with function

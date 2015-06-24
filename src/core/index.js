@@ -67,7 +67,8 @@
               className: scope.options.className,
               realtime: scope.options.realtime,
               cb: forceApply,
-              threshold: scope.options.threshold              
+              threshold: scope.options.threshold,
+              heterogeneity: scope.options.heterogeneity
             };
 
             OPTIONS.calculate = scope.options.calculate || undefined;

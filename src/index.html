@@ -68,14 +68,14 @@
     </div>
     <div>
       <input ng-model="valueDate"  type="text" slider options="optionsDate" ng-disabled="disabled" />
-    </div>
+    </div> -->
     <div>
       Current value is: {{valueDate}}
     </div>
     <div>
       sdsdqsdsqd<input ng-model="value"  type="text" id="coucou" slider options="optionsCss" ng-disabled="disabled" />
     </div>
-    <div>
+   <div>
       Current value is: {{value}}
     </div>    
     <div ng-show="show">
@@ -133,7 +133,7 @@
         }, 1000);
       $scope.id = "bob";
       $scope.id2 = "bob";
-      $scope.value = "10;50";
+      $scope.value = "10;20";
       $scope.value2 = "12;15";
       $scope.value3 = "7.2";
       $scope.value3bis = "8";
@@ -229,19 +229,19 @@
       };
 
       $scope.optionsCss = {
-        from: 1,
-            to: 100,
-            step: 1,
-            dimension: " km",
+            from: 0,
+            to: 40,
+            step: 0.5,
+            dimension: " $",
             vertical: false,
-            threshold: 2,
+            round: 1,
             css: {
                     background: {'background-color': 'yellow'},
                     before: {'background-color': 'purple'},
                     default: {'background-color': 'white'},
                     after: {'background-color': 'green'},
                     pointer: {'background-color': 'red'}
-                },
+                },            
         callback: function(value, elt) {
           console.log(value);
         }
