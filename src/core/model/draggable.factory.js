@@ -66,11 +66,12 @@
     Draggable.prototype._bindEvent = function( ptr, eventType, handler ){
       var self = this;
 
-      if( this.supportTouches_ )
-        ptr[0].addEventListener( this.events_[ eventType ], handler, false );
-
-      else
-        ptr.bind( this.events_[ eventType ], handler );
+      // PS need to bind to touch and non-touch events for devices which support both
+      if( this.supportTouches_ ){
+        ptr[0].addEventListener( this.events_[ eventType ].touch, handler, false );
+      }
+      
+      ptr.bind( this.events_[ eventType ].nonTouch, handler );
     };
 
     Draggable.prototype._events = function(){
@@ -78,11 +79,11 @@
 
       this.supportTouches_ = 'ontouchend' in document;
       this.events_ = {
-        "click": this.supportTouches_ ? "touchstart" : "click",
-        "down": this.supportTouches_ ? "touchstart" : "mousedown",
-        "move": this.supportTouches_ ? "touchmove" : "mousemove",
-        "up"  : this.supportTouches_ ? "touchend" : "mouseup",
-        "mousedown"  : this.supportTouches_ ? "mousedown" : "mousedown"
+        'click': { touch : 'touchstart', nonTouch : 'click' },
+        'down': { touch : 'touchstart', nonTouch : 'mousedown' },
+        'move': { touch : 'touchmove', nonTouch : 'mousemove' },
+        'up'  : { touch : 'touchend', nonTouch: 'mouseup'},
+        'mousedown'  : { touch : 'mousedown', nonTouch : 'mousedown' }
       };
 
       var documentElt = angular.element(window.document);

@@ -146,6 +146,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.3.8: bind to touch AND non touch events
 * 2.3.7: heterogeneity option
 * 2.3.6: watch options, fix threshold and click handler + date display testing.
 * 2.3.5: do not remember
