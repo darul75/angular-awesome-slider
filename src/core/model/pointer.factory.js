@@ -32,20 +32,20 @@
         offset: offset,
         width: offset.width,
         height: offset.height
-      };      
+      };
 
-      this.ptr.addClass("jslider-pointer-hover");      
+      this.ptr.addClass("jslider-pointer-hover");
     };
 
     SliderPointer.prototype.onmousemove = function( evt, x, y ){
-      var coords = this._getPageCoords( evt );      
+      var coords = this._getPageCoords( evt );
       this._set(!this.vertical ? this.calc( coords.x ) : this.calc( coords.y ));
-      if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
+      if( this.settings.realtime && this.settings.cb && angular.isFunction(this.settings.cb) )
         this.settings.cb.call( this.parent, this.parent.getValue(), !this.is.drag  );
     };
 
     SliderPointer.prototype.onmouseup = function(evt){
-      if( this.settings.cb && angular.isFunction(this.settings.cb) && this.allowed)
+      if( this.settings.cb && angular.isFunction(this.settings.cb))
         this.settings.cb.call( this.parent, this.parent.getValue(), !this.is.drag );
 
       if (!this.is.drag)
@@ -57,7 +57,7 @@
     };
 
     SliderPointer.prototype.calc = function( coords ){
-      return !this.vertical ? 
+      return !this.vertical ?
         this.limits(((coords-this._parent.offset.left)*100)/this._parent.width)
         :
         this.limits(((coords-this._parent.offset.top)*100)/this._parent.height);
@@ -71,17 +71,17 @@
     SliderPointer.prototype._set = function( prc, opt_origin ){
       this.allowed = true;
 
-      var oldOrigin = this.value.origin;      
+      var oldOrigin = this.value.origin;
       var oldPerc = this.value.prc;
 
-      this.value.origin = this.parent.prcToValue(prc);      
+      this.value.origin = this.parent.prcToValue(prc);
       this.value.prc = prc;
 
-      // check threshold      
-      if (this.threshold && this.parent.o.pointers[1]) {        
+      // check threshold
+      if (this.threshold && this.parent.o.pointers[1]) {
         var v1 = this.value.origin,
             v2 = this.parent.o.pointers[this.uid === 0 ? 1:0].value.origin;
-        this.allowed =  Math.abs(v2 - v1) >= this.threshold;              
+        this.allowed =  Math.abs(v2 - v1) >= this.threshold;
         if (!this.allowed && oldOrigin !== undefined && oldPerc !== undefined){
           this.value.origin = oldOrigin;
           this.value.prc = oldPerc;
