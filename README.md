@@ -92,7 +92,7 @@ Options for your slider in json format {from:.....}
 * `limits`: true/false; toggles bounds labels visibility
 * `modelLabels`: custom model for pointers labels based on pointer value
 * `watchOptions`: default is 'true', watch this options changes by [equals](https://docs.angularjs.org/api/ng/function/angular.equals)
-* heterogeneity: array [percentage of point on slider]/[value in that point]
+* `heterogeneity: array [percentage of point on slider]/[value in that point]
 
 ![angular slider css](http://darul75.github.io/angular-awesome-slider/images/slider2.png "angular slider css explained")
 ```
@@ -116,6 +116,16 @@ callback: function(value, released) {
 }
 ```
 
+* `scale` : model for slide scale
+
+```javascript
+// divide slider into parts
+scale: [0, '|', 10, '|', 20, '|' , 30, '|', 40]
+
+// or with some custom labels
+scale: [{val:10, label:'low'}, {val:25, label:'middle'}, {val:30, label:'high'}]
+```
+
 * `modelLabels` : model for pointers labels by object or function
 
 ```javascript
@@ -126,6 +136,12 @@ modelLabels: {1: 'top', 2: 'middle', 3: 'bottom'};
 modelLabels: function(value) {
 	return 'my value is' + value; // momentjs external library call...
 }
+```
+
+* `heterogeneity` : repartition of possible values
+```javascript
+// example here, first value is percentage of slider length, second is value
+heterogeneity: ['50/100', '75/250'] // 50% value is 100, 75% value must be 250
 ```
 
 Installation
@@ -146,6 +162,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.4.0: fix while updating both range values from code
 * 2.3.9: callback not fired in case slider is on threshold values
 * 2.3.8: bind to touch AND non touch events
 * 2.3.7: heterogeneity option

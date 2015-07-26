@@ -14,7 +14,7 @@
     };
 
     Draggable.prototype.onmousedown = function(){
-      this.ptr.css({ position: "absolute" });
+      this.ptr.css({ position: 'absolute' });
     };
 
     Draggable.prototype.onmousemove = function( evt, x, y ){
@@ -88,7 +88,7 @@
 
       var documentElt = angular.element(window.document);
 
-      this._bindEvent(documentElt, "move", function(event) {        
+      this._bindEvent(documentElt, 'move', function(event) {        
         if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
@@ -97,21 +97,21 @@
           }  
         }
       });
-      this._bindEvent(documentElt, "down", function(event) {
+      this._bindEvent(documentElt, 'down', function(event) {
         if(self.is.drag) {
           event.stopPropagation();
           event.preventDefault();
         }
       });
-      this._bindEvent(documentElt, "up", function(event) {        
+      this._bindEvent(documentElt, 'up', function(event) {        
         self._mouseup(event);        
       });
 
-      this._bindEvent( this.ptr, "down", function(event) {
+      this._bindEvent( this.ptr, 'down', function(event) {
         self._mousedown( event );
         return false;
       });
-      this._bindEvent( this.ptr, "up", function(event) {
+      this._bindEvent( this.ptr, 'up', function(event) {
         self._mouseup( event );
       });      
      
@@ -136,7 +136,7 @@
       });
 
       if( this.outer && this.outer.get(0) ){
-        this.outer.css({ height: Math.max(this.outer.height(), $(document.body).height()), overflow: "hidden" });
+        this.outer.css({ height: Math.max(this.outer.height(), $(document.body).height()), overflow: 'hidden' });
       }
 
       this.onmousedown( evt );

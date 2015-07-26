@@ -268,7 +268,7 @@
 
     Slider.prototype.generateScale = function(){
       if (this.settings.scale && this.settings.scale.length > 0){
-        var str = "",
+        var str = '',
             s = this.settings.scale,
         // FIX Big Scale Failure #34
         // var prc = Math.round((100/(s.length-1))*10)/10;
@@ -293,7 +293,7 @@
         return str;
       }
 
-      return "";
+      return '';
     };
 
     Slider.prototype.onresize = function(){

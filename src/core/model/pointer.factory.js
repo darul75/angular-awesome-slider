@@ -34,7 +34,7 @@
         height: offset.height
       };
 
-      this.ptr.addClass("jslider-pointer-hover");
+      this.ptr.addClass('jslider-pointer-hover');
     };
 
     SliderPointer.prototype.onmousemove = function( evt, x, y ){
@@ -49,7 +49,7 @@
         this.settings.cb.call( this.parent, this.parent.getValue(), !this.is.drag );
 
       if (!this.is.drag)
-        this.ptr.removeClass("jslider-pointer-hover");
+        this.ptr.removeClass('jslider-pointer-hover');
     };
 
     SliderPointer.prototype.limits = function( x ){
@@ -89,9 +89,9 @@
       }
 
       if (!this.vertical)
-        this.ptr.css({left:this.value.prc+"%"});
+        this.ptr.css({left:this.value.prc+'%'});
       else
-        this.ptr.css({top:this.value.prc+"%", marginTop: -5});
+        this.ptr.css({top:this.value.prc+'%', marginTop: -5});
       this.parent.redraw(this);
     };
 

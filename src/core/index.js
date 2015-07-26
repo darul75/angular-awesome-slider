@@ -61,7 +61,7 @@
               value: ngModel.$viewValue,
               dimension: "",
               scale: scope.options.scale,
-              modelLabels: scope.options.modelLabels,              
+              modelLabels: scope.options.modelLabels,
               vertical: scope.options.vertical,
               css: scope.options.css,
               className: scope.options.className,
@@ -118,10 +118,16 @@
             }
 
             if (scope.slider) {
-              scope.slider.getPointers()[0].set(ngModel.$viewValue.split(";")[0], true);
-              if (ngModel.$viewValue.split(";")[1]) {
-                scope.slider.getPointers()[1].set(ngModel.$viewValue.split(";")[1], true);
+              var firstPtr = scope.slider.getPointers()[0];
+              // reset to lowest value              
+              firstPtr.set(scope.from, true);              
+              if (ngModel.$viewValue.split(';')[1]) {
+                var secondPtr = scope.slider.getPointers()[1];              
+                // reset to biggest value              
+                firstPtr.set(scope.to, true);
+                secondPtr.set(ngModel.$viewValue.split(';')[1], true);
               }
+              firstPtr.set(ngModel.$viewValue.split(';')[0], true);
             }
           };
 
