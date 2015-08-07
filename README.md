@@ -162,6 +162,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.4.1: non-minified version added + bower update
 * 2.4.0: fix while updating both range values from code
 * 2.3.9: callback not fired in case slider is on threshold values
 * 2.3.8: bind to touch AND non touch events

@@ -1,6 +1,6 @@
 {
   "name": "angular-awesome-slider",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "author": {
     "name": "Julien Valéry",
     "email": "darul75@gmail.com"
@@ -17,7 +17,7 @@
     "ui"
   ],
   "main": [
-    "./dist/angular-awesome-slider.min.js",
+    "./dist/angular-awesome-slider.js",
     "./dist/css/angular-awesome-slider.min.css"
   ],
   "dependencies": {
