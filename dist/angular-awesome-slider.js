@@ -118,16 +118,16 @@
             }
 
             if (scope.slider) {
-              var firstPtr = scope.slider.getPointers()[0];
-              // reset to lowest value              
-              firstPtr.set(scope.from, true);              
-              if (ngModel.$viewValue.split(';')[1]) {
-                var secondPtr = scope.slider.getPointers()[1];              
-                // reset to biggest value              
-                firstPtr.set(scope.to, true);
-                secondPtr.set(ngModel.$viewValue.split(';')[1], true);
+              var vals = ngModel.$viewValue.split(";");
+              scope.slider.getPointers()[0].set(vals[0], true);
+              if (vals[1]) {
+                scope.slider.getPointers()[1].set(vals[1], true);
+                //if moving left to right with two pointers
+                //we need to "finish" moving the first 
+                if(parseInt(vals[1]) > parseInt(vals[0])){
+                  scope.slider.getPointers()[0].set(vals[0], true);
+                }
               }
-              firstPtr.set(ngModel.$viewValue.split(';')[0], true);
             }
           };
 
