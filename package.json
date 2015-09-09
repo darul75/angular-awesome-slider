@@ -8,6 +8,7 @@
     "email": "darul75@gmail.com"
   },
   "filename": "./src/ng-slider.js",
+  "main": "dist/angular-awesome-slider.js",
   "homepage": "https://github.com/darul75/angular-awesome-slider",
   "repository": {
     "type": "git",
