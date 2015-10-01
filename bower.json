@@ -18,7 +18,8 @@
   ],
   "main": [
     "./dist/angular-awesome-slider.js",
-    "./dist/css/angular-awesome-slider.min.css"
+    "./dist/css/angular-awesome-slider.min.css",
+    "./dist/img/*"
   ],
   "dependencies": {
     "angular": "^1.3.x"
