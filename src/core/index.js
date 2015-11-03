@@ -46,7 +46,7 @@
           var init = function(value) {
             scope.from = ''+scope.options.from;
             scope.to = ''+scope.options.to;
-            if (scope.options.calculate && typeof scope.options.calculate === 'function') {
+            if (scope.options.calculate && angular.isFunction(scope.options.calculate)) {
               scope.from = scope.options.calculate(scope.from);
               scope.to = scope.options.calculate(scope.to);
             }
@@ -59,7 +59,7 @@
               limits: scope.options.limits,
               round: scope.options.round || false,
               value: value || ngModel.$viewValue,
-              dimension: "",
+              dimension: '',
               scale: scope.options.scale,
               modelLabels: scope.options.modelLabels,
               vertical: scope.options.vertical,
@@ -130,12 +130,16 @@
                 if(parseInt(vals[1]) > parseInt(vals[0])){
                   scope.slider.getPointers()[0].set(vals[0], true);
                 }
-              }
+              }              
             }
+
           };
 
-          scope.$on('some-event', function(e, msg){
-            init(msg.value);
+          scope.$on('slider-value-update', function(e, msg){            
+            init(msg.value);  
+            timeout(function(){
+              scope.slider.redrawPointers();
+            });          
           });
 
           // view -> model

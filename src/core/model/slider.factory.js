@@ -10,15 +10,17 @@
     Slider.prototype.init = function( inputNode, templateNode, settings ){
       this.settings = settings;
       this.inputNode = inputNode;
-      this.inputNode.addClass("ng-hide");
+      this.inputNode.addClass('ng-hide');
 
       this.settings.interval = this.settings.to-this.settings.from;
 
-      if(this.settings.calculate && angular.isFunction(this.settings.calculate))
+      if(this.settings.calculate && angular.isFunction(this.settings.calculate)) {
         this.nice = this.settings.calculate;
-
-      if(this.settings.onstatechange && angular.isFunction(this.settings.onstatechange))
+      }
+        
+      if(this.settings.onstatechange && angular.isFunction(this.settings.onstatechange)) {
         this.onstatechange = this.settings.onstatechange;
+      }
 
       this.css = sliderConstants.SLIDER.css;
       this.is = {init: false};
@@ -93,6 +95,8 @@
 
       if (this.settings.single) {
         range.addClass('ng-hide');
+      } else {
+        range.removeClass('ng-hide');
       }
 
       angForEach(pointers, function(pointer, key) {
@@ -156,12 +160,9 @@
         range.css(this.settings.css.range ? this.settings.css.range : {});
         pointer1.css(this.settings.css.pointer ? this.settings.css.pointer : {});
         pointer2.css(this.settings.css.pointer ? this.settings.css.pointer : {});
-      }
-
-      angForEach(this.o.pointers, function(pointer, key){
-        self.redraw(pointer);
-      });
-
+      }      
+      
+      this.redrawPointers();
     };
 
     Slider.prototype.clickHandler = function() {
@@ -310,9 +311,7 @@
         }
       };
 
-      angular.forEach(this.o.pointers, function(ptr, key) {
-        self.redraw(ptr);
-      });
+      this.redrawPointers();
     };
 
     Slider.prototype.update = function(){
@@ -324,6 +323,13 @@
       angular.forEach(angular.element(scaleDiv).find('ins'), function(scaleLabel, key) {
         scaleLabel.style.marginLeft = - scaleLabel.clientWidth / 2;
       });
+    };
+
+    Slider.prototype.redrawPointers = function() {
+
+      angular.forEach(this.o.pointers, function(pointer){
+        this.redraw(pointer);
+      }, this);
     };
 
     Slider.prototype.redraw = function( pointer ){
