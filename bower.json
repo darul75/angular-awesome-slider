@@ -1,14 +1,14 @@
 {
-  "name": "angular-awesome-slider",
+  "name": "budacode-ng-slider",
   "version": "2.4.4",
   "author": {
-    "name": "Julien Valéry",
-    "email": "darul75@gmail.com"
+    "name": "Marcell Kiss",
+    "email": "marcellkiss@budacode.com"
   },
-  "homepage": "https://github.com/darul75/angular-awesome-slider",
+  "homepage": "https://github.com/budacode/budacode-ng-slider",
   "repository": {
     "type": "git",
-    "url": "https://github.com/darul75/angular-awesome-slider.git"
+    "url": "https://github.com/budacode/budacode-ng-slider.git"
   },
   "keywords": [
     "angular",
@@ -29,7 +29,7 @@
     "bourbon": "~4.2.2"
   },
   "authors": [
-    "darul <darul75@gmail.com>"
+    "Marcell <marcellkiss@budacode.com>"
   ],
   "description": "AngularJS directive slider control.",
   "license": "MIT",
