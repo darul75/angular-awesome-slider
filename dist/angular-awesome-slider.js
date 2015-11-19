@@ -293,6 +293,7 @@
     Draggable.prototype._init = function() {
       if( arguments.length > 0 ){
         this.ptr = arguments[0];
+        this.label = arguments[3];
         this.parent = arguments[2];
 
         if (!this.ptr)
@@ -367,6 +368,14 @@
         self._mouseup(event);        
       });
 
+      this._bindEvent( this.label, 'down', function(event) {
+        self._mousedown( event );
+        return false;
+      });
+      this._bindEvent( this.label, 'up', function(event) {
+        self._mouseup( event );
+      });      
+     
       this._bindEvent( this.ptr, 'down', function(event) {
         self._mousedown( event );
         return false;
@@ -440,7 +449,8 @@
 
     return Draggable;
   }]);
-}(angular));;(function(angular){
+}(angular));
+;(function(angular){
   'use strict';
 
   angular.module('angularAwesomeSlider').factory('sliderPointer', ['sliderDraggable', 'sliderUtils', function(Draggable, utils) {
@@ -451,7 +461,7 @@
 
     SliderPointer.prototype = new Draggable();
 
-    SliderPointer.prototype.oninit = function( ptr, id, vertical, _constructor ) {
+    SliderPointer.prototype.oninit = function( ptr, id, vertical, label, _constructor ) {
       this.uid = id;
       this.parent = _constructor;
       this.value = {};
@@ -539,7 +549,8 @@
 
     return SliderPointer;
   }]);
-}(angular));;(function(angular){
+}(angular));
+;(function(angular){
   'use strict';
 
   angular.module('angularAwesomeSlider').factory('slider', ['sliderPointer', 'sliderConstants', 'sliderUtils', function(SliderPointer, sliderConstants, utils) {
@@ -599,7 +610,8 @@
           indicator2 = angElt(is[4]),
           indicator3 = angElt(is[5]),
           indicator4 = angElt(is[6]),
-          pointers = [pointer1, pointer2],
+          labels = [pointerLabel1, pointerLabel2],
+				 	pointers = [pointer1, pointer2],
           off = utils.offset(this.domNode),
           offset = {
             left: off.left,
@@ -651,7 +663,7 @@
             offset;
 
         if(value) {
-          self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, self);
+          self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, labels[key], self);
 
           prev = values[key-1];
           prevValue = prev ? parseInt(prev, 10 ) : undefined;
@@ -1223,7 +1235,8 @@
     return Slider;
 
   }]);
-}(angular));;(function(angular, undefined) {
+}(angular));
+;(function(angular, undefined) {
 'use strict';
 
   angular.module('angularAwesomeSlider')
