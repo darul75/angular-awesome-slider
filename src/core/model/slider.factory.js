@@ -58,7 +58,8 @@
           indicator2 = angElt(is[4]),
           indicator3 = angElt(is[5]),
           indicator4 = angElt(is[6]),
-          pointers = [pointer1, pointer2],
+          labels = [pointerLabel1, pointerLabel2],
+				 	pointers = [pointer1, pointer2],
           off = utils.offset(this.domNode),
           offset = {
             left: off.left,
@@ -110,7 +111,7 @@
             offset;
 
         if(value) {
-          self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, self);
+          self.o.pointers[key] = new SliderPointer(pointer, key, self.settings.vertical, labels[key], self);
 
           prev = values[key-1];
           prevValue = prev ? parseInt(prev, 10 ) : undefined;
