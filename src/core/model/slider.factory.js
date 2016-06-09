@@ -621,8 +621,19 @@
           _start = v1;
           _from = v2;
         }
-      }
-      else {
+      } else if (this.settings.logScale){
+        //logic from http://stackoverflow.com/a/846249/3856
+        var minp = 0;
+        var maxp = 100;
+
+        var minv = Math.log(this.settings.from === 0 ? 1 : this.settings.from);
+        var maxv = Math.log(this.settings.to);
+
+        // calculate adjustment factor
+        var scale = (maxv - minv) / (maxp - minp);
+
+        value = Math.exp(minv + scale * (prc - minp));
+      } else {
         value = this.settings.from + (prc * this.settings.interval) / 100;
       }
 
@@ -658,6 +669,19 @@
 
           _start = v1; _from = v2;
         }
+
+      } else if (this.settings.logScale){
+        //logic from http://stackoverflow.com/a/846249/3856
+        var minp = 0;
+        var maxp = 100;
+
+        var minv = Math.log(this.settings.from === 0 ? 1 : this.settings.from);
+        var maxv = Math.log(this.settings.to);
+
+        // calculate adjustment factor
+        var scale = (maxv - minv) / (maxp - minp);
+
+        prc = (Math.log(value === 0 ? 1 : value) - minv) / scale + minp;
 
       } else {
         if (pointer) {
