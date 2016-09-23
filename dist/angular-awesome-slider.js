@@ -94,9 +94,17 @@
           };
 
           function initListener() {
+            var windowElement = angular.element(win);
+
             // window resize listener
-            angular.element(win).bind('resize', function(event) {
+            var resizeEvent = function(event) {
               scope.slider.onresize();
+            };
+
+            windowElement.bind('resize', resizeEvent);
+
+            scope.$on("$destroy", function () {
+              windowElement.unbind("resize", resizeEvent);
             });
           }
 
