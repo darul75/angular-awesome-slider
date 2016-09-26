@@ -103,8 +103,8 @@
 
             windowElement.bind('resize', resizeEvent);
 
-            scope.$on("$destroy", function () {
-              windowElement.unbind("resize", resizeEvent);
+            scope.$on('$destroy', function () {
+              windowElement.unbind('resize', resizeEvent);
             });
           }
 
@@ -191,6 +191,20 @@
             }
             return value;
           };
+
+          // Turn off all events in associated with the namespace
+          scope.$on('$destroy', function () {
+            if (!!scope.slider && !!scope.slider.domNode) {
+              scope.slider.domNode.find('*').off();
+              scope.slider.domNode.off();
+              angular.element(document)
+                  .off('click.angular-awesome-slider')
+                  .off('mousedown.angular-awesome-slider')
+                  .off('mousemove.angular-awesome-slider')
+                  .off('mouseup.angular-awesome-slider')
+                  .off('mousedown.angular-awesome-slider');
+            }
+          });
 
           var slidering = function( inputElement, element, settings) {
             return new Slider( inputElement, element, settings );
@@ -348,11 +362,11 @@
 
       this.supportTouches_ = 'ontouchend' in document;
       this.events_ = {
-        'click': { touch : 'touchstart', nonTouch : 'click' },
-        'down': { touch : 'touchstart', nonTouch : 'mousedown' },
-        'move': { touch : 'touchmove', nonTouch : 'mousemove' },
-        'up'  : { touch : 'touchend', nonTouch: 'mouseup'},
-        'mousedown'  : { touch : 'mousedown', nonTouch : 'mousedown' }
+        'click': { touch : 'touchstart.angular-awesome-slider', nonTouch : 'click.angular-awesome-slider' },
+        'down': { touch : 'touchstart.angular-awesome-slider', nonTouch : 'mousedown.angular-awesome-slider' },
+        'move': { touch : 'touchmove.angular-awesome-slider', nonTouch : 'mousemove.angular-awesome-slider' },
+        'up'  : { touch : 'touchend.angular-awesome-slider', nonTouch: 'mouseup.angular-awesome-slider'},
+        'mousedown'  : { touch : 'mousedown.angular-awesome-slider', nonTouch : 'mousedown.angular-awesome-slider' }
       };
 
       var documentElt = angular.element(window.document);

@@ -80,11 +80,11 @@
 
       this.supportTouches_ = 'ontouchend' in document;
       this.events_ = {
-        'click': { touch : 'touchstart', nonTouch : 'click' },
-        'down': { touch : 'touchstart', nonTouch : 'mousedown' },
-        'move': { touch : 'touchmove', nonTouch : 'mousemove' },
-        'up'  : { touch : 'touchend', nonTouch: 'mouseup'},
-        'mousedown'  : { touch : 'mousedown', nonTouch : 'mousedown' }
+        'click': { touch : 'touchstart.angular-awesome-slider', nonTouch : 'click.angular-awesome-slider' },
+        'down': { touch : 'touchstart.angular-awesome-slider', nonTouch : 'mousedown.angular-awesome-slider' },
+        'move': { touch : 'touchmove.angular-awesome-slider', nonTouch : 'mousemove.angular-awesome-slider' },
+        'up'  : { touch : 'touchend.angular-awesome-slider', nonTouch: 'mouseup.angular-awesome-slider'},
+        'mousedown'  : { touch : 'mousedown.angular-awesome-slider', nonTouch : 'mousedown.angular-awesome-slider' }
       };
 
       var documentElt = angular.element(window.document);
