@@ -94,9 +94,17 @@
           };
 
           function initListener() {
+            var windowElement = angular.element(win);
+
             // window resize listener
-            angular.element(win).bind('resize', function(event) {
+            var resizeEvent = function(event) {
               scope.slider.onresize();
+            };
+
+            windowElement.bind('resize', resizeEvent);
+
+            scope.$on('$destroy', function () {
+              windowElement.unbind('resize', resizeEvent);
             });
           }
 
@@ -183,6 +191,20 @@
             }
             return value;
           };
+
+          // Turn off all events in associated with the namespace
+          scope.$on('$destroy', function () {
+            if (!!scope.slider && !!scope.slider.domNode) {
+              scope.slider.domNode.find('*').off();
+              scope.slider.domNode.off();
+              angular.element(document)
+                  .off('click.angular-awesome-slider')
+                  .off('mousedown.angular-awesome-slider')
+                  .off('mousemove.angular-awesome-slider')
+                  .off('mouseup.angular-awesome-slider')
+                  .off('mousedown.angular-awesome-slider');
+            }
+          });
 
           var slidering = function( inputElement, element, settings) {
             return new Slider( inputElement, element, settings );
