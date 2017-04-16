@@ -1,6 +1,8 @@
 angular-awesome-slider [![NPM version](https://badge.fury.io/js/angular-awesome-slider.png)](http://badge.fury.io/js/angular-awesome-slider) [![Build Status](https://travis-ci.org/darul75/angular-awesome-slider.png?branch=master)](https://travis-ci.org/darul75/angular-awesome-slider) [![Join the chat at https://gitter.im/darul75/angular-awesome-slider](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/angular-awesome-slider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 =====================
 
+[![Join the chat at https://gitter.im/darul75/angular-awesome-slider](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/angular-awesome-slider?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Angular directive slider control.
 
 **No JQUERY dependency needed anymore**
