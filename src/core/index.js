@@ -68,7 +68,8 @@
               realtime: scope.options.realtime,
               cb: forceApply,
               threshold: scope.options.threshold,
-              heterogeneity: scope.options.heterogeneity
+              heterogeneity: scope.options.heterogeneity,
+              logScale: scope.options.logScale
             };
 
             OPTIONS.calculate = scope.options.calculate || undefined;
