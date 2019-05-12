@@ -18,6 +18,7 @@ logs
 results
 build
 .grunt
+.history/
 
 node_modules
 bower_components

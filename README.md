@@ -163,6 +163,7 @@ bower install angular-awesome-slider
 RELEASE
 -------------
 
+* 2.4.5: LogScale option, thanks @gareththackeray
 * 2.4.4: move by grabbing the label
 * 2.4.3: fix label + switch from range <=> one value
 * 2.4.2: update angular version + fix for programmatic movement of slider (double value)
